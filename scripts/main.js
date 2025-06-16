@@ -1,5 +1,3 @@
-// JavaScript completo para funcionalidades da homepage
-
 document.addEventListener('DOMContentLoaded', () => {
     const navbarTop = document.querySelector('.navbar-top');
     const navbarBottom = document.querySelector('.navbar-bottom');

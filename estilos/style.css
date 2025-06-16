@@ -35,14 +35,14 @@
     position: relative;
   }
 
-    /* FUNDO PARA SECÇÃO 6 */
+    /* FUNDO DA SECÇÃO 6 */
     #sec6 {
         background: url('../imagens/SECTION6/FZ6.jpg') no-repeat center center;
         background-size: auto 100%;
         background-position: center;
       }
 
-  /* === TEXTO COM DEGRADÊ SOBRE FUNDO ESCURO === */
+  /* === TEXTO COM DEGRADÊ  === */
 .highlight-gradient {
     background: linear-gradient(to right, #ffffff, #aaaaaa);
     -webkit-background-clip: text;
@@ -53,7 +53,7 @@
     display: inline-block;
   }
 
-  /* NOVO ESTILO PARA LEGENDA DA SECTION 3 */
+  /* LEGENDA DA SECTION 3 */
 .oportunidades-right .legenda {
     font-size: 2rem;
     color: #fff;
@@ -103,7 +103,7 @@
     box-shadow: 0 0 25px rgba(113, 240, 197, 0.8), 0 0 40px rgba(113, 240, 197, 0.6);
   }
 
-  /* === BOTÃO DA SECÇÃO 1 COM EFEITO DE LUZ === */
+  /* === BOTÃO DA SECÇÃO 1 === */
   .btn {
     margin-top: 1.5rem;
     padding: 0.8rem 2rem;
@@ -172,7 +172,7 @@
   }
   
   .navbar-bottom a:hover {
-    color: #00bfff;
+    color: #bdbfc0;
   }
   
   /* NAVBAR SUPERIOR SECTION 2–5 */

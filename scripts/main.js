@@ -28,30 +28,45 @@ document.addEventListener('DOMContentLoaded', () => {
   
     sections.forEach(section => observer.observe(section));
   
-    // === Carrossel da Secção 2 ===
+    // === Carrossel da Secção 2 — efeito 3D visível ===
     const slides = document.querySelectorAll('.carousel-slide');
     const prevBtn = document.getElementById('prev');
     const nextBtn = document.getElementById('next');
-    let currentIndex = 0;
   
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.remove('active');
-        if (i === index) slide.classList.add('active');
+    let order = [0, 1, 2];
+  
+    function updateCarouselOrder() {
+      slides.forEach((slide, index) => {
+        const pos = order.indexOf(index);
+  
+        if (pos === 0) {
+          slide.style.zIndex = 3;
+          slide.style.opacity = 1;
+          slide.style.transform = 'scale(1) translateX(60px)';
+        } else if (pos === 1) {
+          slide.style.zIndex = 2;
+          slide.style.opacity = 0.8;
+          slide.style.transform = 'scale(0.95) translateX(30px)';
+        } else if (pos === 2) {
+          slide.style.zIndex = 1;
+          slide.style.opacity = 0.6;
+          slide.style.transform = 'scale(0.9) translateX(0px)';
+        }
       });
     }
   
-    if (prevBtn && nextBtn && slides.length > 0) {
+    if (prevBtn && nextBtn && slides.length === 3) {
       prevBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        showSlide(currentIndex);
+        order.unshift(order.pop());
+        updateCarouselOrder();
       });
   
       nextBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex + 1) % slides.length;
-        showSlide(currentIndex);
+        order.push(order.shift());
+        updateCarouselOrder();
       });
   
-      showSlide(currentIndex);
+      updateCarouselOrder();
     }
   });
+  

@@ -1,35 +1,46 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Recrutamento Marinha</title>
-  <link rel="stylesheet" href="estilos/style.css">
+  <link rel="stylesheet" href="estilos/style.css" />
 </head>
 <body>
+  <!-- NAVBAR SUPERIOR -->
   <nav class="navbar-top hidden">
     <a href="#sec2">Profissões</a>
     <a href="#sec2">Concursos</a>
-    <a href="#sec2">Prepara-te</a>
+    <a href="prepara.html">Prepara-te</a>
     <a href="#sec2">A tua Carreira</a>
     <a href="#sec6">Candidata-te</a>
   </nav>
 
   <main class="container">
+
+    <!-- SECÇÃO 1 -->
     <section id="sec1" class="secao fundo-impactante">
-      <header class="conteudo">
-        <h1>RECRUTAMENTO</h1>
-        <button class="btn">JUNTA-TE A NÓS</button>
+      <header class="topo-logo">
+        <img src="imagens/marinhaHorizontalWhite.png" alt="Logotipo Marinha" class="logo-marinha" />
       </header>
+    
+      <h1 class="titulo-recrutamento">RECRUTAMENTO</h1>
+    
+      <img src="imagens/pngs/mergulhador.png" alt="Mergulhador" class="img-mergulhador" />
+    
+      <button class="btn-principal">JUNTA-TE A NÓS</button>
+    
       <nav class="navbar-bottom">
         <a href="#sec2">Profissões</a>
         <a href="#sec2">Concursos</a>
-        <a href="#sec2">Prepara-te</a>
-        <a href="#sec2">A tua Carreira</a>
+        <a href="prepara.html">Prepara-te</a>
+        <a href="#sec2">A tua carreira</a>
         <a href="#sec6">Candidata-te</a>
       </nav>
     </section>
-
+    
+    
+    <!-- SECÇÃO 2: Destaques -->
     <section id="sec2" class="secao destaques">
       <header class="destaques-left">
         <h2>DESTAQUES</h2>
@@ -65,6 +76,7 @@
       </article>
     </section>
 
+    <!-- SECÇÃO 3: Oportunidades -->
     <section id="sec3" class="secao oportunidades">
       <article class="oportunidades-left">
         <h2>
@@ -92,7 +104,6 @@
           <button class="btn-seta">&gt;</button>
         </div>
       </article>
-
       <aside class="oportunidades-right">
         <figure class="card-perfil">
           <img src="imagens/SECTION3/militar.jpg" alt="Militar" />
@@ -110,6 +121,7 @@
       </aside>
     </section>
 
+    <!-- SECÇÃO 4: Ambientes -->
     <section id="sec4" class="secao ambientes">
       <h2>Estamos no MAR, em TERRA, no AR e no CIBERESPAÇO</h2>
       <div class="cards-ambiente">
@@ -120,6 +132,7 @@
       </div>
     </section>
 
+    <!-- SECÇÃO 5: Testemunhos -->
     <section id="sec5" class="secao testemunhos">
       <h2>TESTEMUNHOS</h2>
       <div class="carousel-testemunhos">
@@ -134,27 +147,29 @@
       </div>
     </section>
 
+    <!-- SECÇÃO 6: Call to Action -->
     <section id="sec6" class="secao calltoaction">
       <h2>JUNTA-TE A NÓS</h2>
       <footer>
         <img src="imagens/marinhaHorizontalWhite.png" alt="Marinha Logo">
         <nav class="social">
-            <a href="#"><img src="imagens/logos/whatsapp.png" alt="WhatsApp" /></a>
-            <a href="#"><img src="imagens/logos/instagram.png" alt="Instagram" /></a>
-            <a href="#"><img src="imagens/logos/facebook.png" alt="Facebook" /></a>
-            <a href="#"><img src="imagens/logos/twitter.png" alt="Twitter" /></a>
-            <a href="#"><img src="imagens/logos/linkedin.png" alt="LinkedIn" /></a>
-          </nav>
-          
+          <a href="#"><img src="imagens/logos/whatsapp.png" alt="WhatsApp" /></a>
+          <a href="#"><img src="imagens/logos/instagram.png" alt="Instagram" /></a>
+          <a href="#"><img src="imagens/logos/facebook.png" alt="Facebook" /></a>
+          <a href="#"><img src="imagens/logos/twitter.png" alt="Twitter" /></a>
+          <a href="#"><img src="imagens/logos/linkedin.png" alt="LinkedIn" /></a>
+        </nav>
         <p>2024, RECRUTAMENTO | Acessibilidade | Glossário | Cookies | Avisos Legais | Links Úteis | Mapa do Site | Contactos</p>
       </footer>
     </section>
   </main>
 
+  <!-- BOTÕES FIXOS -->
   <aside class="fixed-buttons">
     <button>CHAT</button>
     <button>JUNTA-TE A NÓS</button>
   </aside>
+
 
   <script src="scripts/main.js"></script>
 </body>

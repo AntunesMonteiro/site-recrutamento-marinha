@@ -1,4 +1,4 @@
-/* RESET & GLOBAL SETTINGS */
+/* RESET GLOBAL */
 * {
   margin: 0;
   padding: 0;
@@ -13,8 +13,15 @@ html, body {
 }
 
 body {
-  background-color: #000;
+  background: radial-gradient(
+    circle at center,
+    #304764 0%,
+    #000000 60%,
+    #000 100%
+  );
   overflow-x: hidden;
+  font-family: 'Roboto', sans-serif;
+  color: #fff;
 }
 
 .container {
@@ -59,7 +66,7 @@ body {
   pointer-events: none;
 }
 
-/* Logotipo */
+/* LOGO MARINHA */
 .topo-logo {
   position: absolute;
   top: 2rem;
@@ -116,7 +123,7 @@ body {
   box-shadow: 0 0 25px rgba(0,255,200,0.6);
 }
 
-/* Navbar inferior */
+/* NAVBAR INFERIOR */
 .navbar-bottom {
   display: flex;
   gap: 2rem;
@@ -127,7 +134,12 @@ body {
 .navbar-bottom a {
   color: white;
   text-decoration: none;
+  /* font-weight: bold; */
+}
+
+.navbar-bottom a:hover {
   font-weight: bold;
+  /* color: #00bfff; */
 }
 
 /* Botão e navbar acima */
@@ -196,15 +208,22 @@ body {
   .navbar-top a {
     color: white;
     text-decoration: none;
-    font-weight: bold;
+    /* font-weight: bold; */
     transition: color 0.3s;
   }
   
   .navbar-top a:hover {
-    color: #00bfff;
+    font-weight: bold;
+    /* color: #00bfff; */
   }
 
 /* SECTION 2 */
+
+#sec2 {
+  overflow: hidden;      
+  padding-top: -220px;      
+}
+
 .destaques {
     flex-direction: row;
     justify-content: space-between;
@@ -218,7 +237,7 @@ body {
   }
   
   .destaques-left h2 {
-    font-size: 3rem;
+    font-size: 4rem;
     color: #c0c3d2;
     text-align: left;
   }
@@ -232,9 +251,9 @@ body {
     justify-content: center;
   }
   
-  /* === TÍTULO DESTAQUES COM DEGRADÊ DA ESQUERDA PARA A DIREITA === */
+  /* TÍTULO DESTAQUES */
 .destaques-left h2 {
-    font-size: 3rem;
+    font-size: 4rem;
     background: linear-gradient(to right, #aaa, #fff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -243,15 +262,16 @@ body {
 
   }
   
-  /* === EFEITO TRIDIMENSIONAL NAS CARDS DESTAQUES === */
+  /* CARDS DESTAQUES */
   .carousel-wrapper {
     position: relative;
     width: 100%;
-    max-width: 600px;
-    height: 400px;
+    max-width: 500px;
+    height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
+    perspective: 1000px;
   }
   
   .carousel-slide {
@@ -259,41 +279,79 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 24px;
-    background-color: #000;
-    box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    transition: transform 0.5s ease, opacity 0.5s ease;
-    opacity: 0.6;
-    z-index: 1;
-    transform: scale(0.9) translateX(-20px);
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    z-index: 0;
+    filter: blur(2px);
+    transition: transform 0.5s ease, opacity 0.5s ease, filter 0.5s ease;
   }
   
-  .carousel-slide:nth-child(2) {
-    transform: scale(0.95) translateX(-10px);
-    z-index: 2;
-    opacity: 0.8;
-  }
-  
-  .carousel-slide:nth-child(1) {
+  /* CARD PRINCIPAL */
+  .carousel-slide.pos-0 {
     transform: scale(1) translateX(0);
-    z-index: 3;
     opacity: 1;
+    z-index: 5;
+    filter: none;
   }
   
+  /* CARD 2 */
+  .carousel-slide.pos-1 {
+    transform: scale(0.95) translateX(-50px);
+    opacity: 0.8;
+    z-index: 4;
+  }
+  
+  /* CARD 3 */
+  .carousel-slide.pos-2 {
+    transform: scale(0.9) translateX(-100px);
+    opacity: 0.6;
+    z-index: 3;
+  }
+  
+  /* CARD 4 */
+  .carousel-slide.pos-3 {
+    transform: scale(0.85) translateX(-150px);
+    opacity: 0.4;
+    z-index: 2;
+  }
+  
+  /* CARD 5 */
+  .carousel-slide.pos-4 {
+    transform: scale(0.8) translateX(-200px);
+    opacity: 0.2;
+    z-index: 1;
+  }
+  
+  /* IMAGEM */
   .carousel-slide img {
     width: 100%;
-    height: 70%;
+    height: 100%;
     object-fit: cover;
-    border-top-left-radius: 24px;
-    border-top-right-radius: 24px;
   }
   
+  /* CAIXA DE TEXTO CARDS */
   .carousel-text {
-    padding: 1rem;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.4); 
+    backdrop-filter: blur(10px);     
     color: #fff;
     text-align: center;
+    font-family: 'Roboto', sans-serif;
     border-bottom-left-radius: 24px;
     border-bottom-right-radius: 24px;
+  }
+  
+  .carousel-text h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+  }
+  
+  .carousel-text p {
+    font-size: 1rem;
   }
   
   .carousel-controls {
@@ -313,13 +371,12 @@ body {
     background-color: #e5e5e5;
     color: #000;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background-color 0.3s;
   }
   
   .carousel-controls button:hover {
     background-color: #bbb;
   }
-  
   
   /* SECTION 3 */
   .oportunidades {
@@ -425,21 +482,7 @@ body {
       margin: 0 1rem;
       margin-bottom: 0;
     }
-  }
-  
-  @media (min-width: 768px) {
-    .oportunidades-right {
-      flex-direction: row;
-      justify-content: center;
-      align-items: flex-start;
-      flex-wrap: wrap;
-    }
-    .card-perfil {
-      margin: 0 1rem;
-      margin-bottom: 0;
-    }
-  }
-  
+  }  
   
   /* SECTION 4 */
   .cards-ambiente {

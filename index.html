@@ -25,6 +25,7 @@
         <img src="imagens/marinhaHorizontalWhite.png" alt="Logotipo Marinha" class="logo-marinha" />
       </header>
     
+      <h1 class="titulo-sombra">RECRUTAMENTO</h1>
       <h1 class="titulo-recrutamento">RECRUTAMENTO</h1>
     
       <img src="imagens/pngs/mergulhador.png" alt="Mergulhador" class="img-mergulhador" />
@@ -106,83 +107,156 @@
           <span class="highlight-gradient">MILITARIZADO</span> ou
           <span class="highlight-gradient">CIVIL</span>
         </h2>
-        <div class="acordeoes">
-          <details>
+        <section class="acordeoes">
+          <details class="acordeao" data-type="habilitacoes">
             <summary>Habilitações</summary>
-            <ul>
-              <li>Ensino Básico</li>
-              <li>Ensino Secundário</li>
-              <li>Ensino Superior</li>
+            <ul class="options">
+              <li><button>Ensino Básico</button></li>
+              <li><button>Ensino Secundário</button></li>
+              <li><button>Ensino Superior</button></li>
             </ul>
           </details>
-          <details>
+        
+          <details class="acordeao" data-type="idade">
             <summary>Idade</summary>
-            <ul>
-              <li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li>
-              <li>23</li><li>24</li><li>25</li><li>26</li><li>27</li><li>+27</li>
+            <ul class="options">
+              <li><button>17</button></li>
+              <li><button>18</button></li>
+              <li><button>19</button></li>
+              <li><button>20</button></li>
+              <li><button>21</button></li>
+              <li><button>22</button></li>
+              <li><button>23</button></li>
+              <li><button>24</button></li>
+              <li><button>25</button></li>
+              <li><button>26</button></li>
+              <li><button>27</button></li>
+              <li><button>+27</button></li>
             </ul>
           </details>
-          <button class="btn-seta">&gt;</button>
-        </div>
+        
+          <button class="btn-seta">></button>
+        </section>
+        
       </article>
-      <aside class="oportunidades-right">
-        <figure class="card-perfil">
-          <img src="imagens/SECTION3/militar.jpg" alt="Militar" />
-          <figcaption><h3>MILITAR</h3></figcaption>
+      <aside class="cards-perfil">
+        <figure class="card card-civil">
+          <img src="imagens/SECTION3/civil.png" alt="Perfil Civil" class="figura">
         </figure>
-        <figure class="card-perfil">
-          <img src="imagens/SECTION3/militarizado.png" alt="Militarizado" />
-          <figcaption><h3>MILITARIZADO</h3></figcaption>
+      
+        <figure class="card card-militarizado">
+          <img src="imagens/SECTION3/militarizado.png" alt="Perfil Militarizado" class="figura">
         </figure>
-        <figure class="card-perfil">
-          <img src="imagens/SECTION3/civil.png" alt="Civil" />
-          <figcaption><h3>CIVIL</h3></figcaption>
+      
+        <figure class="card card-militar">
+          <img src="imagens/SECTION3/militar.png" alt="Perfil Militar" class="figura">
         </figure>
-        <p class="legenda">Escolhe o rumo certo</p>
       </aside>
-    </section>
+      
 
     <!-- SECÇÃO 4: Ambientes -->
     <section id="sec4" class="secao ambientes">
       <h2>Estamos no MAR, em TERRA, no AR e no CIBERESPAÇO</h2>
-      <div class="cards-ambiente">
-        <div class="card">MAR</div>
-        <div class="card">TERRA</div>
-        <div class="card">AR</div>
-        <div class="card">CIBERESPAÇO</div>
-      </div>
+    
+      <section class="cards-ambiente">
+        <figure class="card ambiente-mar">
+          <a href="#">
+            <figcaption>MAR</figcaption>
+          </a>
+        </figure>
+    
+        <figure class="card ambiente-terra">
+          <a href="#">
+            <figcaption>TERRA</figcaption>
+          </a>
+        </figure>
+    
+        <figure class="card ambiente-ar">
+          <a href="#">
+            <figcaption>AR</figcaption>
+          </a>
+        </figure>
+    
+        <figure class="card ambiente-ciber">
+          <a href="#">
+            <figcaption>CIBERESPAÇO</figcaption>
+          </a>
+        </figure>
+      </section>
     </section>
+    
+<!-- SECÇÃO 5: Testemunhos -->
+<section id="sec5" class="secao testemunhos">
+  <h2>TESTEMUNHOS</h2>
 
-    <!-- SECÇÃO 5: Testemunhos -->
-    <section id="sec5" class="secao testemunhos">
-      <h2>TESTEMUNHOS</h2>
-      <div class="carousel-testemunhos">
-        <article class="testemunho">
-          <p class="texto">Cadete - "Sempre sonhei servir o país..."</p>
-          <div class="video">[Vídeo 1]</div>
-        </article>
-        <article class="testemunho">
-          <p class="texto">Técnico de Informática - "Tecnologia de ponta na Marinha"</p>
-          <div class="video">[Vídeo 2]</div>
-        </article>
-      </div>
-    </section>
+  <section class="carousel-testemunhos">
+    <figure>
+      <h3>Cadete</h3>
+      <p>Decidi ingressar na Marinha porque encontrei uma oportunidade de servir o país e crescer profissionalmente...</p>
+      <figcaption class="video-container">
+        <a href="https://www.youtube.com/watch?v=VIDEO_ID_1" target="_blank" class="play-button">
+          <img src="../imagens/logos/play.png" alt="Play">
+        </a>
+        <img src="../imagens/testemunhos/cadete.jpg" alt="Testemunho 1">
+      </figcaption>
+    </figure>
 
-    <!-- SECÇÃO 6: Call to Action -->
-    <section id="sec6" class="secao calltoaction">
-      <h2>JUNTA-TE A NÓS</h2>
-      <footer>
-        <img src="imagens/marinhaHorizontalWhite.png" alt="Marinha Logo">
-        <nav class="social">
-          <a href="#"><img src="imagens/logos/whatsapp.png" alt="WhatsApp" /></a>
-          <a href="#"><img src="imagens/logos/instagram.png" alt="Instagram" /></a>
-          <a href="#"><img src="imagens/logos/facebook.png" alt="Facebook" /></a>
-          <a href="#"><img src="imagens/logos/twitter.png" alt="Twitter" /></a>
-          <a href="#"><img src="imagens/logos/linkedin.png" alt="LinkedIn" /></a>
-        </nav>
-        <p>2024, RECRUTAMENTO | Acessibilidade | Glossário | Cookies | Avisos Legais | Links Úteis | Mapa do Site | Contactos</p>
-      </footer>
-    </section>
+    <figure>
+      <h3>Técnico de Informática</h3>
+      <p>Sempre gostei de tecnologia e encontrei na Marinha um caminho para evoluir em áreas como cibersegurança e redes...</p>
+      <figcaption class="video-container">
+        <a href="https://www.youtube.com/watch?v=VIDEO_ID_2" target="_blank" class="play-button">
+          <img src="imagens/logos/play.png" alt="Play">
+        </a>
+        <img src="imagens/testemunhos/informatico.jpg" alt="Testemunho 2">
+      </figcaption>
+    </figure>
+
+    <figure>
+      <h3>Oficial de Engenharia</h3>
+      <p>A engenharia naval sempre me fascinou. O ambiente desafiante da Marinha ajuda-me a crescer todos os dias...</p>
+      <figcaption class="video-container">
+        <a href="https://www.youtube.com/watch?v=VIDEO_ID_3" target="_blank" class="play-button">
+          <img src="imagens/logos/play.png" alt="Play">
+        </a>
+        <img src="imagens/testemunhos/engenheiro.jpg" alt="Testemunho 3">
+      </figcaption>
+    </figure>
+  </section>
+
+  <nav class="controles-testemunhos">
+    <button id="prev-testemunhos">&#8592;</button>
+    <button id="next-testemunhos">&#8594;</button>
+  </nav>
+</section>
+
+<!-- SECTION 6 -->
+
+<section id="sec6" class="secao final">
+  <header class="sec6-header">
+    <!-- <img src="imagens/marinhaHorizontalWhite.png" alt="Logotipo Marinha"> -->
+  </header>
+  <h1 class="titulo-sombra1">JUNTA-TE A NÓS</h1>
+      <h1 class="titulo">JUNTA-TE A NÓS</h1>
+      <button class="btn-atreve">ATREVE-TE</button>
+  <footer class="sec6-footer">
+    <div class="footer-top">
+      <img src="imagens/marinhaHorizontalWhite.png" alt="Logo Footer">
+      <nav class="footer-social">
+        <a href="#"><img src="imagens/logos/whatsapp.png" alt="WhatsApp" /></a>
+        <a href="#"><img src="imagens/logos/instagram.png" alt="Instagram" /></a>
+        <a href="#"><img src="imagens/logos/facebook.png" alt="Facebook" /></a>
+        <a href="#"><img src="imagens/logos/twitter.png" alt="Twitter" /></a>
+        <a href="#"><img src="imagens/logos/linkedin.png" alt="LinkedIn" /></a>
+      </nav>
+    </div>
+    <p class="footer-links">
+      2024, RECRUTAMENTO | Acessibilidade | Glossário | Cookies | Avisos Legais | Links Úteis | Mapa do Site | Contactos
+    </p>
+  </footer>
+</section>
+
+
   </main>
 
   <!-- BOTÕES FIXOS -->

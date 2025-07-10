@@ -61,4 +61,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateCarouselOrder();
   }
+
+  // === ACORDEÕES SEC3 ===
+  const acordeoes = document.querySelectorAll('.acordeao');
+
+  acordeoes.forEach(acordeao => {
+    const summary = acordeao.querySelector('summary');
+    const buttons = acordeao.querySelectorAll('button');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const tipo = acordeao.dataset.type;
+        const valor = button.textContent.trim();
+
+        if (tipo === 'habilitacoes') {
+          summary.textContent = valor;
+        } else if (tipo === 'idade') {
+          summary.textContent = `${valor} anos`;
+        } else {
+          summary.textContent = valor;
+        }
+
+        // Fecha o acordeão
+        acordeao.removeAttribute('open');
+      });
+    });
+  });
+
+  // === CARROSSEL SEC5 - TESTEMUNHOS ===
+  const testimoniosContainer = document.querySelector('.carousel-testemunhos');
+  const prevTestemunhos = document.getElementById('prev-testemunhos');
+  const nextTestemunhos = document.getElementById('next-testemunhos');
+
+  if (testimoniosContainer && prevTestemunhos && nextTestemunhos) {
+    const scrollAmount = 400;
+
+    prevTestemunhos.addEventListener('click', () => {
+      testimoniosContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+
+    nextTestemunhos.addEventListener('click', () => {
+      testimoniosContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+  }
 });
+

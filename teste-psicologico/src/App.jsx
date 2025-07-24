@@ -42,10 +42,16 @@ function App() {
       <div className="app-container">
         <h2>Teste Concluído</h2>
         <p>Respostas submetidas com sucesso!</p>
-        <button onClick={handleRestart}>Voltar ao Início</button>
+        <div className="button-group">
+          <button onClick={handleRestart}>Voltar ao Início</button>
+          <button className="sair-btn" onClick={() => window.close()}>
+            Sair
+          </button>
+        </div>
       </div>
     );
   }
+  
 
   const currentQuestion = questions[current];
 

@@ -137,6 +137,7 @@ body {
 .btn-principal:hover {
   background-color: #5ed7b1;
   box-shadow: 0 0 25px rgba(0,255,200,0.6);
+  transform: scale(1.05);
 }
 
 #sec1 {

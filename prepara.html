@@ -2,36 +2,52 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prepara-te | Recrutamento Marinha</title>
-  <link rel="stylesheet" href="estilos/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prepara-te</title>
+  <link rel="stylesheet" href="../estilos/prepara.css" />
+  <link rel="stylesheet" href="../estilos/navbar.css" /> <!-- se necessário -->
 </head>
 <body>
-  <!-- NAVBAR SUPERIOR -->
-  <nav class="navbar-top">
-    <a href="index.html#sec2">Profissões</a>
-    <a href="index.html#sec2">Concursos</a>
-    <a href="prepara.html">Prepara-te</a>
-    <a href="index.html#sec2">A tua Carreira</a>
-    <a href="index.html#sec6">Candidata-te</a>
+  
+   <!-- NAVBAR -->
+   <nav class="navbar">
+    <a href="../index.html">
+      <img src="../imagens/marinhaHorizontalWhite.png" alt="Marinha" class="logo"/>
+    </a>
+  <ul>
+    <li><a href="profissoes.html">Profissões</a></li>
+    <li><a href="concursos.html">Concursos</a></li>
+    <li><a href="prepara.html">Prepara-te</a></li>
+    <li><a href="carreira.html">A tua carreira</a></li>
+    <li><a href="candidata.html">Candidata-te</a></li>
+    </ul>
   </nav>
 
-  <!-- FUNDO IMPACTANTE COM BOTÃO -->
-  <main class="secao fundo-impactante">
-    <div class="conteudo text-center text-white">
-      <h1 class="text-4xl font-bold mb-4">PREPARA-TE</h1>
-      <p class="mb-6 text-lg">Explora os teus conhecimentos e aptidões antes da candidatura.</p>
-      <a href="http://localhost:5173" target="_blank">
-        <button class="btn">Testa as tuas aptidões</button>
-      </a>
-      
-    </div>
-  </main>
+  <main class="prepara-container">
+    <section class="intro">
+      <h1>Estás pronto para o desafio?</h1>
+      <p>Antes de te candidatares, avalia as tuas capacidades com os testes de aptidão e memória da Marinha Portuguesa.</p>
+      <button onclick="window.location.href='../teste-react/index.html'" class="btn-testar">Iniciar Teste Psicológico</button>
+    </section>
 
-  <!-- SECÇÃO DO TESTE -->
+    <section class="informativo">
+      <h2>O que vais encontrar:</h2>
+      <ul>
+        <li>Testes de aptidão verbal, numérica e mecânica</li>
+        <li>Exercícios de memória simples e de pares associativos</li>
+        <li>Respostas imediatas e pontuação final</li>
+      </ul>
+    </section>
+  </section>
+  </main>
+</body>
+</html>
+
+
+<!-- SECÇÃO DO TESTE
   <section id="teste" class="bg-black text-white p-10 text-center">
     <h2 class="text-2xl font-bold mb-4">Testes e Ferramentas</h2>
     <p>Em breve poderás experimentar testes de aptidão e memória adaptados ao teu perfil.</p>
   </section>
 </body>
-</html>
+</html> -->

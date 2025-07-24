@@ -1,0 +1,192 @@
+[
+  {
+    "type": "aptidao_verbal",
+    "variant": "escolha_multipla",
+    "question": "Qual das seguintes palavras inclui o significado de todas as outras?",
+    "options": [
+      "Carro",
+      "Veículo",
+      "Bicicleta",
+      "Motociclo",
+      "Autocarro"
+    ],
+    "answer": 1
+  },
+  {
+    "type": "aptidao_verbal",
+    "variant": "escolha_multipla",
+    "question": "Uma Pintura pertence(u) sempre a …",
+    "options": [
+      "Museu",
+      "Moldura",
+      "Galeria",
+      "Pintor",
+      "Parede"
+    ],
+    "answer": 2
+  },
+  {
+    "type": "aptidao_verbal",
+    "variant": "escolha_multipla",
+    "question": "A palavra sublinhada combina com apenas quatro das palavras para criar uma palavra mais longa. Qual a única que não permite isso? (DE)",
+    "options": [
+      "Repente",
+      "Vagar",
+      "Mais",
+      "Liberar",
+      "Corrente"
+    ],
+    "answer": 1
+  },
+  {
+    "type": "aptidao_numerica",
+    "variant": "sequencia",
+    "question": "Complete a sequência: 15, 23, 31, 39, ?",
+    "options": [
+      "47",
+      "46",
+      "45",
+      "44"
+    ],
+    "answer": 0
+  },
+  {
+    "type": "aptidao_numerica",
+    "variant": "problema",
+    "question": "Um motociclo faz 360Km em 3 horas. Quantos km percorre em média por hora?",
+    "options": [
+      "100",
+      "80",
+      "120",
+      "110"
+    ],
+    "answer": 2
+  },
+  {
+    "type": "aptidao_mecanica",
+    "variant": "imagem_escolha",
+    "question": "Neste sistema de engrenagem, qual a roda que irá girar o maior número de vezes?",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": 3
+  },
+  {
+    "type": "memory",
+    "variant": "lista_simples",
+    "items": [
+      "Hotel",
+      "Papelaria",
+      "Domingo",
+      "Areia",
+      "Doce",
+      "Mesa",
+      "Verão",
+      "Computador",
+      "Comida",
+      "Relógio",
+      "Lua",
+      "Cor",
+      "Árvore",
+      "Telhado",
+      "Cavalo",
+      "Futebol",
+      "Navio"
+    ]
+  },
+  {
+    "type": "memory",
+    "variant": "pares_associativos",
+    "pairs": [
+      [
+        "Dia",
+        "Noite"
+      ],
+      [
+        "Inverno",
+        "Verão"
+      ],
+      [
+        "Doce",
+        "Amargo"
+      ],
+      [
+        "Vivo",
+        "Morto"
+      ],
+      [
+        "Bebida",
+        "Comida"
+      ],
+      [
+        "Frio",
+        "Calor"
+      ],
+      [
+        "Neve",
+        "Serra"
+      ],
+      [
+        "Sala",
+        "Sofá"
+      ],
+      [
+        "Árvore",
+        "Ramos"
+      ],
+      [
+        "Cedo",
+        "Tarde"
+      ]
+    ]
+  },
+  {
+    "type": "memory",
+    "variant": "pares_associativos",
+    "pairs": [
+      [
+        "Roma",
+        "Coliseu"
+      ],
+      [
+        "Londres",
+        "Big Ben"
+      ],
+      [
+        "El Prado",
+        "Madrid"
+      ],
+      [
+        "Torre Eiffel",
+        "Paris"
+      ],
+      [
+        "Rússia",
+        "Kremlin de Moscovo"
+      ],
+      [
+        "Alpes",
+        "Suíça"
+      ],
+      [
+        "Torre de Belém",
+        "Portugal"
+      ],
+      [
+        "Turquia",
+        "Mesquita Azul"
+      ],
+      [
+        "Acrópole",
+        "Grécia"
+      ],
+      [
+        "Barcelona",
+        "Sagrada Família"
+      ]
+    ]
+  }
+]

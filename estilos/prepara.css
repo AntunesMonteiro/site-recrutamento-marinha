@@ -1,0 +1,103 @@
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: #0f1218;
+    color: #fff;
+    background: url('../imagens/navios/BDIAS1.jpg') no-repeat center center / cover;
+  }
+
+
+
+    /* Navbar */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 4rem;
+        background: transparent;
+        position: relative;
+        z-index: 10;
+      }
+      
+      .logo {
+        height: 40px;
+      }
+      
+      .navbar ul {
+        list-style: none;
+        display: flex;
+        gap: 3.5rem;
+      }
+      
+      .navbar a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+      
+      .navbar a:hover {
+        color: #ccc;
+      }
+  
+  .prepara-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+  
+  .intro h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #c0c8d4;
+  }
+  
+  .intro p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .btn-testar {
+    background-color: #00b4d8;
+    color: #fff;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-testar:hover {
+    background-color: #0095c9;
+  }
+  
+  .informativo {
+    margin-top: 4rem;
+  }
+  
+  .informativo h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #c0c8d4;
+  }
+  
+  .informativo ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .informativo li {
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+    padding-left: 1rem;
+    position: relative;
+  }
+  
+  .informativo li::before {
+    content: "•";
+    color: #00b4d8;
+    position: absolute;
+    left: 0;
+  }
+  

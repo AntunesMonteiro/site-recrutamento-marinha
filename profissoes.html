@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profissões</title>
+  <link rel="stylesheet" href="estilos/profissoes.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="../index.html">
+      <img src="../imagens/marinhaHorizontalWhite.png" alt="Marinha" class="logo"/>
+    </a>
+  <ul>
+      <li><a href="profissoes.html">Profissões</a></li>
+      <li><a href="concursos.html">Concursos</a></li>
+      <li><a href="prepara.html">Prepara-te</a></li>
+      <li><a href="carreira.html">A tua carreira</a></li>
+      <li><a href="candidata.html">Candidata-te</a></li>
+    </ul>
+  </nav>
+
+  <!-- SECÇÃO PROFISSÕES -->
+  <section class="profissoes-section">
+    
+    <!-- TEXTO À ESQUERDA -->
+    <article class="texto">
+      <h1 id="titulo">MILITAR</h1>
+      <p id="descricao">
+        Descrição da carreira militar. Texto introdutório com ênfase em valores, desafios e oportunidades.
+      </p>
+      <button class="cta">O teu lugar é aqui</button>
+    </article>
+
+    <!-- CARROSSEL À DIREITA -->
+    <aside class="carrossel">
+      <div class="card active">
+        <a href="militar.html">
+          <img src="../imagens/militar.jpg" alt="Militar"/>
+        </a>
+      </div>
+      <div class="card">
+        <a href="militarizado.html">
+          <img src="../imagens/militarizado.jpg" alt="Militarizado"/>
+        </a>
+      </div>
+      <div class="card">
+        <a href="civil.html">
+          <img src="../imagens/civil.jpg" alt="Civil"/>
+        </a>
+      </div>
+    </aside>
+  </section>
+
+  <!-- BOTÕES DE NAVEGAÇÃO -->
+  <nav class="dots">
+    <span class="dot active" data-index="0"></span>
+    <span class="dot" data-index="1"></span>
+    <span class="dot" data-index="2"></span>
+  </nav>
+
+  <script src="scripts/profissoes.js"></script>
+</body>
+</html>

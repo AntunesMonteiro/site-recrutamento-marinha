@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const fixedButtons = document.querySelector('aside.fixed-buttons') || document.querySelector('.fixed-buttons');
   const sections = document.querySelectorAll('.secao');
 
-  // === OBSERVADOR PARA MOSTRAR/ESCONDER NAVBAR E BOTÕES FIXOS ===
+  // === MOSTRAR/ESCONDER NAVBAR E BOTÕES FIXOS ===
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       const id = entry.target.id;

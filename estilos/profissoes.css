@@ -1,4 +1,3 @@
-/* Reset básico */
 * {
     margin: 0;
     padding: 0;
@@ -22,7 +21,7 @@
     background: rgba(0, 0, 0, 0.7);
     z-index: -1;
   }
-  
+
   /* Navbar */
   .navbar {
     display: flex;
@@ -156,7 +155,6 @@
     opacity: 0.8;
   }
   
-  /* Responsivo */
   @media (max-width: 768px) {
     .profissoes-section {
       flex-direction: column;

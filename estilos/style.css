@@ -146,7 +146,7 @@ body {
 /* NAVBAR INFERIOR */
 .navbar-bottom {
   display: flex;
-  gap: 2rem;
+  gap: 6rem;
   justify-content: center;
   padding-bottom: 1rem;
 }
@@ -154,12 +154,10 @@ body {
 .navbar-bottom a {
   color: white;
   text-decoration: none;
-  /* font-weight: bold; */
 }
 
 .navbar-bottom a:hover {
   font-weight: bold;
-  /* color: #00bfff; */
 }
 
 .btn-principal, .navbar-bottom {
@@ -226,7 +224,7 @@ body {
   .navbar-top ul {
     list-style: none;
     display: flex;
-    gap: 3.5rem;
+    gap: 6rem;
     margin: 0;
     padding: 0;
   }

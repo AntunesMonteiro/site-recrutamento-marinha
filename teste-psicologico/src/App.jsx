@@ -28,6 +28,29 @@ function App() {
     setAnswers([]);
   };
 
+  const renderQuestion = () => {
+    const currentQuestion = questions[current];
+
+    if (currentQuestion.type === "memory") {
+      return (
+        <MemoryTest data={currentQuestion} onAnswer={handleAnswer} />
+      );
+    }
+
+    if (
+      currentQuestion.variant === "escolha_multipla" ||
+      currentQuestion.variant === "sequencia" ||
+      currentQuestion.variant === "problema" ||
+      currentQuestion.variant === "imagem_escolha"
+    ) {
+      return (
+        <MultipleChoice data={currentQuestion} onAnswer={handleAnswer} />
+      );
+    }
+
+    return <p>Tipo de pergunta não suportado.</p>;
+  };
+
   if (step === "inicio") {
     return (
       <div className="app-container">
@@ -51,19 +74,11 @@ function App() {
       </div>
     );
   }
-  
-
-  const currentQuestion = questions[current];
 
   return (
     <div className="app-container">
       <h2>Pergunta {current + 1}</h2>
-      {currentQuestion.type === "MultipleChoice" && (
-        <MultipleChoice data={currentQuestion} onAnswer={handleAnswer} />
-      )}
-      {currentQuestion.type === "MemoryTest" && (
-        <MemoryTest data={currentQuestion} onAnswer={handleAnswer} />
-      )}
+      {renderQuestion()}
     </div>
   );
 }

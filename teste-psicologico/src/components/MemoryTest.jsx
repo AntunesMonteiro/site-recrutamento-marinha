@@ -3,7 +3,7 @@ import "./memory.css";
 
 function MemoryTest({ data, onAnswer }) {
   const [step, setStep] = useState("memorize");
-  const [timeLeft, setTimeLeft] = useState(10);
+  const [timeLeft, setTimeLeft] = useState(60); // tempo de memorização
   const [input, setInput] = useState("");
   const [pairInputs, setPairInputs] = useState({});
   const [shownItems, setShownItems] = useState([]);
@@ -47,27 +47,26 @@ function MemoryTest({ data, onAnswer }) {
     <div className="question-box">
       {step === "memorize" ? (
         <>
-          <h2>Memoriza:</h2>
-          <ul>
+          <h2>Memoriza os itens apresentados:</h2>
+          <ul style={{ listStyle: "none", padding: 0 }}>
             {shownItems.map((item, i) => (
-              <li key={i}>{item}</li>
+              <li key={i} style={{ fontSize: "1.2rem", margin: "0.3rem 0" }}>{item}</li>
             ))}
           </ul>
           <p className="timer">Tempo restante: {timeLeft}s</p>
         </>
       ) : (
         <>
-          <h2>Responde:</h2>
+          <h2>Recorda-te e responde:</h2>
 
           {data.variant === "lista_simples" && (
-            <>
-              <textarea
-                rows={6}
-                placeholder="Escreve as palavras que te lembras aqui..."
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-              />
-            </>
+            <textarea
+              rows={6}
+              className="memory-textarea"
+              placeholder="Escreve as palavras que te lembras aqui..."
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+            />
           )}
 
           {data.variant === "pares_associativos" && (
@@ -80,9 +79,7 @@ function MemoryTest({ data, onAnswer }) {
                       type="text"
                       placeholder="Associação..."
                       value={pairInputs[item] || ""}
-                      onChange={(e) =>
-                        handleInputChange(item, e.target.value)
-                      }
+                      onChange={(e) => handleInputChange(item, e.target.value)}
                     />
                   </label>
                 </div>

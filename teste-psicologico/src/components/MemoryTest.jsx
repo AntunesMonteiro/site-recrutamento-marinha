@@ -4,14 +4,16 @@ import "./memory.css";
 function MemoryTest({ question, onAnswerUpdate, onNextQuestion, currentQuestionIndex }) {
   const [phase, setPhase] = useState("intro");
   const [timer, setTimer] = useState(60);
-  const [inputText, setInputText] = useState("");
+  const [inputText, setInputText] = useState(
+    question.variant === "lista_simples" ? "" : []
+  );
 
   const isListaSimples = question.variant === "lista_simples";
   const isParesAssociativos = question.variant === "pares_associativos";
   const isParesCulturais = question.variant === "pares_culturais";
 
   useEffect(() => {
-    if (isListaSimples) {
+    if (question.variant === "lista_simples") {
       setInputText("");
     } else {
       setInputText([]);
@@ -20,29 +22,37 @@ function MemoryTest({ question, onAnswerUpdate, onNextQuestion, currentQuestionI
 
   useEffect(() => {
     if (phase === "memorizar" && timer > 0) {
-      const interval = setInterval(() => setTimer((t) => t - 1), 1000);
+      const interval = setInterval(() => {
+        setTimer((t) => t - 1);
+      }, 1000);
       return () => clearInterval(interval);
     }
   }, [phase, timer]);
 
   const handleNext = () => {
     if (phase === "intro") {
-      setTimer(60);
+      setTimer(60); // Tempo de memorização
       setPhase("memorizar");
     } else if (phase === "memorizar") {
       setTimer(0);
       setPhase("resposta");
     } else if (phase === "resposta") {
-      const resposta =
-        isListaSimples ? inputText : inputText.map((item) => item.trim());
+      const resposta = isListaSimples
+        ? inputText
+        : inputText.map((r) => r || "").join(" / ");
       onAnswerUpdate({
         pergunta: currentQuestionIndex + 1,
         resposta,
       });
       setPhase("intro");
-      setInputText(isListaSimples ? "" : []);
       onNextQuestion();
     }
+  };
+
+  const handleInputChange = (e, index) => {
+    const newInput = [...inputText];
+    newInput[index] = e.target.value;
+    setInputText(newInput);
   };
 
   const renderIntro = () => (
@@ -60,14 +70,14 @@ function MemoryTest({ question, onAnswerUpdate, onNextQuestion, currentQuestionI
 
       {isListaSimples && (
         <ul className="memory-list">
-          {question.items.map((item, index) => (
-            <li key={index}>{item}</li>
+          {question.items.map((word, i) => (
+            <li key={i}>{word}</li>
           ))}
         </ul>
       )}
 
       {(isParesAssociativos || isParesCulturais) && (
-        <table className="pairs-table">
+        <table className="memory-table">
           <thead>
             <tr>
               <th>Palavra 1</th>
@@ -94,43 +104,42 @@ function MemoryTest({ question, onAnswerUpdate, onNextQuestion, currentQuestionI
       <h3>Responda com as palavras que se lembra</h3>
 
       {isListaSimples && (
-        <>
+        <div className="memory-input">
           <textarea
             rows={10}
             placeholder="Escreva aqui as palavras que se lembra..."
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
           />
-        </>
+        </div>
       )}
 
       {(isParesAssociativos || isParesCulturais) && (
-        <table className="pairs-table">
-          <thead>
-            <tr>
-              <th>Palavra 1</th>
-              <th>Sua resposta</th>
-            </tr>
-          </thead>
-          <tbody>
-            {question.pairs.map(([a], i) => (
-              <tr key={i}>
-                <td>{a}</td>
-                <td>
-                  <input
-                    type="text"
-                    value={inputText[i] || ""}
-                    onChange={(e) => {
-                      const newAnswers = [...inputText];
-                      newAnswers[i] = e.target.value;
-                      setInputText(newAnswers);
-                    }}
-                  />
-                </td>
+        <div className="memory-input">
+          <table className="memory-table">
+            <thead>
+              <tr>
+                <th>Palavra 1</th>
+                <th>Sua resposta</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {question.pairs.map(([a], i) => (
+                <tr key={i}>
+                  <td>{a}</td>
+                  <td>
+                    <input
+                      type="text"
+                      value={inputText[i] || ""}
+                      onChange={(e) => handleInputChange(e, i)}
+                      placeholder="Palavra associada"
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
 
       <button onClick={handleNext}>Submeter</button>

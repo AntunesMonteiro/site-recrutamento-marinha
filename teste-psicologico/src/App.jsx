@@ -9,13 +9,15 @@ function App() {
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState([]);
 
+  const totalQuestions = questions.length;
+
   const handleStart = () => {
     setStep("quiz");
   };
 
   const handleAnswer = (resposta) => {
     setAnswers([...answers, resposta]);
-    if (current < questions.length - 1) {
+    if (current < totalQuestions - 1) {
       setCurrent(current + 1);
     } else {
       setStep("resultado");
@@ -35,35 +37,34 @@ function App() {
       return (
         <MemoryTest
           question={currentQuestion}
-          onAnswerUpdate={(resposta) => setAnswers([...answers, resposta])}
-          onNextQuestion={() => {
-            if (current < questions.length - 1) {
-              setCurrent(current + 1);
-            } else {
-              setStep("resultado");
-            }
-          }}
           currentQuestionIndex={current}
-        />
-      );
-    }
-    
-
-    if (
-      currentQuestion.variant === "escolha_multipla" ||
-      currentQuestion.variant === "sequencia" ||
-      currentQuestion.variant === "problema" ||
-      currentQuestion.variant === "imagem_escolha"
-    ) {
-      return (
-        <MultipleChoice
-          data={currentQuestion}
-          onAnswer={handleAnswer}
+          onAnswerUpdate={handleAnswer}
         />
       );
     }
 
-    return <p>Tipo de pergunta não suportado.</p>;
+    return (
+      <MultipleChoice
+        data={currentQuestion}
+        onAnswer={handleAnswer}
+      />
+    );
+  };
+
+  const renderProgressBar = () => {
+    const percentage = ((current + 1) / totalQuestions) * 100;
+
+    return (
+      <div className="progress-bar-container">
+        <div
+          className="progress-bar"
+          style={{ width: `${percentage}%` }}
+        ></div>
+        <p className="progress-text">
+          Pergunta {current + 1} de {totalQuestions}
+        </p>
+      </div>
+    );
   };
 
   if (step === "inicio") {
@@ -92,8 +93,8 @@ function App() {
 
   return (
     <div className="app-container">
-      <h2>Pergunta {current + 1}</h2>
       {renderQuestion()}
+      {renderProgressBar()}
     </div>
   );
 }

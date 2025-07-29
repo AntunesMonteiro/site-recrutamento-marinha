@@ -33,9 +33,21 @@ function App() {
 
     if (currentQuestion.type === "memory") {
       return (
-        <MemoryTest data={currentQuestion} onAnswer={handleAnswer} />
+        <MemoryTest
+          question={currentQuestion}
+          onAnswerUpdate={(resposta) => setAnswers([...answers, resposta])}
+          onNextQuestion={() => {
+            if (current < questions.length - 1) {
+              setCurrent(current + 1);
+            } else {
+              setStep("resultado");
+            }
+          }}
+          currentQuestionIndex={current}
+        />
       );
     }
+    
 
     if (
       currentQuestion.variant === "escolha_multipla" ||
@@ -44,7 +56,10 @@ function App() {
       currentQuestion.variant === "imagem_escolha"
     ) {
       return (
-        <MultipleChoice data={currentQuestion} onAnswer={handleAnswer} />
+        <MultipleChoice
+          data={currentQuestion}
+          onAnswer={handleAnswer}
+        />
       );
     }
 

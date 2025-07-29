@@ -1,98 +1,148 @@
 import React, { useState, useEffect } from "react";
 import "./memory.css";
 
-function MemoryTest({ data, onAnswer }) {
-  const [step, setStep] = useState("memorize");
-  const [timeLeft, setTimeLeft] = useState(60); // tempo de memorização
-  const [input, setInput] = useState("");
-  const [pairInputs, setPairInputs] = useState({});
-  const [shownItems, setShownItems] = useState([]);
+function MemoryTest({ question, onAnswerUpdate, onNextQuestion, currentQuestionIndex }) {
+  const [phase, setPhase] = useState("intro");
+  const [timer, setTimer] = useState(60);
+  const [inputText, setInputText] = useState("");
+
+  const isListaSimples = question.variant === "lista_simples";
+  const isParesAssociativos = question.variant === "pares_associativos";
+  const isParesCulturais = question.variant === "pares_culturais";
 
   useEffect(() => {
-    if (data.items) {
-      setShownItems(data.items);
-    } else if (data.pairs) {
-      setShownItems(data.pairs.map(pair => pair[0]));
-    }
-  }, [data]);
-
-  useEffect(() => {
-    if (step === "memorize") {
-      const timer = setInterval(() => {
-        setTimeLeft(prev => {
-          if (prev === 1) {
-            clearInterval(timer);
-            setStep("recall");
-          }
-          return prev - 1;
-        });
-      }, 1000);
-      return () => clearInterval(timer);
-    }
-  }, [step]);
-
-  const handleInputChange = (key, value) => {
-    setPairInputs(prev => ({ ...prev, [key]: value }));
-  };
-
-  const handleSubmit = () => {
-    if (data.variant === "pares_associativos") {
-      onAnswer(pairInputs);
+    if (isListaSimples) {
+      setInputText("");
     } else {
-      onAnswer(input);
+      setInputText([]);
+    }
+  }, [question]);
+
+  useEffect(() => {
+    if (phase === "memorizar" && timer > 0) {
+      const interval = setInterval(() => setTimer((t) => t - 1), 1000);
+      return () => clearInterval(interval);
+    }
+  }, [phase, timer]);
+
+  const handleNext = () => {
+    if (phase === "intro") {
+      setTimer(60);
+      setPhase("memorizar");
+    } else if (phase === "memorizar") {
+      setTimer(0);
+      setPhase("resposta");
+    } else if (phase === "resposta") {
+      const resposta =
+        isListaSimples ? inputText : inputText.map((item) => item.trim());
+      onAnswerUpdate({
+        pergunta: currentQuestionIndex + 1,
+        resposta,
+      });
+      setPhase("intro");
+      setInputText(isListaSimples ? "" : []);
+      onNextQuestion();
     }
   };
 
-  return (
-    <div className="question-box">
-      {step === "memorize" ? (
-        <>
-          <h2>Memoriza os itens apresentados:</h2>
-          <ul style={{ listStyle: "none", padding: 0 }}>
-            {shownItems.map((item, i) => (
-              <li key={i} style={{ fontSize: "1.2rem", margin: "0.3rem 0" }}>{item}</li>
+  const renderIntro = () => (
+    <div className="memory-box">
+      <h3>Teste de Memória</h3>
+      <p>{question.instruction}</p>
+      <button onClick={handleNext}>Seguir</button>
+    </div>
+  );
+
+  const renderMemorizar = () => (
+    <div className="memory-box">
+      <h3>Memorize as palavras</h3>
+      <p className="timer">Tempo restante: {timer} segundos</p>
+
+      {isListaSimples && (
+        <ul className="memory-list">
+          {question.items.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      )}
+
+      {(isParesAssociativos || isParesCulturais) && (
+        <table className="pairs-table">
+          <thead>
+            <tr>
+              <th>Palavra 1</th>
+              <th>Palavra 2</th>
+            </tr>
+          </thead>
+          <tbody>
+            {question.pairs.map(([a, b], i) => (
+              <tr key={i}>
+                <td>{a}</td>
+                <td>{b}</td>
+              </tr>
             ))}
-          </ul>
-          <p className="timer">Tempo restante: {timeLeft}s</p>
-        </>
-      ) : (
+          </tbody>
+        </table>
+      )}
+
+      <button onClick={handleNext}>Seguir</button>
+    </div>
+  );
+
+  const renderResposta = () => (
+    <div className="memory-box">
+      <h3>Responda com as palavras que se lembra</h3>
+
+      {isListaSimples && (
         <>
-          <h2>Recorda-te e responde:</h2>
-
-          {data.variant === "lista_simples" && (
-            <textarea
-              rows={6}
-              className="memory-textarea"
-              placeholder="Escreve as palavras que te lembras aqui..."
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-            />
-          )}
-
-          {data.variant === "pares_associativos" && (
-            <div className="input-pairs">
-              {shownItems.map((item, index) => (
-                <div className="input-pair" key={index}>
-                  <label>
-                    {item}
-                    <input
-                      type="text"
-                      placeholder="Associação..."
-                      value={pairInputs[item] || ""}
-                      onChange={(e) => handleInputChange(item, e.target.value)}
-                    />
-                  </label>
-                </div>
-              ))}
-            </div>
-          )}
-
-          <button className="submit-btn" onClick={handleSubmit}>
-            Submeter
-          </button>
+          <textarea
+            rows={10}
+            placeholder="Escreva aqui as palavras que se lembra..."
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+          />
         </>
       )}
+
+      {(isParesAssociativos || isParesCulturais) && (
+        <table className="pairs-table">
+          <thead>
+            <tr>
+              <th>Palavra 1</th>
+              <th>Sua resposta</th>
+            </tr>
+          </thead>
+          <tbody>
+            {question.pairs.map(([a], i) => (
+              <tr key={i}>
+                <td>{a}</td>
+                <td>
+                  <input
+                    type="text"
+                    value={inputText[i] || ""}
+                    onChange={(e) => {
+                      const newAnswers = [...inputText];
+                      newAnswers[i] = e.target.value;
+                      setInputText(newAnswers);
+                    }}
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+
+      <button onClick={handleNext}>Submeter</button>
     </div>
+  );
+
+  return (
+    <>
+      {phase === "intro" && renderIntro()}
+      {phase === "memorizar" && renderMemorizar()}
+      {phase === "resposta" && renderResposta()}
+    </>
   );
 }
 

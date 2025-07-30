@@ -135,3 +135,13 @@ button:hover {
   gap: 10px; /* espaço vertical entre os botões */
   margin-top: 2rem;
 }
+
+.result-icon.correct {
+  color: limegreen;
+  font-weight: bold;
+}
+
+.result-icon.incorrect {
+  color: red;
+  font-weight: bold;
+}

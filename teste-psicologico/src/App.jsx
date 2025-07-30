@@ -8,6 +8,7 @@ function App() {
   const [step, setStep] = useState("inicio");
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState([]);
+  const [showResults, setShowResults] = useState(false);
 
   const totalQuestions = questions.length;
 
@@ -28,6 +29,7 @@ function App() {
     setStep("inicio");
     setCurrent(0);
     setAnswers([]);
+    setShowResults(false);
   };
 
   const renderQuestion = () => {
@@ -39,6 +41,13 @@ function App() {
           question={currentQuestion}
           currentQuestionIndex={current}
           onAnswerUpdate={handleAnswer}
+          onNextQuestion={() => {
+            if (current < totalQuestions - 1) {
+              setCurrent(current + 1);
+            } else {
+              setStep("resultado");
+            }
+          }}
         />
       );
     }
@@ -46,7 +55,13 @@ function App() {
     return (
       <MultipleChoice
         data={currentQuestion}
-        onAnswer={handleAnswer}
+        onAnswer={(resposta) =>
+          handleAnswer({
+            pergunta: current + 1,
+            resposta,
+            correta: currentQuestion.options[currentQuestion.answer],
+          })
+        }
       />
     );
   };
@@ -67,6 +82,55 @@ function App() {
     );
   };
 
+  const renderResultadosTabela = () => (
+    <div className="question-box">
+      <h3>Respostas</h3>
+      <div style={{ overflowX: "auto" }}>
+        <table className="memory-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Sua Resposta</th>
+              <th>Correta</th>
+              <th>Resultado</th>
+            </tr>
+          </thead>
+          <tbody>
+            {answers.map((resposta, index) => {
+              const q = questions[index];
+              const correta =
+                q.type !== "memory" ? q.options[q.answer] : "(Memória)";
+              const corretaNormalizada = correta?.toLowerCase().trim();
+              const respostaNormalizada = resposta?.resposta
+                ?.toLowerCase()
+                .trim();
+
+              const certo =
+                q.type !== "memory"
+                  ? corretaNormalizada === respostaNormalizada
+                  : null;
+
+              return (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>{resposta.resposta}</td>
+                  <td>{correta}</td>
+                  <td>
+                    {q.type === "memory"
+                      ? "—"
+                      : certo
+                      ? "✔️"
+                      : "❌"}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+
   if (step === "inicio") {
     return (
       <div className="app-container">
@@ -82,11 +146,15 @@ function App() {
         <h2>Teste Concluído</h2>
         <p>Respostas submetidas com sucesso!</p>
         <div className="button-group">
+          <button onClick={() => setShowResults(!showResults)}>
+            {showResults ? "Esconder Resultados" : "Ver Resultados"}
+          </button>
           <button onClick={handleRestart}>Voltar ao Início</button>
           <button className="sair-btn" onClick={() => window.close()}>
             Sair
           </button>
         </div>
+        {showResults && renderResultadosTabela()}
       </div>
     );
   }

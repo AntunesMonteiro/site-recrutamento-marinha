@@ -88,6 +88,8 @@ html, body {
     color: #0a163d;
     border: none;
     border-radius: 25px;
+    text-decoration: none; 
+    display: inline-block; 
     cursor: pointer;
     transition: background 0.3s ease;
   }

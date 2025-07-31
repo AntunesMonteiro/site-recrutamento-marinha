@@ -115,6 +115,7 @@ button:hover {
 
 .sair-btn {
   background-color: #d32f2f;
+  text-decoration: none;
   color: white;
   padding: 0.7rem 1.5rem;
   font-size: 1rem;
@@ -136,8 +137,8 @@ button:hover {
   margin-top: 2rem;
 }
 
-.result-icon.correct {
-  color: limegreen;
+td.result-icon.correct {
+  color: limegreen !important;
   font-weight: bold;
 }
 

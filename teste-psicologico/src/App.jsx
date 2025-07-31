@@ -98,8 +98,41 @@ function App() {
           <tbody>
             {answers.map((resposta, index) => {
               const q = questions[index];
-              const correta =
-                q.type !== "memory" ? q.options[q.answer] : "(Memória)";
+              let correta;
+
+              if (q.type === "memory") {
+                const original =
+                  q.variant === "lista_simples"
+                    ? q.items
+                    : q.pairs.map(([, b]) => b);
+
+                    if (q.type === "memory") {
+                      const original =
+                        q.variant === "lista_simples"
+                          ? q.items.map((w) => w.toLowerCase().trim())
+                          : q.pairs.map(([, b]) => b.toLowerCase().trim());
+                    
+                      const respostas =
+                        q.variant === "lista_simples"
+                          ? resposta.resposta
+                              .split(/[,\n\s]+/)
+                              .map((w) => w.trim().toLowerCase())
+                              .filter(Boolean)
+                          : resposta.resposta
+                              .split(" / ")
+                              .map((r) => r.trim().toLowerCase());
+                    
+                      const acertos =
+                        q.variant === "lista_simples"
+                          ? respostas.filter((r) => original.includes(r)).length
+                          : respostas.filter((r, i) => r === original[i]).length;
+                    
+                      correta = `${acertos}/${original.length}`;
+                    }
+
+              } else {
+                correta = q.options[q.answer];
+              }
               const corretaNormalizada = correta?.toLowerCase().trim();
               const respostaNormalizada = resposta?.resposta
                 ?.toLowerCase()
@@ -116,11 +149,13 @@ function App() {
                   <td>{resposta.resposta}</td>
                   <td>{correta}</td>
                   <td>
-                    {q.type === "memory"
-                      ? "—"
-                      : certo
-                      ? "✔️"
-                      : "❌"}
+                    {q.type === "memory" ? (
+                      "—"
+                    ) : (
+                      <span className={certo ? "result-icon correct" : "result-icon incorrect"}>
+                        {certo ? "✔️" : "❌"}
+                      </span>
+                    )}
                   </td>
                 </tr>
               );
@@ -132,13 +167,16 @@ function App() {
   );
 
   if (step === "inicio") {
-    return (
-      <div className="app-container">
-        <h1>Teste Psicológico</h1>
+  return (
+    <div className="app-container">
+      <h1>Teste Psicológico</h1>
+      <div className="button-group">
         <button onClick={handleStart}>Iniciar</button>
+        <a href="/prepara.html" className="sair-btn">Sair</a>
       </div>
-    );
-  }
+    </div>
+  );
+}
 
   if (step === "resultado") {
     return (
@@ -150,9 +188,7 @@ function App() {
             {showResults ? "Esconder Resultados" : "Ver Resultados"}
           </button>
           <button onClick={handleRestart}>Voltar ao Início</button>
-          <button className="sair-btn" onClick={() => window.close()}>
-            Sair
-          </button>
+          <a href="/prepara.html" className="sair-btn">Sair</a>
         </div>
         {showResults && renderResultadosTabela()}
       </div>

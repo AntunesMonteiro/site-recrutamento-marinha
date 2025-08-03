@@ -8,16 +8,17 @@
   <link rel="stylesheet" href="estilos/style.css" />
 </head>
 
-<button class="menu-toggle" onclick="toggleMenu()">☰</button>
-<div class="menu-mobile" id="menuMobile" style="display:none;">
+<button class="hamburguer-btn" onclick="toggleMobileMenu()">☰</button>
+<div id="menuMobile" class="menu-mobile" style="display: none;">
   <a href="profissoes.html">Profissões</a>
-  <a href="#sec2">Concursos</a>
+  <a href="concursos.html">Concursos</a>
   <a href="prepara.html">Prepara-te</a>
-  <a href="#sec2">A tua carreira</a>
-  <a href="#sec6">Candidata-te</a>
+  <a href="carreira.html">A tua carreira</a>
+  <a href="candidata.html">Candidata-te</a>
 </div>
+
 <script>
-  function toggleMenu() {
+  function toggleMobileMenu() {
     const menu = document.getElementById("menuMobile");
     menu.style.display = menu.style.display === "flex" ? "none" : "flex";
   }

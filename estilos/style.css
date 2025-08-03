@@ -42,7 +42,7 @@ body {
   position: relative;
 }
 
-/* SECÇÃO 1: FUNDO E ELEMENTOS CENTRAIS */
+/* SECÇÃO 1 */
 .fundo-impactante {
   position: relative;
   height: 100vh;
@@ -129,7 +129,7 @@ body {
   font-family: 'Roboto', sans-serif;
   cursor: pointer;
   box-shadow: 0 0 15px rgba(0,255,200,0.4);
-  margin-bottom: 2rem;
+  margin-bottom: 6em;
   transition: all 0.3s ease;
 }
 
@@ -878,7 +878,6 @@ body {
   z-index: 2;
 }
 
-
 .footer-top {
   display: flex;
   justify-content: space-between;
@@ -912,3 +911,54 @@ body {
   max-width: 1000px;
   padding: 0 1rem;
 }
+
+@media (max-width: 768px) {
+  .titulo-recrutamento,
+  .titulo-sombra {
+    font-size: 3rem;
+    top: 12%;
+  }
+
+  .img-mergulhador {
+    height: 80vh;
+    bottom: -100px;
+  }
+
+  .navbar-bottom {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #71f0c5;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 8px;
+    z-index: 1000;
+  }
+
+  .menu-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: rgba(0, 0, 0, 0.9);
+    position: fixed;
+    bottom: 70px;
+    left: 20px;
+    padding: 1rem;
+    border-radius: 10px;
+    z-index: 999;
+  }
+
+  .menu-mobile a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+}
+

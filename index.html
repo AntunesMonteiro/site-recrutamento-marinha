@@ -8,6 +8,22 @@
   <link rel="stylesheet" href="estilos/style.css" />
 </head>
 
+<button class="menu-toggle" onclick="toggleMenu()">☰</button>
+<div class="menu-mobile" id="menuMobile" style="display:none;">
+  <a href="profissoes.html">Profissões</a>
+  <a href="#sec2">Concursos</a>
+  <a href="prepara.html">Prepara-te</a>
+  <a href="#sec2">A tua carreira</a>
+  <a href="#sec6">Candidata-te</a>
+</div>
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById("menuMobile");
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+  }
+</script>
+
+
 <body>
 
   <!-- NAVBAR SUPERIOR -->

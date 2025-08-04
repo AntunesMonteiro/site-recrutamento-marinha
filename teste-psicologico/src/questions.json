@@ -196,7 +196,7 @@
       "D"
     ],
     "answer": 1,
-    "image": "/src/assets/engrenagem.png"
+    "image": "engrenagem.png"
   },
   {
     "type": "aptidao_mecanica",
@@ -209,7 +209,7 @@
       "D"
     ],
     "answer": 0,
-    "image": "/src/assets/embarcacao.png"
+    "image": "embarcacao.png"
   },
   {
     "type": "aptidao_mecanica",
@@ -222,7 +222,7 @@
       "D"
     ],
     "answer": 2,
-    "image": "/src/assets/eixos.png"
+    "image": "eixos.png"
   },
   {
     "type": "aptidao_mecanica",
@@ -235,7 +235,7 @@
       "D"
     ],
     "answer": 3,
-    "image": "/src/assets/projetil.png"
+    "image": "projetil.png"
   },
   {
     "type": "aptidao_mecanica",
@@ -248,7 +248,7 @@
       "D"
     ],
     "answer": 2,
-    "image": "/src/assets/alavanca.png"
+    "image": "alavanca.png"
   },
   {
     "type": "memory",

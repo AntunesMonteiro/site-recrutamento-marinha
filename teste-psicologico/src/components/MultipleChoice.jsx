@@ -1,26 +1,30 @@
 import React from "react";
 
-function MultipleChoice({ data, onAnswer }) {
+function MultipleChoice({ pergunta, onResponder }) {
+  const imagemPath = pergunta.image
+    ? `/imagens/${pergunta.image.split("/").pop()}`
+    : null;
+
   return (
     <div className="question-box">
-      {data.image && (
+      {imagemPath && (
         <div style={{ marginBottom: "1rem" }}>
           <img
-            src={data.image}
+            src={imagemPath}
             alt="Ilustração"
             style={{
               maxWidth: "100%",
               height: "auto",
               borderRadius: "12px",
-              boxShadow: "0 0 10px rgba(0,0,0,0.3)"
+              boxShadow: "0 0 10px rgba(0,0,0,0.3)",
             }}
           />
         </div>
       )}
-      <h3>{data.question}</h3>
+      <h3>{pergunta.question}</h3>
       <div className="options">
-        {data.options.map((option, index) => (
-          <button key={index} onClick={() => onAnswer(option)}>
+        {pergunta.options.map((option, index) => (
+          <button key={index} onClick={() => onResponder(option)}>
             {option}
           </button>
         ))}

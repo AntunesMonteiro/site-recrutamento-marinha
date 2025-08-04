@@ -765,6 +765,8 @@ body {
   background: #ddd;
 }
 
+/* SECTION 6 */
+
 .final {
   background-color: #000;
   position: relative;
@@ -913,6 +915,8 @@ body {
   max-width: 1000px;
   padding: 0 1rem;
 }
+
+
 
 /* MOBILE */
 
@@ -1195,3 +1199,20 @@ body {
   }
 }
 
+/* SEC6 */
+
+@media (max-width: 768px) {
+  .titulo {
+    top: 33% !important;
+    font-size: clamp(5em, 5vw, 2.5em);
+    line-height: 1.1em;
+  }
+
+  .titulo br {
+    display: none;
+  }
+
+  .titulo-sombra1 {
+    display: none; 
+  }
+}

@@ -146,11 +146,11 @@ body::before {
   }
 }
 
+.hamburguer-btn { display: none; }
+.menu-mobile { display: none; }
 
 @media (max-width: 768px) {
-  .navbar ul {
-    display: none;
-  }
+  .navbar ul { display: none; }
 
   .hamburguer-btn {
     display: block;
@@ -172,7 +172,7 @@ body::before {
     top: 60px;
     right: 1em;
     left: auto;
-    background-color: rgba(0, 0, 0, 0.95);
+    background-color: rgba(0,0,0,0.95);
     padding: 1rem;
     border-radius: 10px;
     display: flex;
@@ -187,3 +187,4 @@ body::before {
     font-size: 1rem;
     font-weight: bold;
   }
+}

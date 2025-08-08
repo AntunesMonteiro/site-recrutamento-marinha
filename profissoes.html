@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Profissões</title>
   <link rel="stylesheet" href="estilos/profissoes.css" />
 </head>
+
 <body>
 
-  <!-- NAVBAR -->
   <nav class="navbar">
     <a href="index.html">
-      <img src="imagens/marinhaHorizontalWhite.png" alt="Marinha" class="logo"/>
+      <img src="imagens/marinhaHorizontalWhite.png" alt="Marinha" class="logo" />
     </a>
-  <ul>
+    <ul>
       <li><a href="profissoes.html">Profissões</a></li>
       <li><a href="concursos.html">Concursos</a></li>
       <li><a href="prepara.html">Prepara-te</a></li>
@@ -22,10 +23,23 @@
     </ul>
   </nav>
 
-  <!-- SECÇÃO PROFISSÕES -->
+  <button class="hamburguer-btn" onclick="toggleMobileMenu()">☰</button>
+  <div id="menuMobile" class="menu-mobile" style="display:none;">
+    <a href="profissoes.html">Profissões</a>
+    <a href="concursos.html">Concursos</a>
+    <a href="prepara.html">Prepara-te</a>
+    <a href="carreira.html">A tua carreira</a>
+    <a href="candidata.html">Candidata-te</a>
+  </div>
+  <script>
+    function toggleMobileMenu() {
+      const menu = document.getElementById('menuMobile');
+      menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+    }
+  </script>
+
   <section class="profissoes-section">
-    
-    <!-- TEXTO À ESQUERDA -->
+
     <article class="texto">
       <h1 id="titulo">MILITAR</h1>
       <p id="descricao">
@@ -34,27 +48,25 @@
       <button class="cta">O teu lugar é aqui</button>
     </article>
 
-    <!-- CARROSSEL À DIREITA -->
     <aside class="carrossel">
       <div class="card active">
         <a href="militar.html">
-          <img src="imagens/militar.jpg" alt="Militar"/>
+          <img src="imagens/militar.jpg" alt="Militar" />
         </a>
       </div>
       <div class="card">
         <a href="militarizado.html">
-          <img src="imagens/militarizado.png" alt="Militarizado"/>
+          <img src="imagens/militarizado.png" alt="Militarizado" />
         </a>
       </div>
       <div class="card">
         <a href="civil.html">
-          <img src="imagens/civilmulher.png" alt="Civil"/>
+          <img src="imagens/civilmulher.png" alt="Civil" />
         </a>
       </div>
     </aside>
   </section>
 
-  <!-- BOTÕES DE NAVEGAÇÃO -->
   <nav class="dots">
     <span class="dot active" data-index="0"></span>
     <span class="dot" data-index="1"></span>
@@ -63,4 +75,5 @@
 
   <script src="scripts/profissoes.js"></script>
 </body>
+
 </html>

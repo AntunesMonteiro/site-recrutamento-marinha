@@ -22,6 +22,21 @@
     </ul>
   </nav>
 
+  <button class="hamburguer-btn" onclick="toggleMobileMenu()">☰</button>
+<div id="menuMobile" class="menu-mobile" style="display:none;">
+  <a href="profissoes.html">Profissões</a>
+  <a href="concursos.html">Concursos</a>
+  <a href="prepara.html">Prepara-te</a>
+  <a href="carreira.html">A tua carreira</a>
+  <a href="candidata.html">Candidata-te</a>
+</div>
+<script>
+  function toggleMobileMenu() {
+    const menu = document.getElementById('menuMobile');
+    menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+  }
+</script>
+
   <main class="prepara-container">
     <section class="intro">
       <h1>Estás pronto para o desafio?</h1>

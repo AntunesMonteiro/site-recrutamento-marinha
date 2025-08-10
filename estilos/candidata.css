@@ -24,6 +24,7 @@ body::before {
   z-index: -1;
 }
 
+/* NAVBAR */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -57,7 +58,7 @@ body::before {
   color: #ccc;
 }
 
-.prepara-container {
+.candidata-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -68,6 +69,7 @@ body::before {
   min-height: calc(100vh - 200px);
 }
 
+/* INTRODUÇÃO */
 .intro h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
@@ -79,7 +81,8 @@ body::before {
   margin-bottom: 2rem;
 }
 
-.btn-testar {
+/* BOTÃO */
+.btn-inscrever {
   padding: 0.8rem 2rem;
   font-size: 1rem;
   background-color: #ffffff;
@@ -92,10 +95,11 @@ body::before {
   transition: background 0.3s ease;
 }
 
-.btn-testar:hover {
+.btn-inscrever:hover {
   background-color: #ccc;
 }
 
+/* INFORMATIVO */
 .informativo {
   margin-top: 4rem;
   text-align: left;

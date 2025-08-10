@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Candidata-te</title>
+  <link rel="stylesheet" href="estilos/candidata.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html">
+      <img src="imagens/marinhaHorizontalWhite.png" alt="Marinha" class="logo"/>
+    </a>
+    <ul>
+      <li><a href="profissoes.html">Profissões</a></li>
+      <li><a href="concursos.html">Concursos</a></li>
+      <li><a href="prepara.html">Prepara-te</a></li>
+      <li><a href="carreira.html">A tua carreira</a></li>
+      <li><a href="candidata.html" class="active">Candidata-te</a></li>
+    </ul>
+  </nav>
+
+  <button class="hamburguer-btn" onclick="toggleMobileMenu()">☰</button>
+  <div id="menuMobile" class="menu-mobile" style="display:none;">
+    <a href="profissoes.html">Profissões</a>
+    <a href="concursos.html">Concursos</a>
+    <a href="prepara.html">Prepara-te</a>
+    <a href="carreira.html">A tua carreira</a>
+    <a href="candidata.html">Candidata-te</a>
+  </div>
+  <script>
+    function toggleMobileMenu() {
+      const menu = document.getElementById('menuMobile');
+      menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+    }
+  </script>
+
+  <main class="candidata-container">
+    <section class="intro">
+      <h1>Embarca na aventura</h1>
+      <p>Preenche o formulário e serás contactado assim que abra a vaga certa para ti</p>
+      <a href="#/dados" class="btn-inscrever"
+         onclick="document.getElementById('formulario').scrollIntoView({behavior:'smooth'})">
+        Inscrever-me
+      </a>
+    </section>
+
+    <section id="formulario" style="width:100%;max-width:1100px;margin:48px auto;">
+      <div id="candidata-root"></div>
+    </section>
+  </main>
+
+  <script>
+    (function loadLibsSequentially() {
+      const libs = [
+        {
+          primary: "https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.development.js",
+          fallback: "https://unpkg.com/react@18.2.0/umd/react.development.js"
+        },
+        {
+          primary: "https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.development.js",
+          fallback: "https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"
+        },
+        {
+          primary: "https://cdn.jsdelivr.net/npm/react-router-dom@6.26.1/umd/react-router-dom.development.js",
+          fallback: "https://unpkg.com/react-router-dom@6.26.1/umd/react-router-dom.development.js"
+        },
+        {
+          primary: "https://cdn.jsdelivr.net/npm/@reduxjs/toolkit@2.2.0/dist/redux-toolkit.umd.development.js",
+          fallback: "https://unpkg.com/@reduxjs/toolkit@2.2.0/dist/redux-toolkit.umd.development.js"
+        },
+        {
+          primary: "https://cdn.jsdelivr.net/npm/react-redux@8.1.3/dist/react-redux.js",
+          fallback: "https://unpkg.com/react-redux@8.1.3/dist/react-redux.js"
+        }
+      ];
+
+      function loadOne(url) {
+        return new Promise((resolve, reject) => {
+          const s = document.createElement('script');
+          s.src = url;
+          s.async = false;
+          s.crossOrigin = "anonymous";
+          s.onload = () => resolve();
+          s.onerror = () => reject(new Error("Falha ao carregar: " + url));
+          document.body.appendChild(s);
+        });
+      }
+
+      (async () => {
+        for (const lib of libs) {
+          try { await loadOne(lib.primary); }
+          catch { await loadOne(lib.fallback); }
+        }
+        runCandidataApp();
+      })().catch(err => {
+        console.error("Erro a carregar libs:", err);
+        alert("Não foi possível carregar as bibliotecas. Verifica a ligação à internet e tenta novamente.");
+      });
+    })();
+  </script>
+
+  <script>
+    function runCandidataApp() {
+      const { createRoot } = ReactDOM;
+      const { HashRouter, Routes, Route, Link, useNavigate, useLocation } = ReactRouterDOM;
+      const { configureStore, createSlice } = window.RTK;
+      const { Provider, useDispatch, useSelector } = ReactRedux;
+
+      const API_BASE = 'http://localhost:3000';
+      const api = {
+        async findByEmail(email) {
+          const r = await fetch(`${API_BASE}/candidaturas?email=${encodeURIComponent(email)}`);
+          if (!r.ok) throw new Error('Falha ao obter candidatura');
+          const j = await r.json(); return j[0] || null;
+        },
+        async create(payload) {
+          const r = await fetch(`${API_BASE}/candidaturas`, {
+            method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)
+          });
+          if (!r.ok) throw new Error('Falha ao criar candidatura'); return r.json();
+        },
+        async update(id, payload) {
+          const r = await fetch(`${API_BASE}/candidaturas/${id}`, {
+            method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)
+          });
+          if (!r.ok) throw new Error('Falha ao atualizar candidatura'); return r.json();
+        }
+      };
+
+      const initial = {
+        id:null,
+        dados:{ nome:'', email:'', telemovel:'', bi:'', nascimento:'', morada:'', ramo:'Marinha' },
+        docs:{ nif:'', cvName:'', consent:false },
+        status:'idle', error:null, lastSavedAt:null
+      };
+      const slice = createSlice({
+        name:'form', initialState:initial,
+        reducers:{
+          setDados:(s,a)=>{ s.dados={...s.dados,...a.payload}; },
+          setDocs:(s,a)=>{ s.docs={...s.docs,...a.payload}; },
+          setId:(s,a)=>{ s.id=a.payload; },
+          setStatus:(s,a)=>{ s.status=a.payload; },
+          setError:(s,a)=>{ s.error=a.payload; },
+          setLastSaved:(s)=>{ s.lastSavedAt=new Date().toISOString(); },
+          hydrate:(s,a)=>({ ...s, ...a.payload }),
+          reset:()=>initial
+        }
+      });
+      const { setDados,setDocs,setId,setStatus,setError,setLastSaved,hydrate } = slice.actions;
+      const store = configureStore({ reducer:{ form:slice.reducer } });
+
+      const STORAGE_KEY='candidatura.autosave';
+      store.subscribe(()=> localStorage.setItem(STORAGE_KEY, JSON.stringify(store.getState().form)));
+      const saved = localStorage.getItem(STORAGE_KEY); if (saved) { try{ store.dispatch(hydrate(JSON.parse(saved))); }catch{} }
+
+      const panel = { background:'#fff', color:'#0b1220', border:'1px solid #e5e7eb', borderRadius:12, padding:16, boxShadow:'0 6px 18px rgba(16,24,40,.06)' };
+
+      function Stepper(){
+        const loc = useLocation(); const is = p=> loc.pathname.includes(p)?'active':'';
+        return (
+          React.createElement('nav', {style:{...panel, marginBottom:16, display:'flex', gap:8, flexWrap:'wrap'}},
+            React.createElement(Link, {className:is('/dados'), to:'/dados'}, '1. Dados'),
+            React.createElement(Link, {className:is('/documentos'), to:'/documentos'}, '2. Documentos'),
+            React.createElement(Link, {className:is('/confirmacao'), to:'/confirmacao'}, '3. Confirmação')
+          )
+        );
+      }
+
+      function Dados(){
+        const d = useDispatch(); const nav = useNavigate();
+        const dados = useSelector(s=>s.form.dados);
+        async function preload(){
+          if(!dados.email) return;
+          try{ const found=await api.findByEmail(dados.email); if(found) d(hydrate({...found,status:'idle',error:null})); }catch(e){ console.warn(e); }
+        }
+        function next(e){
+          e.preventDefault();
+          const f=e.target; if(!f.checkValidity()){ [...f.elements].forEach(el=>el.reportValidity && el.reportValidity()); return; }
+          nav('/documentos');
+        }
+        return (
+          React.createElement('div', {style:panel},
+            React.createElement('h2', null, 'Dados pessoais'),
+            React.createElement('form', {onSubmit:next, noValidate:true},
+              row(
+                input('Nome completo','nome',dados.nome,v=>d(setDados({nome:v})),{required:true}),
+                input('Email','email',dados.email,v=>d(setDados({email:v})),{type:'email',required:true})
+              ),
+              row(
+                input('Telemóvel','telemovel',dados.telemovel,v=>d(setDados({telemovel:v})),{required:true}),
+                input('BI/CC','bi',dados.bi,v=>d(setDados({bi:v})),{required:true}),
+                input('Nascimento','nascimento',dados.nascimento,v=>d(setDados({nascimento:v})),{type:'date',required:true})
+              ,3),
+              row(
+                input('Morada','morada',dados.morada,v=>d(setDados({morada:v})),{required:true}),
+                select('Ramo','ramo',dados.ramo,v=>d(setDados({ramo:v})),['Marinha','Fuzileiros','Escolas / Formação'])
+              ),
+              actions(
+                button('Pré-preencher por email','button',preload,true),
+                button('Seguir','submit')
+              )
+            )
+          )
+        );
+      }
+
+      function Documentos(){
+        const d=useDispatch(); const nav=useNavigate(); const docs=useSelector(s=>s.form.docs);
+        function onUpload(e){ const f=e.target.files?.[0]; if(f) d(setDocs({cvName:f.name})); }
+        function next(e){
+          e.preventDefault();
+          if(!docs.nif || !docs.consent){ alert('Indica NIF e aceita o consentimento.'); return; }
+          nav('/confirmacao');
+        }
+        return (
+          React.createElement('div', {style:panel},
+            React.createElement('h2', null, 'Documentos & Consentimentos'),
+            React.createElement('form', {onSubmit:next},
+              row(
+                input('NIF','nif',docs.nif,v=>d(setDocs({nif:v})),{required:true}),
+                React.createElement('div', null,
+                  React.createElement('label', null, 'CV (upload simulado)'),
+                  React.createElement('input', {type:'file', onChange:onUpload}),
+                  docs.cvName ? React.createElement('small', null, 'Selecionado: ', docs.cvName) : null
+                )
+              ),
+              React.createElement('label', {style:{display:'flex',gap:8,alignItems:'center',marginTop:8}},
+                React.createElement('input', {type:'checkbox', checked:docs.consent, onChange:e=>d(setDocs({consent:e.target.checked}))}),
+                React.createElement('span', null, 'Autorizo o tratamento de dados para efeitos de candidatura.')
+              ),
+              actions(
+                linkBtn('Voltar','/dados',true),
+                button('Seguir','submit')
+              )
+            )
+          )
+        );
+      }
+
+      function Confirmacao(){
+        const d=useDispatch(); const {dados,docs,id,status,error}=useSelector(s=>s.form);
+        async function submit(){
+          d(setStatus('saving')); d(setError(null));
+          try{
+            const payload={ dados, docs };
+            const saved = id ? await api.update(id,payload) : await api.create(payload);
+            if(!id) d(setId(saved.id));
+            d(setLastSaved()); d(setStatus('success'));
+            alert('Candidatura submetida com sucesso. Nº: ' + (saved.id || id));
+          }catch(e){ d(setStatus('error')); d(setError(e.message)); }
+        }
+        return (
+          React.createElement('div', {style:panel},
+            React.createElement('h2', null, 'Confirmação'),
+            React.createElement('div', {style:{display:'grid',gap:12,gridTemplateColumns:'1fr',marginBottom:12}},
+              React.createElement('div', {style:panel},
+                React.createElement('h3', null, 'Dados'),
+                p('Nome',dados.nome), p('Email',dados.email), p('Telemóvel',dados.telemovel),
+                p('BI/CC',dados.bi), p('Nascimento',dados.nascimento), p('Morada',dados.morada), p('Ramo',dados.ramo)
+              ),
+              React.createElement('div', {style:panel},
+                React.createElement('h3', null, 'Documentos'),
+                p('NIF',docs.nif), p('CV',docs.cvName || '—'), p('Consentimento',docs.consent?'Sim':'Não')
+              )
+            ),
+            status==='error' && React.createElement('div', {style:{background:'#fef2f2',border:'1px solid #fecaca',padding:12,borderRadius:10,marginBottom:8}}, error),
+            actions(
+              linkBtn('Voltar','/documentos',true),
+              React.createElement('button', {type:'button', onClick:submit, disabled:status==='saving'}, status==='saving' ? 'A guardar…' : (id?'Atualizar':'Submeter'))
+            )
+          )
+        );
+      }
+
+      function row(...args){ let cols=2; if(typeof args[args.length-1]==='number') cols=args.pop();
+        return React.createElement('div',{style:{display:'grid',gap:12,gridTemplateColumns:`repeat(${cols}, minmax(0,1fr))`, marginBottom:8}},...args); }
+      function input(label,name,value,onChange,opts={}){ return React.createElement('div', null,
+        React.createElement('label', {htmlFor:name}, label),
+        React.createElement('input', {...opts, id:name, name, value, onChange:e=>onChange(e.target.value), style:{width:'100%',padding:'10px 12px',border:'1px solid #cbd5e1',borderRadius:10}})); }
+      function select(label,name,value,onChange,options){ return React.createElement('div', null,
+        React.createElement('label', {htmlFor:name}, label),
+        React.createElement('select', {id:name,name, value, onChange:e=>onChange(e.target.value), style:{width:'100%',padding:'10px 12px',border:'1px solid #cbd5e1',borderRadius:10}},
+          ...options.map(o=>React.createElement('option',{key:o,value:o},o)))); }
+      function actions(...children){ return React.createElement('div',{style:{display:'flex',gap:10,justifyContent:'flex-end',marginTop:10}},...children); }
+      function button(text,type='button',onClick,secondary=false){ return React.createElement('button', {type, onClick, style:{
+        border:0, padding:'10px 14px', borderRadius:10, cursor:'pointer', fontWeight:600,
+        background: secondary?'#e2e8f0':'#0f3a8a', color: secondary?'#0b1220':'#fff'}}, text); }
+      function linkBtn(text,to,secondary=false){ return React.createElement(Link, {to, style:{
+        textDecoration:'none', display:'inline-block', padding:'10px 14px', borderRadius:10, fontWeight:600,
+        background: secondary?'#e2e8f0':'#0f3a8a', color: secondary?'#0b1220':'#fff'}}, text); }
+      function p(label,value){ return React.createElement('p', null, React.createElement('strong', null, label, ': '), value); }
+
+      function StepLayout(){
+        return React.createElement(React.Fragment, null,
+          React.createElement(Stepper, null),
+          React.createElement(Routes, null,
+            React.createElement(Route, {path:'/', element:React.createElement(Dados)}),
+            React.createElement(Route, {path:'/dados', element:React.createElement(Dados)}),
+            React.createElement(Route, {path:'/documentos', element:React.createElement(Documentos)}),
+            React.createElement(Route, {path:'/confirmacao', element:React.createElement(Confirmacao)})
+          )
+        );
+      }
+      function App(){
+        return React.createElement(HashRouter, null,
+          React.createElement('div', {style:{display:'grid',gridTemplateColumns:'1fr',gap:16}},
+            React.createElement(StepLayout, null)
+          )
+        );
+      }
+
+      const rootEl = document.getElementById('candidata-root');
+      if(rootEl){
+        createRoot(rootEl).render(React.createElement(Provider, {store}, React.createElement(App,null)));
+      } else {
+        console.error("Elemento #candidata-root não encontrado.");
+      }
+    }
+  </script>
+</body>
+</html>

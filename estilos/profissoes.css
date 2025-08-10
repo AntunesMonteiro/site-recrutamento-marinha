@@ -4,7 +4,6 @@
     box-sizing: border-box;
   }
   
-  /* Corpo da página */
   body {
     font-family: 'Roboto', sans-serif;
     background: url('../imagens/fundo_mar_internet.png') no-repeat center center / cover;
@@ -22,7 +21,6 @@
     z-index: -1;
   }
 
-  /* Navbar */
   .navbar {
     display: flex;
     justify-content: space-between;
@@ -54,7 +52,6 @@
     color: #ccc;
   }
   
-  /* Secção Profissões */
   .profissoes-section {
     display: flex;
     justify-content: space-between;
@@ -99,7 +96,6 @@
     background-color: #ccc;
   }
   
-  /* Carrossel */
   .carrossel {
     flex: 1;
     display: flex;

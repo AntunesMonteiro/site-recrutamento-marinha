@@ -4,59 +4,84 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Concursos — Recrutamento Marinha</title>
-  <!-- Nota: podes remover o bloco <style> se já tens CSS global. Mantive utilitários mínimos. -->
+  <link rel="stylesheet" href="estilos/concursos.css">
+
+  <!-- Estilos mínimos para o gradiente do título e segmented control -->
   <style>
-    :root { --azul:#0a2b57; --borda:#e6e6e6; --bg:#fff; --muted:#555; }
-    * { box-sizing: border-box; }
-    body { margin:0; font-family: Roboto, system-ui, -apple-system, Segoe UI, Arial, sans-serif; background:#f7f9fb; color:#111; }
-    .container { max-width: 1100px; margin: 0 auto; padding: 16px; }
-    .hero { background:#fff; border:1px solid #e6e6e6; border-radius: 14px; padding: 18px; margin: 12px 0 10px; }
-    .hero h1{ margin:0 0 4px; font-size: clamp(24px, 2.8vw, 32px); color: var(--azul); }
-    .hero p{ margin:0; color:#516173; }
-
-    .tabs { display:flex; gap:8px; flex-wrap:wrap; margin: 14px 0; }
-    .tab { padding:10px 14px; border:1px solid #dfe7f0; background:#fff; border-radius: 12px; cursor:pointer; font-weight:600; }
-    .tab[aria-selected="true"] { background: var(--azul); color:#fff; border-color: var(--azul); }
-
-    .notice { background:#f0f5fa; border:1px dashed #c6d6ea; padding:14px; border-radius:12px; }
-    .links-uteis { display:flex; gap:8px; flex-wrap:wrap; margin-top: 10px; }
-    .btn { display:inline-block; text-decoration:none; padding:9px 13px; border-radius:10px; border:1px solid #d7e0ea; font-weight:600; background:#fff; color: var(--azul); }
-    .btn.primary { background: var(--azul); color:#fff; border-color: var(--azul); }
-
-    .grid-cards { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap:12px; }
-    .card { display:flex; flex-direction:column; justify-content:space-between; border:1px solid var(--borda); border-radius: 16px; overflow:hidden; background: var(--bg); box-shadow: 0 1px 2px rgba(0,0,0,.04); }
-    .card-body { padding: 14px; }
-    .card h3 { margin:0 0 6px; font-size: 18px; color:#0a1f3d; }
-    .card-meta, .card-list { margin: 6px 0 0; padding-left: 18px; color:#34445b; }
-    .card-actions { display:flex; gap:8px; padding: 0 14px 14px; }
-
-    /* Secções */
-    .section { background:transparent; border:0; padding:0; }
-    [data-section][hidden] { display:none !important; }
-
-    /* Responsivo básico para compatibilizar com o teu site */
-    @media (max-width: 480px){
-      .container{ padding: 12px; }
-      .btn{ width:100%; text-align:center; }
+    /* Título com gradiente (estilo igual ao do site novo) */
+    .title-gradient{
+      background: linear-gradient(to right, #c2c8d8, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
+
+    /* Segmented control (tabs) */
+    .segmented {
+      display:inline-flex; border:1px solid #dfe7f0; border-radius:999px; padding:4px; gap:4px;
+      background:#fff;
+    }
+    .segmented input{ position:absolute; opacity:0; pointer-events:none; }
+    .segmented label{
+      position:relative; z-index:1; cursor:pointer; user-select:none;
+      padding:10px 16px; border-radius:999px; font-weight:700; color:#081c3a;
+    }
+    .segmented input:checked + label{
+      background:#0a2b57; color:#fff; box-shadow:0 1px 2px rgba(0,0,0,.06);
+    }
+
+    /* espaçamento com a tua folha existente */
+    .segmented-wrap{ margin:16px 0; }
   </style>
 </head>
+
 <body>
-  <header class="container">
-    <!-- Mantém a tua navbar/header existentes aqui, se tiveres um include/import -->
+  <!-- Mobile menu -->
+  <button class="hamburguer-btn" onclick="toggleMobileMenu()">☰</button>
+  <div id="menuMobile" class="menu-mobile" style="display:none;">
+    <a href="profissoes.html">Profissões</a>
+    <a href="concursos.html">Concursos</a>
+    <a href="prepara.html">Prepara-te</a>
+    <a href="carreira.html">A tua carreira</a>
+    <a href="candidata.html">Candidata-te</a>
+  </div>
+
+  <!-- NAVBAR -->
+  <header>
+    <nav class="navbar">
+      <a href="index.html">
+        <img src="imagens/marinhaHorizontalWhite.png" alt="Marinha" class="logo" />
+      </a>
+      <ul>
+        <li><a href="profissoes.html">Profissões</a></li>
+        <li><a class="active" href="concursos.html">Concursos</a></li>
+        <li><a href="prepara.html">Prepara-te</a></li>
+        <li><a href="carreira.html">A tua carreira</a></li>
+        <li><a href="candidata.html">Candidata-te</a></li>
+      </ul>
+    </nav>
   </header>
 
   <main class="container">
+    <!-- HERO -->
     <section class="hero">
-      <h1>Concursos Abertos</h1>
+      <h1 class="title-gradient">Concursos Abertos</h1>
       <p>Consulta as oportunidades para ingressar na Marinha: Militares, Militarizados e Civis.</p>
     </section>
 
-    <nav class="tabs" role="tablist" aria-label="Filtros de concursos">
-      <button class="tab" role="tab" aria-selected="true" data-tab="militares">Militares</button>
-      <button class="tab" role="tab" aria-selected="false" data-tab="militarizados">Militarizados</button>
-      <button class="tab" role="tab" aria-selected="false" data-tab="civis">Civis</button>
-    </nav>
+    <!-- Segmented control (tabs) -->
+    <div class="segmented-wrap" role="tablist" aria-label="Filtros de concursos">
+      <div class="segmented">
+        <input type="radio" id="tab-militares" name="tabs" data-tab="militares" checked>
+        <label for="tab-militares" role="tab" aria-selected="true">Militares</label>
+
+        <input type="radio" id="tab-militarizados" data-tab="militarizados" name="tabs">
+        <label for="tab-militarizados" role="tab" aria-selected="false">Militarizados</label>
+
+        <input type="radio" id="tab-civis" data-tab="civis" name="tabs">
+        <label for="tab-civis" role="tab" aria-selected="false">Civis</label>
+      </div>
+    </div>
 
     <!-- MILITARES -->
     <section class="section" data-section="militares">
@@ -69,7 +94,7 @@
       </div>
 
       <div class="grid-cards" id="cards-militares">
-        <!-- Quando houver concursos, adiciona cards aqui. Exemplo:
+        <!-- Exemplo de card (quando houver concurso)
         <article class="card">
           <div class="card-body">
             <h3>Praças RC — Fuzileiros</h3>
@@ -91,16 +116,14 @@
       </div>
     </section>
 
-    <!-- MILITARIZADOS (Polícia Marítima) -->
+    <!-- MILITARIZADOS -->
     <section class="section" data-section="militarizados" hidden>
       <p class="muted">Concursos para ingresso como Agente da Polícia Marítima (corpo militarizado da AMN).</p>
       <div class="grid-cards">
         <article class="card">
           <div class="card-body">
             <h3>Agente da Polícia Marítima — Curso de Formação</h3>
-            <ul class="card-meta">
-              <li>Corpo militarizado da AMN</li>
-            </ul>
+            <ul class="card-meta"><li>Corpo militarizado da AMN</li></ul>
             <ul class="card-list">
               <li>Idade indicativa: 18–35 (confirmar no aviso)</li>
               <li>Requisitos: nacionalidade PT, aptidão psicofísica, situação militar regularizada</li>
@@ -114,7 +137,7 @@
       </div>
     </section>
 
-    <!-- CIVIS (MPCM) -->
+    <!-- CIVIS -->
     <section class="section" data-section="civis" hidden>
       <div class="grid-cards">
         <article class="card">
@@ -138,25 +161,32 @@
     </section>
   </main>
 
-  <footer class="container" style="padding-bottom:28px;">
-    <!-- Rodapé do teu site aqui -->
-  </footer>
+  <footer class="container" style="padding-bottom:28px;"></footer>
 
+  <!-- JS para menu mobile + segmented control -->
   <script>
-    // Tabs simples com acessibilidade básica
+    function toggleMobileMenu(){
+      const menu = document.getElementById("menuMobile");
+      if(!menu) return;
+      menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+    }
+
     (function(){
-      const tabs = document.querySelectorAll('.tab');
+      const radios = document.querySelectorAll('.segmented input[type="radio"]');
+      const labels = document.querySelectorAll('.segmented label');
       const sections = document.querySelectorAll('[data-section]');
-      function activate(key){
-        tabs.forEach(btn => {
-          const isActive = btn.dataset.tab === key;
-          btn.setAttribute('aria-selected', isActive ? 'true':'false');
-        });
-        sections.forEach(sec => {
-          sec.hidden = sec.getAttribute('data-section') !== key;
-        });
+
+      function activate(tabKey){
+        // ARIA
+        labels.forEach(l => l.setAttribute('aria-selected', String(l.previousElementSibling?.dataset.tab === tabKey)));
+        // Secções
+        sections.forEach(sec => { sec.hidden = sec.dataset.section !== tabKey; });
       }
-      tabs.forEach(btn => btn.addEventListener('click', () => activate(btn.dataset.tab)));
+
+      radios.forEach(r => {
+        r.addEventListener('change', () => activate(r.dataset.tab));
+      });
+
       // Estado inicial
       activate('militares');
     })();

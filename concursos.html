@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Concursos — Recrutamento Marinha</title>
+  <!-- Nota: podes remover o bloco <style> se já tens CSS global. Mantive utilitários mínimos. -->
+  <style>
+    :root { --azul:#0a2b57; --borda:#e6e6e6; --bg:#fff; --muted:#555; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: Roboto, system-ui, -apple-system, Segoe UI, Arial, sans-serif; background:#f7f9fb; color:#111; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 16px; }
+    .hero { background:#fff; border:1px solid #e6e6e6; border-radius: 14px; padding: 18px; margin: 12px 0 10px; }
+    .hero h1{ margin:0 0 4px; font-size: clamp(24px, 2.8vw, 32px); color: var(--azul); }
+    .hero p{ margin:0; color:#516173; }
+
+    .tabs { display:flex; gap:8px; flex-wrap:wrap; margin: 14px 0; }
+    .tab { padding:10px 14px; border:1px solid #dfe7f0; background:#fff; border-radius: 12px; cursor:pointer; font-weight:600; }
+    .tab[aria-selected="true"] { background: var(--azul); color:#fff; border-color: var(--azul); }
+
+    .notice { background:#f0f5fa; border:1px dashed #c6d6ea; padding:14px; border-radius:12px; }
+    .links-uteis { display:flex; gap:8px; flex-wrap:wrap; margin-top: 10px; }
+    .btn { display:inline-block; text-decoration:none; padding:9px 13px; border-radius:10px; border:1px solid #d7e0ea; font-weight:600; background:#fff; color: var(--azul); }
+    .btn.primary { background: var(--azul); color:#fff; border-color: var(--azul); }
+
+    .grid-cards { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap:12px; }
+    .card { display:flex; flex-direction:column; justify-content:space-between; border:1px solid var(--borda); border-radius: 16px; overflow:hidden; background: var(--bg); box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+    .card-body { padding: 14px; }
+    .card h3 { margin:0 0 6px; font-size: 18px; color:#0a1f3d; }
+    .card-meta, .card-list { margin: 6px 0 0; padding-left: 18px; color:#34445b; }
+    .card-actions { display:flex; gap:8px; padding: 0 14px 14px; }
+
+    /* Secções */
+    .section { background:transparent; border:0; padding:0; }
+    [data-section][hidden] { display:none !important; }
+
+    /* Responsivo básico para compatibilizar com o teu site */
+    @media (max-width: 480px){
+      .container{ padding: 12px; }
+      .btn{ width:100%; text-align:center; }
+    }
+  </style>
+</head>
+<body>
+  <header class="container">
+    <!-- Mantém a tua navbar/header existentes aqui, se tiveres um include/import -->
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Concursos Abertos</h1>
+      <p>Consulta as oportunidades para ingressar na Marinha: Militares, Militarizados e Civis.</p>
+    </section>
+
+    <nav class="tabs" role="tablist" aria-label="Filtros de concursos">
+      <button class="tab" role="tab" aria-selected="true" data-tab="militares">Militares</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="militarizados">Militarizados</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="civis">Civis</button>
+    </nav>
+
+    <!-- MILITARES -->
+    <section class="section" data-section="militares">
+      <div class="notice">
+        Sem concursos militares abertos de momento.
+        <div class="links-uteis">
+          <a class="btn" href="https://recrutamento.marinha.pt/" target="_blank" rel="noopener">Candidaturas Online (oficial)</a>
+          <a class="btn" href="https://recrutamentomilitar.bud.gov.pt/recrutamentos" target="_blank" rel="noopener">Recrutamento Militar</a>
+        </div>
+      </div>
+
+      <div class="grid-cards" id="cards-militares">
+        <!-- Quando houver concursos, adiciona cards aqui. Exemplo:
+        <article class="card">
+          <div class="card-body">
+            <h3>Praças RC — Fuzileiros</h3>
+            <ul class="card-meta">
+              <li>Candidaturas: 04 AGO 2025 – 05 SET 2025</li>
+              <li>Escolaridade: 9.º ano · Idade: até 24</li>
+            </ul>
+            <ul class="card-list">
+              <li>Provas físicas específicas</li>
+              <li>Formação na Escola de Fuzileiros</li>
+            </ul>
+          </div>
+          <div class="card-actions">
+            <a class="btn primary" href="#" target="_blank" rel="noopener">Candidatar</a>
+            <a class="btn" href="#" target="_blank" rel="noopener">Aviso / Detalhes</a>
+          </div>
+        </article>
+        -->
+      </div>
+    </section>
+
+    <!-- MILITARIZADOS (Polícia Marítima) -->
+    <section class="section" data-section="militarizados" hidden>
+      <p class="muted">Concursos para ingresso como Agente da Polícia Marítima (corpo militarizado da AMN).</p>
+      <div class="grid-cards">
+        <article class="card">
+          <div class="card-body">
+            <h3>Agente da Polícia Marítima — Curso de Formação</h3>
+            <ul class="card-meta">
+              <li>Corpo militarizado da AMN</li>
+            </ul>
+            <ul class="card-list">
+              <li>Idade indicativa: 18–35 (confirmar no aviso)</li>
+              <li>Requisitos: nacionalidade PT, aptidão psicofísica, situação militar regularizada</li>
+            </ul>
+          </div>
+          <div class="card-actions">
+            <a class="btn primary" href="https://www.amn.pt/PM/Paginas/ConcursosPM.aspx" target="_blank" rel="noopener">Consultar concurso (AMN)</a>
+            <a class="btn" href="https://recrutamento.marinha.pt/pt/admissao/Paginas/Militarizados.aspx" target="_blank" rel="noopener">Mais informação</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CIVIS (MPCM) -->
+    <section class="section" data-section="civis" hidden>
+      <div class="grid-cards">
+        <article class="card">
+          <div class="card-body">
+            <h3>Técnico Superior — Ciências da Educação (MPCM)</h3>
+            <ul class="card-meta">
+              <li>2 postos</li>
+              <li>Área Metropolitana de Lisboa</li>
+            </ul>
+            <ul class="card-list">
+              <li>Procedimento concursal (exemplo)</li>
+              <li>Consulta o aviso e listas na página oficial</li>
+            </ul>
+          </div>
+          <div class="card-actions">
+            <a class="btn primary" href="https://recrutamento.marinha.pt/pt/admissao/Paginas/Civis.aspx" target="_blank" rel="noopener">Aviso / Listas</a>
+            <a class="btn" href="https://diariodarepublica.pt/" target="_blank" rel="noopener">Diário da República</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container" style="padding-bottom:28px;">
+    <!-- Rodapé do teu site aqui -->
+  </footer>
+
+  <script>
+    // Tabs simples com acessibilidade básica
+    (function(){
+      const tabs = document.querySelectorAll('.tab');
+      const sections = document.querySelectorAll('[data-section]');
+      function activate(key){
+        tabs.forEach(btn => {
+          const isActive = btn.dataset.tab === key;
+          btn.setAttribute('aria-selected', isActive ? 'true':'false');
+        });
+        sections.forEach(sec => {
+          sec.hidden = sec.getAttribute('data-section') !== key;
+        });
+      }
+      tabs.forEach(btn => btn.addEventListener('click', () => activate(btn.dataset.tab)));
+      // Estado inicial
+      activate('militares');
+    })();
+  </script>
+</body>
+</html>

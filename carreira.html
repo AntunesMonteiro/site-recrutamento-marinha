@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A tua carreira — Marinha</title>
+  <link rel="stylesheet" href="estilos/carreira.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- NAVBAR (igual às outras páginas) -->
+  <header class="navbar">
+    <a href="index.html" class="brand">
+      <img src="imagens/logo_marinha_branco.svg" alt="Marinha" class="logo">
+    </a>
+    <nav>
+      <ul>
+        <li><a href="profissoes.html">Profissões</a></li>
+        <li><a href="concursos.html">Concursos</a></li>
+        <li><a href="prepara.html">Prepara-te</a></li>
+        <li><a class="active" href="carreira.html">A tua carreira</a></li>
+        <li><a href="candidata.html">Candidata-te</a></li>
+      </ul>
+    </nav>
+    <button class="hamburguer-btn" aria-label="Abrir menu">Menu</button>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <h1>A tua carreira</h1>
+      <p>Escolhe o teu percurso na Marinha Portuguesa: formação contínua, incentivos ao longo do serviço e evolução por postos.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="https://recrutamento.marinha.pt/pt/concursos" target="_blank" rel="noopener">Concursos Abertos</a>
+        <a class="btn" href="https://candidaturas.marinha.pt/" target="_blank" rel="noopener">Candidata-te</a>
+      </div>
+    </section>
+
+    <!-- 3 BLOCS PRINCIPAIS -->
+    <section class="grid">
+      <!-- Formação -->
+      <article class="card">
+        <div class="card-body">
+          <h2>Formação</h2>
+          <p>Todos os militares frequentam instrução básica e complementar. Ao longo da carreira, a Marinha promove ações de formação gratuitas para desenvolvimento profissional.</p>
+          <ul class="check">
+            <li>Instrução Militar Básica</li>
+            <li>Instrução Complementar</li>
+            <li>Formação contínua ao longo da carreira</li>
+          </ul>
+        </div>
+        <div class="card-actions">
+          <a class="btn" href="https://recrutamento.marinha.pt/pt/carreira/formacao" target="_blank" rel="noopener">Saber mais</a>
+        </div>
+      </article>
+
+      <!-- Incentivos -->
+      <article class="card">
+        <div class="card-body">
+          <h2>Incentivos</h2>
+          <p>Benefícios previstos em regulamento, que incluem qualificações, apoios financeiros/materiais e condições sociais e familiares.</p>
+          <ul class="check">
+            <li>Qualificações escolares e profissionais</li>
+            <li>Financeiros e materiais</li>
+            <li>Sociais e familiares</li>
+          </ul>
+        </div>
+        <div class="card-actions">
+          <a class="btn" href="https://recrutamentomilitar.bud.gov.pt/carreira-e-remuneracao-marinha" target="_blank" rel="noopener">Ver regulamento</a>
+        </div>
+      </article>
+
+      <!-- Os Postos -->
+      <article class="card">
+        <div class="card-body">
+          <h2>Os Postos</h2>
+          <p>Progressão de carreira por categorias, com formação associada e responsabilidades acrescidas.</p>
+          <ul class="check">
+            <li>Praças</li>
+            <li>Sargentos</li>
+            <li>Oficiais</li>
+          </ul>
+        </div>
+        <div class="card-actions">
+          <a class="btn" href="https://recrutamentomilitar.bud.gov.pt/carreira-e-remuneracao-marinha" target="_blank" rel="noopener">Estrutura de carreira</a>
+        </div>
+      </article>
+    </section>
+
+    <!-- SECÇÃO INFO EXTRA / CTAs -->
+    <section class="info">
+      <div class="info-box">
+        <h3>Queres explorar as áreas?</h3>
+        <p>Consulta as áreas e carreiras disponíveis, em Regime de Contrato (RV/RC/RCE) e Quadros Permanentes.</p>
+        <a class="btn" href="https://recrutamento.marinha.pt/pt/areas" target="_blank" rel="noopener">Ver áreas</a>
+      </div>
+      <div class="info-box">
+        <h3>Pronto para começar?</h3>
+        <p>Regista-te para receberes alertas sobre concursos e dá o primeiro passo.</p>
+        <a class="btn primary" href="https://candidaturas.marinha.pt/" target="_blank" rel="noopener">Registar e candidatar</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- MENU MOBILE SIMPLES -->
+  <nav class="menu-mobile" hidden>
+    <a href="profissoes.html">Profissões</a>
+    <a href="concursos.html">Concursos</a>
+    <a href="prepara.html">Prepara-te</a>
+    <a class="active" href="carreira.html">A tua carreira</a>
+    <a href="candidata.html">Candidata-te</a>
+  </nav>
+
+  <script>
+    // Toggle menu mobile
+    const btn = document.querySelector('.hamburguer-btn');
+    const menu = document.querySelector('.menu-mobile');
+    btn?.addEventListener('click', () => {
+      const open = menu.hasAttribute('hidden');
+      if (open) menu.removeAttribute('hidden'); else menu.setAttribute('hidden','');
+    });
+  </script>
+</body>
+</html>

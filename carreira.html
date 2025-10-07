@@ -4,22 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>A tua carreira — Marinha</title>
-  <link rel="stylesheet" href="estilos/carreira.css" />
+
+  <!-- Fonte e CSS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilos/carreira.css" />
 </head>
 <body>
-  <!-- NAVBAR (igual às outras páginas) -->
+  <!-- NAVBAR -->
   <header class="navbar">
-    <a href="index.html" class="brand">
+    <a href="index.html" class="brand" aria-label="Ir para a homepage">
       <img src="imagens/logo_marinha_branco.svg" alt="Marinha" class="logo">
     </a>
-    <nav>
+    <nav aria-label="Principal">
       <ul>
         <li><a href="profissoes.html">Profissões</a></li>
         <li><a href="concursos.html">Concursos</a></li>
         <li><a href="prepara.html">Prepara-te</a></li>
-        <li><a class="active" href="carreira.html">A tua carreira</a></li>
+        <li><a class="active" href="carreira.html" aria-current="page">A tua carreira</a></li>
         <li><a href="candidata.html">Candidata-te</a></li>
       </ul>
     </nav>
@@ -32,13 +34,13 @@
       <h1>A tua carreira</h1>
       <p>Escolhe o teu percurso na Marinha Portuguesa: formação contínua, incentivos ao longo do serviço e evolução por postos.</p>
       <div class="cta-row">
-        <a class="btn primary" href="https://recrutamento.marinha.pt/pt/concursos" target="_blank" rel="noopener">Concursos Abertos</a>
+        <a class="btn primary" href="https://antunesmonteiro.github.io/site-recrutamento-marinha/concursos.html">Concursos Abertos</a>
         <a class="btn" href="https://candidaturas.marinha.pt/" target="_blank" rel="noopener">Candidata-te</a>
       </div>
     </section>
 
-    <!-- 3 BLOCS PRINCIPAIS -->
-    <section class="grid">
+    <!-- 3 BLOCOS PRINCIPAIS -->
+    <section class="grid" aria-label="Informação de carreira">
       <!-- Formação -->
       <article class="card">
         <div class="card-body">
@@ -89,7 +91,7 @@
     </section>
 
     <!-- SECÇÃO INFO EXTRA / CTAs -->
-    <section class="info">
+    <section class="info" aria-label="Ações rápidas">
       <div class="info-box">
         <h3>Queres explorar as áreas?</h3>
         <p>Consulta as áreas e carreiras disponíveis, em Regime de Contrato (RV/RC/RCE) e Quadros Permanentes.</p>
@@ -103,12 +105,12 @@
     </section>
   </main>
 
-  <!-- MENU MOBILE SIMPLES -->
-  <nav class="menu-mobile" hidden>
+  <!-- MENU MOBILE -->
+  <nav class="menu-mobile" hidden aria-label="Menu móvel">
     <a href="profissoes.html">Profissões</a>
     <a href="concursos.html">Concursos</a>
     <a href="prepara.html">Prepara-te</a>
-    <a class="active" href="carreira.html">A tua carreira</a>
+    <a class="active" href="carreira.html" aria-current="page">A tua carreira</a>
     <a href="candidata.html">Candidata-te</a>
   </nav>
 

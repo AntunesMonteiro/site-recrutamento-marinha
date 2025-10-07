@@ -103,3 +103,9 @@
   .btn:active{transform:translateY(1px)}
   .btn.primary{background:var(--brand); color:#001; border-color:var(--brand)}
   
+  /* CTA centrado abaixo das caixas */
+.cta-center{
+  display:flex;
+  justify-content:center;
+  margin:18px 0 8px;
+}

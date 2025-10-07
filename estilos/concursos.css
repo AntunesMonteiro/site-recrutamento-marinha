@@ -8,14 +8,22 @@
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
-  margin:0; font-family:Roboto,system-ui,-apple-system,Segoe UI,Arial,sans-serif;
+  margin:0;
+  font-family:Roboto,system-ui,-apple-system,Segoe UI,Arial,sans-serif;
   color:var(--texto);
-  background:url('imagens/fundo_mar_internet.png') no-repeat center/cover fixed;
-  overflow-x:hidden; position:relative;
+  /* 🔧 mesmo fundo das outras páginas */
+  background: url('../imagens/fundo_mar_internet.png') no-repeat center center fixed;
+  background-size: cover;
+  overflow-x:hidden;
+  position:relative;
+  z-index:-2;
 }
+/* 🔧 overlay igual ao das outras páginas */
 body::before{
-  content:""; position:fixed; inset:0;
-  background:linear-gradient(0deg, rgba(0,0,0,.75), rgba(0,0,0,.55));
+  content:"";
+  position:fixed;
+  inset:0;
+  background: rgba(0,0,0,0.7);
   z-index:-1;
 }
 
@@ -24,7 +32,10 @@ body::before{
 /* NAVBAR (igual às outras páginas) */
 .navbar{
   display:flex; justify-content:space-between; align-items:center;
-  padding:1.5rem 1rem; position:relative; z-index:10;
+  /* 🔧 mesmo padding do prepara.css */
+  padding:1.5rem 4rem;
+  background:transparent;
+  position:relative; z-index:10;
 }
 .logo{height:40px}
 .navbar ul{list-style:none; display:flex; gap:3.5rem; margin:0; padding:0}
@@ -57,18 +68,8 @@ body::before{
 .hero h1{margin:0 0 6px; font-size:clamp(28px,3vw,40px); letter-spacing:.3px}
 .hero p{margin:0; color:var(--muted)}
 
-/* Tabs */
-.tabs{display:flex; gap:10px; flex-wrap:wrap; margin:16px 0}
-.tab{
-  padding:10px 14px; border:1px solid rgba(255,255,255,.18);
-  background:rgba(255,255,255,.06);
-  border-radius:999px; cursor:pointer; font-weight:700; color:#e8eef8;
-  transition:transform .06s, background .2s, border-color .2s;
-}
-.tab:active{transform:translateY(1px)}
-.tab[aria-selected="true"]{
-  background:var(--brand); color:#001; border-color:var(--brand);
-}
+/* Segmented control (tabs) – mantém o que já tinhas no <style> inline do HTML
+   ou, se preferires, move para aqui para centralizar estilos. */
 
 /* Notice */
 .notice{
@@ -78,7 +79,6 @@ body::before{
 }
 .links-uteis{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
 .muted{color:var(--muted)}
-.space-y>*+*{margin-top:1rem}
 
 /* Cards */
 .grid-cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:12px}

@@ -1,195 +1,88 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Concursos — Recrutamento Marinha</title>
-  <link rel="stylesheet" href="estilos/concursos.css">
+  <title>Concursos — Marinha</title>
 
-  <!-- Estilos mínimos para o gradiente do título e segmented control -->
-  <style>
-    /* Título com gradiente (estilo igual ao do site novo) */
-    .title-gradient{
-      background: linear-gradient(to right, #c2c8d8, #ffffff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    /* Segmented control (tabs) */
-    .segmented {
-      display:inline-flex; border:1px solid #dfe7f0; border-radius:999px; padding:4px; gap:4px;
-      background:#fff;
-    }
-    .segmented input{ position:absolute; opacity:0; pointer-events:none; }
-    .segmented label{
-      position:relative; z-index:1; cursor:pointer; user-select:none;
-      padding:10px 16px; border-radius:999px; font-weight:700; color:#081c3a;
-    }
-    .segmented input:checked + label{
-      background:#0a2b57; color:#fff; box-shadow:0 1px 2px rgba(0,0,0,.06);
-    }
-
-    /* espaçamento com a tua folha existente */
-    .segmented-wrap{ margin:16px 0; }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilos/concursos.css" />
 </head>
-
 <body>
-  <!-- Mobile menu -->
-  <button class="hamburguer-btn" onclick="toggleMobileMenu()">☰</button>
-  <div id="menuMobile" class="menu-mobile" style="display:none;">
-    <a href="profissoes.html">Profissões</a>
-    <a href="concursos.html">Concursos</a>
-    <a href="prepara.html">Prepara-te</a>
-    <a href="carreira.html">A tua carreira</a>
-    <a href="candidata.html">Candidata-te</a>
-  </div>
-
   <!-- NAVBAR -->
-  <header>
-    <nav class="navbar">
-      <a href="index.html">
-        <img src="imagens/marinhaHorizontalWhite.png" alt="Marinha" class="logo" />
-      </a>
+  <header class="navbar">
+    <a href="index.html" class="brand" aria-label="Ir para a homepage">
+      <img src="imagens/logo_marinha_branco.svg" alt="Marinha" class="logo">
+    </a>
+    <nav aria-label="Principal">
       <ul>
         <li><a href="profissoes.html">Profissões</a></li>
-        <li><a class="active" href="concursos.html">Concursos</a></li>
+        <li><a class="active" href="concursos.html" aria-current="page">Concursos</a></li>
         <li><a href="prepara.html">Prepara-te</a></li>
         <li><a href="carreira.html">A tua carreira</a></li>
         <li><a href="candidata.html">Candidata-te</a></li>
       </ul>
     </nav>
+    <button class="hamburguer-btn" aria-label="Abrir menu">Menu</button>
   </header>
 
-  <main class="container">
-    <!-- HERO -->
-    <section class="hero">
-      <h1 class="title-gradient">Concursos Abertos</h1>
-      <p>Consulta as oportunidades para ingressar na Marinha: Militares, Militarizados e Civis.</p>
-    </section>
+  <!-- CENTRADO NA PÁGINA -->
+  <main class="vp-center">
+    <div class="segmented" role="tablist" aria-label="Estado dos concursos">
+      <!-- ABERTOS -->
+      <a class="seg-item" href="#abertos" role="tab" aria-selected="false">
+        <svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="label">ABERTOS</span>
+      </a>
 
-    <!-- Segmented control (tabs) -->
-    <div class="segmented-wrap" role="tablist" aria-label="Filtros de concursos">
-      <div class="segmented">
-        <input type="radio" id="tab-militares" name="tabs" data-tab="militares" checked>
-        <label for="tab-militares" role="tab" aria-selected="true">Militares</label>
+      <!-- A DECORRER (exemplo marcado) -->
+      <a class="seg-item active" href="#a-decorrer" role="tab" aria-selected="true">
+        <svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="label">A DECORRER</span>
+      </a>
 
-        <input type="radio" id="tab-militarizados" data-tab="militarizados" name="tabs">
-        <label for="tab-militarizados" role="tab" aria-selected="false">Militarizados</label>
+      <!-- TERMINADOS RECENTEMENTE -->
+      <a class="seg-item" href="#terminados" role="tab" aria-selected="false">
+        <svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M18 6L6 18M6 6l12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="label">TERMINADOS<br/>RECENTEMENTE</span>
+      </a>
 
-        <input type="radio" id="tab-civis" data-tab="civis" name="tabs">
-        <label for="tab-civis" role="tab" aria-selected="false">Civis</label>
-      </div>
+      <!-- FUTUROS -->
+      <a class="seg-item" href="#futuros" role="tab" aria-selected="false">
+        <svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 3l9 16H3L12 3z" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M12 10v4m0 3h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="label">FUTUROS</span>
+      </a>
     </div>
-
-    <!-- MILITARES -->
-    <section class="section" data-section="militares">
-      <div class="notice">
-        Sem concursos militares abertos de momento.
-        <div class="links-uteis">
-          <a class="btn" href="https://recrutamento.marinha.pt/" target="_blank" rel="noopener">Candidaturas Online (oficial)</a>
-          <a class="btn" href="https://recrutamentomilitar.bud.gov.pt/recrutamentos" target="_blank" rel="noopener">Recrutamento Militar</a>
-        </div>
-      </div>
-
-      <div class="grid-cards" id="cards-militares">
-        <!-- Exemplo de card (quando houver concurso)
-        <article class="card">
-          <div class="card-body">
-            <h3>Praças RC — Fuzileiros</h3>
-            <ul class="card-meta">
-              <li>Candidaturas: 04 AGO 2025 – 05 SET 2025</li>
-              <li>Escolaridade: 9.º ano · Idade: até 24</li>
-            </ul>
-            <ul class="card-list">
-              <li>Provas físicas específicas</li>
-              <li>Formação na Escola de Fuzileiros</li>
-            </ul>
-          </div>
-          <div class="card-actions">
-            <a class="btn primary" href="#" target="_blank" rel="noopener">Candidatar</a>
-            <a class="btn" href="#" target="_blank" rel="noopener">Aviso / Detalhes</a>
-          </div>
-        </article>
-        -->
-      </div>
-    </section>
-
-    <!-- MILITARIZADOS -->
-    <section class="section" data-section="militarizados" hidden>
-      <p class="muted">Concursos para ingresso como Agente da Polícia Marítima (corpo militarizado da AMN).</p>
-      <div class="grid-cards">
-        <article class="card">
-          <div class="card-body">
-            <h3>Agente da Polícia Marítima — Curso de Formação</h3>
-            <ul class="card-meta"><li>Corpo militarizado da AMN</li></ul>
-            <ul class="card-list">
-              <li>Idade indicativa: 18–35 (confirmar no aviso)</li>
-              <li>Requisitos: nacionalidade PT, aptidão psicofísica, situação militar regularizada</li>
-            </ul>
-          </div>
-          <div class="card-actions">
-            <a class="btn primary" href="https://www.amn.pt/PM/Paginas/ConcursosPM.aspx" target="_blank" rel="noopener">Consultar concurso (AMN)</a>
-            <a class="btn" href="https://recrutamento.marinha.pt/pt/admissao/Paginas/Militarizados.aspx" target="_blank" rel="noopener">Mais informação</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- CIVIS -->
-    <section class="section" data-section="civis" hidden>
-      <div class="grid-cards">
-        <article class="card">
-          <div class="card-body">
-            <h3>Técnico Superior — Ciências da Educação (MPCM)</h3>
-            <ul class="card-meta">
-              <li>2 postos</li>
-              <li>Área Metropolitana de Lisboa</li>
-            </ul>
-            <ul class="card-list">
-              <li>Procedimento concursal (exemplo)</li>
-              <li>Consulta o aviso e listas na página oficial</li>
-            </ul>
-          </div>
-          <div class="card-actions">
-            <a class="btn primary" href="https://recrutamento.marinha.pt/pt/admissao/Paginas/Civis.aspx" target="_blank" rel="noopener">Aviso / Listas</a>
-            <a class="btn" href="https://diariodarepublica.pt/" target="_blank" rel="noopener">Diário da República</a>
-          </div>
-        </article>
-      </div>
-    </section>
   </main>
 
-  <footer class="container" style="padding-bottom:28px;"></footer>
+  <!-- MENU MOBILE -->
+  <nav class="menu-mobile" hidden aria-label="Menu móvel">
+    <a href="profissoes.html">Profissões</a>
+    <a class="active" href="concursos.html" aria-current="page">Concursos</a>
+    <a href="prepara.html">Prepara-te</a>
+    <a href="carreira.html">A tua carreira</a>
+    <a href="candidata.html">Candidata-te</a>
+  </nav>
 
-  <!-- JS para menu mobile + segmented control -->
   <script>
-    function toggleMobileMenu(){
-      const menu = document.getElementById("menuMobile");
-      if(!menu) return;
-      menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
-    }
-
-    (function(){
-      const radios = document.querySelectorAll('.segmented input[type="radio"]');
-      const labels = document.querySelectorAll('.segmented label');
-      const sections = document.querySelectorAll('[data-section]');
-
-      function activate(tabKey){
-        // ARIA
-        labels.forEach(l => l.setAttribute('aria-selected', String(l.previousElementSibling?.dataset.tab === tabKey)));
-        // Secções
-        sections.forEach(sec => { sec.hidden = sec.dataset.section !== tabKey; });
-      }
-
-      radios.forEach(r => {
-        r.addEventListener('change', () => activate(r.dataset.tab));
-      });
-
-      // Estado inicial
-      activate('militares');
-    })();
+    // Toggle menu mobile
+    const btn = document.querySelector('.hamburguer-btn');
+    const menu = document.querySelector('.menu-mobile');
+    btn?.addEventListener('click', () => {
+      const open = menu.hasAttribute('hidden');
+      if (open) menu.removeAttribute('hidden'); else menu.setAttribute('hidden','');
+    });
   </script>
 </body>
 </html>

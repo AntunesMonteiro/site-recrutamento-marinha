@@ -1,0 +1,87 @@
+:root{
+    --texto:#fff; --muted:#c9d3e1; --brand:#71f0c5;
+    --vidro:rgba(255,255,255,.06);
+  }
+  
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Roboto, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+    color:var(--texto);
+    background: url('../imagens/fundo_mar_internet.png') no-repeat center center fixed;
+    background-size: cover;
+    overflow-x:hidden;
+    position:relative; z-index:-2;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; background: rgba(0,0,0,.7); z-index:-1;
+  }
+  
+  .container{max-width:1100px; margin:0 auto; padding:24px}
+  
+  /* NAVBAR */
+  .navbar{display:flex; align-items:center; justify-content:space-between; padding:1.5rem 4rem; background:transparent; position:relative; z-index:10;}
+  .logo{height:40px}
+  .navbar ul{list-style:none; display:flex; gap:3.5rem; margin:0; padding:0}
+  .navbar a{color:#fff; text-decoration:none; font-weight:500; transition:opacity .2s}
+  .navbar a:hover,.navbar a.active{opacity:.8}
+  .hamburguer-btn{display:none}
+  .menu-mobile{display:none}
+  @media (max-width:820px){
+    .navbar{padding:1rem 1.25rem}
+    .navbar ul{display:none}
+    .hamburguer-btn{display:block; position:fixed; top:1rem; right:1rem; background:#fff; color:#000; border:none; border-radius:8px; padding:.5rem .9rem; font-weight:700; z-index:1000;}
+    .menu-mobile{position:fixed; top:60px; right:1rem; background:rgba(0,0,0,.95); padding:1rem; border-radius:12px; display:flex; flex-direction:column; gap:1rem; z-index:999;}
+    .menu-mobile a{color:#fff; text-decoration:none}
+  }
+  
+  /* HERO */
+  .hero{
+    background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+    border:1px solid rgba(255,255,255,.15);
+    backdrop-filter:blur(10px);
+    border-radius:20px; padding:24px; margin-bottom:12px;
+  }
+  .hero h1{margin:0 0 6px; font-size:clamp(30px,4vw,46px)}
+  .hero p.muted{margin:0; color:var(--muted)}
+  .cta-row{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
+  
+  /* LISTA DE CARDS */
+  .grid-cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:12px; margin-top:16px}
+  .card{
+    display:flex; flex-direction:column; justify-content:space-between;
+    border:1px solid rgba(255,255,255,.15); border-radius:16px; overflow:hidden;
+    background:var(--vidro); backdrop-filter:blur(8px); box-shadow:0 10px 30px rgba(0,0,0,.25);
+  }
+  .card-body{padding:14px}
+  .card h3{margin:0 0 6px; font-size:18px}
+  .card-meta,.card-list{margin:6px 0 0; padding-left:18px; color:#d7e1ee}
+  .card-actions{display:flex; gap:8px; padding:0 14px 14px}
+  
+  /* NOTICE quando não existem concursos */
+  .notice{margin-top:14px; background:rgba(113,240,197,.08); border:1px dashed rgba(113,240,197,.45); color:#e8fff6; padding:14px; border-radius:14px;}
+  .muted{color:var(--muted)}
+  
+  /* SOCIAL */
+  .social{margin:22px 0 8px}
+  .h6{font-size:14px; margin:0 0 6px; color:#dfe7f3}
+  .social-row{display:flex; gap:10px; flex-wrap:wrap}
+  .social-link{display:inline-block; padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.25); text-decoration:none; color:#fff}
+  .social-link:hover{border-color:#fff}
+  
+  /* BOTÕES */
+  .btn{
+    display:inline-block; text-decoration:none; padding:10px 14px; border-radius:999px;
+    border:1px solid rgba(255,255,255,.25); font-weight:700; background:transparent; color:#fff;
+    transition:transform .06s, background .15s, border-color .15s, color .15s;
+  }
+  .btn:hover{border-color:#fff}
+  .btn:active{transform:translateY(1px)}
+  .btn.primary{background:var(--brand); color:#001; border-color:var(--brand)}
+  
+  @media (max-width:480px){
+    .container{padding:12px}
+    .btn{width:100%; text-align:center}
+  }
+  

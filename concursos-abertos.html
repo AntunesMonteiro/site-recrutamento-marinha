@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Concursos Abertos — Marinha</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilos/abertos.css" />
+</head>
+<body>
+  <!-- NAVBAR (igual às outras páginas) -->
+  <header class="navbar">
+    <a href="index.html" class="brand" aria-label="Ir para a homepage">
+      <img src="imagens/logo_marinha_branco.svg" alt="Marinha" class="logo">
+    </a>
+    <nav aria-label="Principal">
+      <ul>
+        <li><a href="profissoes.html">Profissões</a></li>
+        <li><a class="active" href="concursos.html">Concursos</a></li>
+        <li><a href="prepara.html">Prepara-te</a></li>
+        <li><a href="carreira.html">A tua carreira</a></li>
+        <li><a href="candidata.html">Candidata-te</a></li>
+      </ul>
+    </nav>
+    <button class="hamburguer-btn" aria-label="Abrir menu">Menu</button>
+  </header>
+
+  <main class="container">
+    <!-- HERO “glassy” -->
+    <section class="hero">
+      <h1>Concursos Abertos</h1>
+      <p class="muted">
+        As necessidades anuais da Marinha determinam a abertura de concursos de admissão,
+        publicados conforme os lugares a preencher. :contentReference[oaicite:1]{index=1}
+      </p>
+      <div class="cta-row">
+        <a class="btn primary" href="https://candidaturas.marinha.pt/" target="_blank" rel="noopener">Candidaturas Online</a>
+        <a class="btn" href="https://recrutamentomilitar.bud.gov.pt/recrutamentos" target="_blank" rel="noopener">Recrutamento Militar</a>
+        <a class="btn" href="https://recrutamento.marinha.pt/pt/concursos" target="_blank" rel="noopener">Ver no site oficial</a>
+      </div>
+    </section>
+
+    <!-- LISTA DE CONCURSOS (edita/duplica os cards conforme existam) -->
+    <section class="grid-cards" id="lista-abertos" aria-live="polite">
+      <!-- Exemplo comentado; duplica e preenche quando houver concursos:
+      <article class="card">
+        <div class="card-body">
+          <h3>RM2 — Praças Fuzileiros</h3>
+          <ul class="card-list">
+            <li>Regime: Contrato</li>
+            <li>Destinatários: 18–24 anos</li>
+            <li>Habilitações: 9.º ano</li>
+          </ul>
+          <p class="card-meta">Candidaturas: 01/10 a 31/10</p>
+        </div>
+        <div class="card-actions">
+          <a class="btn" href="LINK_DO_AVISO" target="_blank" rel="noopener">Aviso/Regulamento</a>
+          <a class="btn primary" href="https://candidaturas.marinha.pt/" target="_blank" rel="noopener">Candidatar</a>
+        </div>
+      </article>
+      -->
+    </section>
+
+    <!-- Estado quando não existem concursos -->
+    <section class="notice" id="sem-concursos">
+      <strong>Estado:</strong> <span class="muted">Sem concursos abertos de momento.</span>
+    </section>
+
+    <!-- Social (tal como na página oficial) -->
+    <section class="social">
+      <h2 class="h6">Siga-nos nas redes sociais</h2>
+      <div class="social-row">
+        <a class="social-link" href="https://www.instagram.com/marinha_pt/" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+        <a class="social-link" href="https://www.facebook.com/marinhaportuguesa" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
+        <a class="social-link" href="https://www.youtube.com/@MarinhaPortuguesa" target="_blank" rel="noopener" aria-label="YouTube">YouTube</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- MENU MOBILE -->
+  <nav class="menu-mobile" hidden aria-label="Menu móvel">
+    <a href="profissoes.html">Profissões</a>
+    <a class="active" href="concursos.html">Concursos</a>
+    <a href="prepara.html">Prepara-te</a>
+    <a href="carreira.html">A tua carreira</a>
+    <a href="candidata.html">Candidata-te</a>
+  </nav>
+
+  <script>
+    // Toggle menu mobile
+    const btn = document.querySelector('.hamburguer-btn');
+    const menu = document.querySelector('.menu-mobile');
+    btn?.addEventListener('click', () => {
+      const open = menu.hasAttribute('hidden');
+      if (open) menu.removeAttribute('hidden'); else menu.setAttribute('hidden','');
+    });
+  </script>
+</body>
+</html>

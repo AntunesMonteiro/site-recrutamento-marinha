@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="estilos/concursos-abertos.css" />
 </head>
 <body>
-  <!-- NAVBAR (igual às outras páginas) -->
+  <!-- NAVBAR -->
   <header class="navbar">
     <a href="index.html" class="brand" aria-label="Ir para a homepage">
       <img src="imagens/marinhaHorizontalWhite.png" alt="Marinha" class="logo">
@@ -28,23 +28,22 @@
   </header>
 
   <main class="container">
-    <!-- HERO “glassy” -->
+    <!-- HERO -->
     <section class="hero">
       <h1>Concursos Abertos</h1>
       <p class="muted">
         As necessidades anuais da Marinha determinam a abertura de concursos de admissão,
-        publicados conforme os lugares a preencher. :contentReference[oaicite:1]{index=1}
+        publicados conforme os lugares a preencher.
       </p>
       <div class="cta-row">
         <a class="btn primary" href="https://candidaturas.marinha.pt/" target="_blank" rel="noopener">Candidaturas Online</a>
         <a class="btn" href="https://recrutamentomilitar.bud.gov.pt/recrutamentos" target="_blank" rel="noopener">Recrutamento Militar</a>
-        <a class="btn" href="https://recrutamento.marinha.pt/pt/concursos" target="_blank" rel="noopener">Ver no site oficial</a>
       </div>
     </section>
 
-    <!-- LISTA DE CONCURSOS (edita/duplica os cards conforme existam) -->
+    <!-- LISTA DE CONCURSOS (duplica cards quando existirem) -->
     <section class="grid-cards" id="lista-abertos" aria-live="polite">
-      <!-- Exemplo comentado; duplica e preenche quando houver concursos:
+      <!--
       <article class="card">
         <div class="card-body">
           <h3>RM2 — Praças Fuzileiros</h3>
@@ -63,19 +62,9 @@
       -->
     </section>
 
-    <!-- Estado quando não existem concursos -->
+    <!-- Estado quando não existirem concursos -->
     <section class="notice" id="sem-concursos">
       <strong>Estado:</strong> <span class="muted">Sem concursos abertos de momento.</span>
-    </section>
-
-    <!-- Social (tal como na página oficial) -->
-    <section class="social">
-      <h2 class="h6">Siga-nos nas redes sociais</h2>
-      <div class="social-row">
-        <a class="social-link" href="https://www.instagram.com/marinha_pt/" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
-        <a class="social-link" href="https://www.facebook.com/marinhaportuguesa" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
-        <a class="social-link" href="https://www.youtube.com/@MarinhaPortuguesa" target="_blank" rel="noopener" aria-label="YouTube">YouTube</a>
-      </div>
     </section>
   </main>
 

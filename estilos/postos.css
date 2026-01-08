@@ -1,0 +1,96 @@
+:root{
+    --texto:#fff;
+    --muted:#c9d3e1;
+    --vidro:rgba(255,255,255,.06);
+    --brand:#71f0c5;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Roboto, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+    color:var(--texto);
+    background:url('imagens/fundo_mar_internet.png') no-repeat center center fixed;
+    background-size:cover;
+  }
+  body::before{content:""; position:fixed; inset:0; background:rgba(0,0,0,.68); z-index:-1}
+  
+  .container{max-width:1200px; margin:0 auto; padding:24px}
+  
+  /* HERO */
+  .hero{
+    background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+    border:1px solid rgba(255,255,255,.15);
+    backdrop-filter:blur(10px);
+    border-radius:20px; padding:24px; margin-bottom:18px;
+  }
+  .hero h1{margin:0 0 6px; font-size:clamp(30px,4vw,46px)}
+  .hero .muted{margin:0; color:var(--muted)}
+  
+  /* SEGMENTED (tabs) – aproveita o teu estilo */
+  .segmented{
+    display:flex; align-items:stretch; justify-content:center;
+    background:#fff; color:#0b1222; border-radius:18px;
+    overflow:visible; box-shadow:0 16px 40px rgba(0,0,0,.35);
+    border:1px solid rgba(0,0,0,.12);
+  }
+  .seg-item{
+    position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:8px; padding:18px 26px; min-width:160px; text-align:center; background:#fff; border:0; cursor:pointer;
+    transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, color .18s ease;
+  }
+  .seg-item::before{content:""; position:absolute; left:0; top:8px; bottom:8px; width:1.5px; background:rgba(0,0,0,.18)}
+  .seg-item:first-child::before{display:none}
+  .seg-item .label{font-size:12px; letter-spacing:.4px; color:#5e6a7d; text-transform:uppercase}
+  .seg-item:hover{transform:translateY(-6px); box-shadow:0 14px 30px rgba(0,0,0,.25), 0 4px 10px rgba(0,0,0,.12)}
+  .seg-item[aria-selected="true"]{background:#e9eef5; transform:scale(1.06); box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:2}
+  .seg-item[aria-selected="true"] .label{color:#002855; font-weight:700}
+  .seg-item[aria-selected="true"]::before,
+  .seg-item[aria-selected="true"] + .seg-item::before{background:rgba(0,0,0,.32)}
+  
+  /* PANELS */
+  .tabs-panels{margin-top:20px}
+  .panel{display:none}
+  .panel.active{display:block}
+  
+  /* GRID CARDS */
+  .grid-cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+    gap:16px;
+    margin-top:6px;
+  }
+  
+  /* CARD */
+  .card{
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:18px; overflow:hidden;
+    background:var(--vidro); backdrop-filter:blur(8px);
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .card:hover{ transform: translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,.35); border-color:rgba(255,255,255,.3) }
+  
+  .card-header{display:flex; align-items:baseline; gap:10px; padding:16px 18px 0}
+  .card-header h3{margin:0; font-size:18px}
+  .card-header .sub{color:var(--muted); font-size:12px}
+  
+  /* LISTA DE POSTOS */
+  .posto-list{list-style:none; margin:8px 0 16px; padding:0; display:flex; flex-direction:column; gap:10px}
+  .posto-list li{display:flex; align-items:center; gap:12px; padding:10px 14px; border-radius:12px; background:rgba(0,0,0,.18); border:1px solid rgba(255,255,255,.12)}
+  .posto-list img{width:36px; height:36px; object-fit:contain; background:rgba(255,255,255,.9); border-radius:8px; padding:3px}
+  .posto-list span{font-weight:600}
+  
+  /* MENU MOBILE fix */
+  .menu-mobile{display:none; position:fixed; top:60px; right:1rem; background:rgba(0,0,0,.95); padding:1rem; border-radius:12px; z-index:999}
+  .menu-mobile[hidden]{display:none!important}
+  .menu-mobile:not([hidden]){display:block}
+  
+  /* Responsivo */
+  @media (max-width:520px){
+    .segmented{flex-direction:column}
+    .seg-item{min-width:auto; width:100%; border-bottom:1px solid rgba(0,0,0,.12)}
+    .seg-item::before{display:none}
+    .seg-item:last-child{border-bottom:0}
+  }
+  

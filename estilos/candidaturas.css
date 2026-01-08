@@ -1,6 +1,8 @@
 :root{
-    --texto:#fff; --muted:#c9d3e1; --brand:#71f0c5; --vidro:rgba(255,255,255,.06);
+    --texto:#fff; --muted:#c9d3e1; --brand:#71f0c5;
+    --vidro:rgba(255,255,255,.06);
   }
+  
   *{box-sizing:border-box}
   html,body{height:100%}
   body{
@@ -43,23 +45,33 @@
   .hero p.muted{margin:0; color:var(--muted)}
   .cta-row{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
   
-  /* LISTA DE CARDS */
-  .grid-cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:12px; margin-top:16px}
-  .card{
-    display:flex; flex-direction:column; justify-content:space-between;
-    border:1px solid rgba(255,255,255,.15); border-radius:16px; overflow:hidden;
-    background:var(--vidro); backdrop-filter:blur(8px); box-shadow:0 10px 30px rgba(0,0,0,.25);
+  /* STEPS */
+  .steps{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:12px; margin:16px 0;
   }
-  .card-body{padding:14px}
-  .card h3{margin:0 0 6px; font-size:18px}
-  .card-meta,.card-list{margin:6px 0 0; padding-left:18px; color:#d7e1ee}
-  .card-actions{display:flex; gap:8px; padding:0 14px 14px}
+  .step{
+    background:var(--vidro); border:1px solid rgba(255,255,255,.15);
+    border-radius:16px; padding:16px; backdrop-filter:blur(8px);
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+  }
+  .step .badge{
+    width:36px; height:36px; border-radius:50%; display:grid; place-items:center;
+    background:#fff; color:#0b1222; font-weight:900; margin-bottom:8px;
+  }
   
-  /* NOTICE quando não existem concursos */
-  .notice{margin-top:14px; background:rgba(113,240,197,.08); border:1px dashed rgba(113,240,197,.45); color:#e8fff6; padding:14px; border-radius:14px}
-  .muted{color:var(--muted)}
+  /* PANELS */
+  .panel{
+    background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:16px; padding:18px; backdrop-filter:blur(8px);
+    margin:16px 0;
+  }
+  .panel h2{margin:0 0 8px; font-size:20px}
+  .checklist, .bullets{margin:0; padding-left:20px; color:#dfe7f3}
+  .bullets li{margin-bottom:4px}
   
-  /* BOTÕES */
+  /* Buttons */
   .btn{
     display:inline-block; text-decoration:none; padding:10px 14px; border-radius:999px;
     border:1px solid rgba(255,255,255,.25); font-weight:700; background:transparent; color:#fff;

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Postos — Marinha</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <!-- base global do teu site + estilos da página -->
+  <link rel="stylesheet" href="estilos/base.css" />
+  <link rel="stylesheet" href="postos.css" />
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <a href="index.html" class="brand" aria-label="Ir para a homepage">
+      <img src="imagens/marinhaHorizontalWhite.png" alt="Marinha" class="logo">
+    </a>
+    <nav aria-label="Principal">
+      <ul>
+        <li><a href="profissoes.html">Profissões</a></li>
+        <li><a href="concursos.html">Concursos</a></li>
+        <li><a href="prepara.html">Prepara-te</a></li>
+        <li><a class="active" href="postos.html" aria-current="page">Postos</a></li>
+        <li><a href="carreira.html">A tua carreira</a></li>
+        <li><a href="candidata.html">Candidata-te</a></li>
+      </ul>
+    </nav>
+    <button class="hamburguer-btn menu-toggle" aria-label="Abrir menu">Menu</button>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <h1>Postos</h1>
+      <p class="muted">
+        Conhece a hierarquia da Marinha Portuguesa. Os postos organizam-se em três categorias:
+        <strong>Oficiais</strong>, <strong>Sargentos</strong> e <strong>Praças</strong>.
+      </p>
+    </section>
+
+    <!-- TABS -->
+    <div class="segmented tabs" role="tablist" aria-label="Categorias de postos">
+      <button class="seg-item" role="tab" aria-selected="true" data-target="oficiais">
+        <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2l3 7h7l-5.65 4.1L18.5 21 12 16.9 5.5 21l2.15-7.9L2 9h7z" fill="currentColor"/>
+        </svg>
+        <span class="label">Oficiais</span>
+      </button>
+
+      <button class="seg-item" role="tab" aria-selected="false" data-target="sargentos">
+        <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 3l7 4v10l-7 4-7-4V7z" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M7 10l5 3 5-3" stroke="currentColor" stroke-width="2" fill="none"/>
+        </svg>
+        <span class="label">Sargentos</span>
+      </button>
+
+      <button class="seg-item" role="tab" aria-selected="false" data-target="pracas">
+        <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        <span class="label">Praças</span>
+      </button>
+    </div>
+
+    <!-- PAINÉIS -->
+    <section class="tabs-panels" aria-live="polite">
+      <!-- OFICIAIS -->
+      <div class="panel active" id="oficiais" role="tabpanel">
+        <div class="grid-cards">
+
+          <!-- Oficiais Generais -->
+          <article class="card">
+            <div class="card-header">
+              <h3>Oficiais Generais</h3><span class="sub">Topo da hierarquia</span>
+            </div>
+            <ul class="posto-list">
+              <li><img src="imagens/postos/almirante.png" alt="Insígnia de Almirante"><span>Almirante</span></li>
+              <li><img src="imagens/postos/vice-almirante.png" alt="Insígnia de Vice-almirante"><span>Vice-almirante</span></li>
+              <li><img src="imagens/postos/contra-almirante.png" alt="Insígnia de Contra-almirante"><span>Contra-almirante</span></li>
+              <li><img src="imagens/postos/comodoro.png" alt="Insígnia de Comodoro"><span>Comodoro</span></li>
+            </ul>
+          </article>
+
+          <!-- Oficiais Superiores -->
+          <article class="card">
+            <div class="card-header">
+              <h3>Oficiais Superiores</h3><span class="sub">Comando e direção</span>
+            </div>
+            <ul class="posto-list">
+              <li><img src="imagens/postos/cmg.png" alt="Insígnia de Capitão-de-mar-e-guerra"><span>Capitão-de-mar-e-guerra</span></li>
+              <li><img src="imagens/postos/cf.png" alt="Insígnia de Capitão-de-fragata"><span>Capitão-de-fragata</span></li>
+              <li><img src="imagens/postos/cten.png" alt="Insígnia de Capitão-tenente"><span>Capitão-tenente</span></li>
+            </ul>
+          </article>
+
+          <!-- Oficiais Subalternos -->
+          <article class="card">
+            <div class="card-header">
+              <h3>Oficiais Subalternos</h3><span class="sub">Comando de equipas</span>
+            </div>
+            <ul class="posto-list">
+              <li><img src="imagens/postos/1ten.png" alt="Insígnia de Primeiro-tenente"><span>Primeiro-tenente</span></li>
+              <li><img src="imagens/postos/2ten.png" alt="Insígnia de Segundo-tenente"><span>Segundo-tenente</span></li>
+              <li><img src="imagens/postos/guarda-marinha.png" alt="Insígnia de Guarda-marinha"><span>Guarda-marinha</span></li>
+              <li><img src="imagens/postos/aspirante.png" alt="Insígnia de Aspirante a Oficial"><span>Aspirante</span></li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- SARGENTOS -->
+      <div class="panel" id="sargentos" role="tabpanel" hidden>
+        <div class="grid-cards">
+          <article class="card">
+            <div class="card-header">
+              <h3>Sargentos</h3><span class="sub">Quadro técnico-operacional</span>
+            </div>
+            <ul class="posto-list">
+              <li><img src="imagens/postos/sargento-mor.png" alt="Insígnia de Sargento-mor"><span>Sargento-mor</span></li>
+              <li><img src="imagens/postos/sargento-chefe.png" alt="Insígnia de Sargento-chefe"><span>Sargento-chefe</span></li>
+              <li><img src="imagens/postos/sargento-ajudante.png" alt="Insígnia de Sargento-ajudante"><span>Sargento-ajudante</span></li>
+              <li><img src="imagens/postos/1sargento.png" alt="Insígnia de Primeiro-sargento"><span>Primeiro-sargento</span></li>
+              <li><img src="imagens/postos/2sargento.png" alt="Insígnia de Segundo-sargento"><span>Segundo-sargento</span></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+
+      <!-- PRAÇAS -->
+      <div class="panel" id="pracas" role="tabpanel" hidden>
+        <div class="grid-cards">
+          <article class="card">
+            <div class="card-header">
+              <h3>Praças</h3><span class="sub">Base da força</span>
+            </div>
+            <ul class="posto-list">
+              <li><img src="imagens/postos/cabo-mor.png" alt="Insígnia de Cabo-mor"><span>Cabo-mor</span></li>
+              <li><img src="imagens/postos/cabo.png" alt="Insígnia de Cabo"><span>Cabo</span></li>
+              <li><img src="imagens/postos/1marinheiro.png" alt="Insígnia de Primeiro-marinheiro"><span>Primeiro-marinheiro</span></li>
+              <li><img src="imagens/postos/2marinheiro.png" alt="Insígnia de Segundo-marinheiro"><span>Segundo-marinheiro</span></li>
+              <li><img src="imagens/postos/1grumete.png" alt="Insígnia de Primeiro-grumete"><span>Primeiro-grumete</span></li>
+              <li><img src="imagens/postos/2grumete.png" alt="Insígnia de Segundo-grumete"><span>Segundo-grumete</span></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MENU MOBILE -->
+  <nav class="menu-mobile" hidden aria-label="Menu móvel">
+    <a href="profissoes.html">Profissões</a>
+    <a href="concursos.html">Concursos</a>
+    <a href="prepara.html">Prepara-te</a>
+    <a class="active" href="postos.html" aria-current="page">Postos</a>
+    <a href="carreira.html">A tua carreira</a>
+    <a href="candidata.html">Candidata-te</a>
+  </nav>
+
+  <!-- JS: menu mobile + tabs -->
+  <script>
+    // Menu mobile
+    const btn = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('.menu-mobile');
+    btn?.addEventListener('click', () => {
+      if (menu.hasAttribute('hidden')) menu.removeAttribute('hidden');
+      else menu.setAttribute('hidden','');
+    });
+    document.addEventListener('click', (e) => {
+      if (!menu?.contains(e.target) && !btn?.contains(e.target)) menu?.setAttribute('hidden','');
+    });
+
+    // Tabs
+    const tabs = document.querySelectorAll('.tabs .seg-item');
+    const panels = document.querySelectorAll('.panel');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // estado visual
+        tabs.forEach(t => t.setAttribute('aria-selected','false'));
+        tab.setAttribute('aria-selected','true');
+
+        // mostra painel alvo
+        const id = tab.dataset.target;
+        panels.forEach(p => {
+          if (p.id === id) { p.classList.add('active'); p.removeAttribute('hidden'); }
+          else { p.classList.remove('active'); p.setAttribute('hidden',''); }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

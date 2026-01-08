@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Candidaturas Online — Marinha</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilos/candidaturas.css" />
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <a href="index.html" class="brand" aria-label="Ir para a homepage">
+      <img src="imagens/marinhaHorizontalWhite.png" alt="Marinha" class="logo">
+    </a>
+    <nav aria-label="Principal">
+      <ul>
+        <li><a href="profissoes.html">Profissões</a></li>
+        <li><a href="concursos.html">Concursos</a></li>
+        <li><a href="prepara.html">Prepara-te</a></li>
+        <li><a href="carreira.html">A tua carreira</a></li>
+        <li><a class="active" href="candidaturas.html" aria-current="page">Candidata-te</a></li>
+      </ul>
+    </nav>
+    <button class="hamburguer-btn" aria-label="Abrir menu">Menu</button>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <h1>Candidaturas Online</h1>
+      <p class="muted">
+        Entra no portal oficial para te registares, escolheres um concurso e submeteres a tua candidatura.
+      </p>
+      <div class="cta-row">
+        <a class="btn primary" href="https://candidaturas.marinha.pt/" target="_blank" rel="noopener">
+          Entrar no Portal
+        </a>
+        <a class="btn" href="https://candidaturas.marinha.pt/" target="_blank" rel="noopener">
+          Criar conta
+        </a>
+      </div>
+    </section>
+
+    <!-- PASSO-A-PASSO -->
+    <section class="steps">
+      <article class="step">
+        <div class="badge">1</div>
+        <h3>Regista-te</h3>
+        <p>Cria a tua conta no portal de candidaturas.</p>
+      </article>
+      <article class="step">
+        <div class="badge">2</div>
+        <h3>Completa o perfil</h3>
+        <p>Preenche dados pessoais, contactos e habilitações.</p>
+      </article>
+      <article class="step">
+        <div class="badge">3</div>
+        <h3>Escolhe o concurso</h3>
+        <p>Seleciona a oportunidade compatível com o teu perfil.</p>
+      </article>
+      <article class="step">
+        <div class="badge">4</div>
+        <h3>Submete</h3>
+        <p>Anexa documentos e confirma a candidatura.</p>
+      </article>
+    </section>
+
+    <!-- CHECKLIST -->
+    <section class="panel">
+      <h2>Documentos habituais</h2>
+      <ul class="checklist">
+        <li>Cartão de Cidadão / BI e NIF</li>
+        <li>Certificado de habilitações</li>
+        <li>Currículo (PDF)</li>
+        <li>Outros documentos solicitados no aviso do concurso</li>
+      </ul>
+      <div class="cta-row">
+        <a class="btn" href="concursos-abertos.html">Ver concursos abertos</a>
+        <a class="btn" href="https://recrutamentomilitar.bud.gov.pt/recrutamentos" target="_blank" rel="noopener">Recrutamento Militar</a>
+      </div>
+    </section>
+
+    <!-- AJUDA -->
+    <section class="panel">
+      <h2>Dicas rápidas</h2>
+      <ul class="bullets">
+        <li>Garante que os documentos estão legíveis e atualizados.</li>
+        <li>Revê os requisitos no aviso do concurso antes de submeter.</li>
+        <li>Ativa notificações no e-mail para acompanhar o estado.</li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- MENU MOBILE -->
+  <nav class="menu-mobile" hidden aria-label="Menu móvel">
+    <a href="profissoes.html">Profissões</a>
+    <a href="concursos.html">Concursos</a>
+    <a href="prepara.html">Prepara-te</a>
+    <a href="carreira.html">A tua carreira</a>
+    <a class="active" href="candidaturas.html" aria-current="page">Candidata-te</a>
+  </nav>
+
+  <script>
+    // Toggle menu mobile
+    const btn = document.querySelector('.hamburguer-btn');
+    const menu = document.querySelector('.menu-mobile');
+    btn?.addEventListener('click', () => {
+      const open = menu.hasAttribute('hidden');
+      if (open) menu.removeAttribute('hidden'); else menu.setAttribute('hidden','');
+    });
+  </script>
+</body>
+</html>

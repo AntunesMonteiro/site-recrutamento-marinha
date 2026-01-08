@@ -105,3 +105,24 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
+
+  // === BOTÕES SEGMENTADOS - ESTADO ATIVO ===
+document.addEventListener('DOMContentLoaded', () => {
+  const segItems = document.querySelectorAll('.seg-item');
+
+  segItems.forEach(item => {
+    item.addEventListener('click', () => {
+      segItems.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+    });
+  });
+});
+
+const mensagemInicial = document.getElementById('mensagem-inicial');
+tabs.forEach(tab => {
+  tab.addEventListener('click', (e) => {
+    e.preventDefault();
+    mensagemInicial?.setAttribute('hidden','');
+    ...
+  });
+});

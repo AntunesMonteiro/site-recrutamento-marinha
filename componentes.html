@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UI Kit · Site Recrutamento Marinha</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ------------------------------------------------------
+      DESIGN TOKENS (podes copiar para um ficheiro: css/tokens.css)
+    --------------------------------------------------------- */
+    :root{
+      /* Cores principais (azul CMYK(100,65,0,85) ≈ #000D26) */
+      --blue-900:#000d26;  /* azul Marinha (fundo escuro) */
+      --blue-800:#0b214d;
+      --blue-700:#113066;
+      --blue-600:#163f80;
+      --blue-500:#1b4e99;  /* azul de ação/realce */
+      --blue-400:#235fb3;
+      --blue-300:#3f7ad1;
+      --blue-200:#6b99e0;
+      --blue-100:#a9c0f0;
+
+      --yellow-500:#F2C200; /* amarelo U.R.J.F.F. (se precisares) */
+      --green-600:#0E7A3D;  /* verde U.R.J.F.F. (se precisares) */
+
+      --gray-900:#0f172a;
+      --gray-800:#1f2937;
+      --gray-700:#334155;
+      --gray-600:#475569;
+      --gray-500:#64748b;
+      --gray-400:#94a3b8;
+      --gray-300:#cbd5e1;
+      --gray-200:#e2e8f0;
+      --gray-100:#f1f5f9;
+      --white:#ffffff;
+      --black:#000000;
+
+      /* Tipografia */
+      --font-sans:'Roboto', system-ui, -apple-system, Segoe UI, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      --fs-xs:12px; --fs-sm:14px; --fs-base:16px; --fs-lg:18px; --fs-xl:20px; --fs-2xl:24px; --fs-3xl:32px; --fs-4xl:40px;
+      --fw-regular:400; --fw-medium:500; --fw-bold:700;
+
+      /* Espaçamento & radius */
+      --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px; --space-6:24px; --space-8:32px; --space-10:40px; --space-12:48px;
+      --radius-sm:8px; --radius-md:14px; --radius-lg:20px; --radius-xl:28px; --radius-2xl:36px;
+
+      /* Sombras */
+      --shadow-sm:0 1px 2px rgba(0,0,0,.08);
+      --shadow-md:0 6px 18px rgba(0,0,0,.12);
+      --shadow-lg:0 18px 40px rgba(0,0,0,.18);
+
+      /* Larguras de container */
+      --container:1200px;
+
+      /* Imagens */
+      --hero-image:url('assets/hero-mar.jpg'); /* substitui pelo teu caminho */
+      --logo-url:url('assets/logo-marinha.svg');
+    }
+
+    /* ------------------------------------------------------
+      RESET & BASE
+    --------------------------------------------------------- */
+    *,*::before,*::after{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0; font-family:var(--font-sans); font-size:var(--fs-base); color:var(--gray-800); background:var(--white);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    img{ max-width:100%; display:block; }
+    a{ color:inherit; text-decoration:none; }
+    button{ font:inherit; cursor:pointer; }
+
+    /* ------------------------------------------------------
+      UTILITÁRIOS RÁPIDOS (grid, flex, espaçamento)
+    --------------------------------------------------------- */
+    .container{ width:100%; max-width:var(--container); margin-inline:auto; padding:0 var(--space-4); }
+    .flex{ display:flex; }
+    .items-center{ align-items:center; }
+    .justify-between{ justify-content:space-between; }
+    .gap-2{ gap:var(--space-2); } .gap-3{ gap:var(--space-3); } .gap-4{ gap:var(--space-4); } .gap-6{ gap:var(--space-6); }
+    .grid{ display:grid; }
+    .grid-3{ grid-template-columns:repeat(3,1fr); gap:var(--space-6); }
+    .grid-4{ grid-template-columns:repeat(4,1fr); gap:var(--space-6); }
+    .py-2{ padding-block:var(--space-2); } .py-3{ padding-block:var(--space-3); } .py-6{ padding-block:var(--space-6); }
+    .px-3{ padding-inline:var(--space-3); } .px-4{ padding-inline:var(--space-4); } .p-4{ padding:var(--space-4); } .p-6{ padding:var(--space-6); }
+    .mt-6{ margin-top:var(--space-6); } .mb-6{ margin-bottom:var(--space-6); }
+    .rounded-lg{ border-radius:var(--radius-lg); }
+    .shadow-md{ box-shadow:var(--shadow-md); }
+    .text-center{ text-align:center; }
+    .text-right{ text-align:right; }
+    .hidden{ display:none; }
+
+    /* Responsivo simples */
+    @media (max-width: 1024px){ .grid-4{ grid-template-columns:repeat(2,1fr);} }
+    @media (max-width: 720px){ .grid-3{ grid-template-columns:1fr;} .grid-4{ grid-template-columns:1fr;} }
+
+    /* ------------------------------------------------------
+      TIPOGRAFIA & LINKS
+    --------------------------------------------------------- */
+    h1{ font-size:var(--fs-4xl); line-height:1.1; margin:0 0 var(--space-4); font-weight:var(--fw-bold); }
+    h2{ font-size:var(--fs-2xl); margin:var(--space-6) 0 var(--space-3); font-weight:var(--fw-bold);} 
+    h3{ font-size:var(--fs-xl); margin:var(--space-4) 0 var(--space-2); font-weight:var(--fw-medium);} 
+    p{ margin:0 0 var(--space-3); color:var(--gray-700); }
+    .muted{ color:var(--gray-500); font-size:var(--fs-sm); }
+    .tag{ display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; background:var(--gray-100); border:1px solid var(--gray-200); font-size:var(--fs-sm); }
+
+    /* ------------------------------------------------------
+      BOTÕES (primário, secundário, fantasma)
+    --------------------------------------------------------- */
+    .btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:10px 14px; border-radius:var(--radius-md); border:1px solid transparent; font-weight:var(--fw-medium); text-decoration:none; transition:transform .05s ease, box-shadow .2s ease; }
+    .btn:active{ transform:translateY(1px); }
+    .btn:focus{ outline:2px solid var(--blue-300); outline-offset:2px; }
+    .btn--primary{ background:var(--blue-500); color:var(--white); box-shadow:var(--shadow-sm); }
+    .btn--primary:hover{ filter:brightness(1.05); }
+    .btn--secondary{ background:var(--white); color:var(--blue-700); border-color:var(--blue-300); }
+    .btn--secondary:hover{ background:var(--blue-100); }
+    .btn--ghost{ background:transparent; color:var(--white); border-color:rgba(255,255,255,.15); }
+    .btn--icon{ width:40px; height:40px; padding:0; }
+
+    /* ------------------------------------------------------
+      NAV SUPERIOR (azul escuro + ícones à direita)
+    --------------------------------------------------------- */
+    .topbar{ background:var(--blue-900); color:var(--white); position:sticky; top:0; z-index:50; }
+    .topbar__inner{ display:flex; align-items:center; justify-content:space-between; height:64px; }
+    .brand{ display:flex; align-items:center; gap:12px; }
+    .brand__logo{ width:44px; height:44px; background:var(--white) var(--logo-url) center/70% no-repeat; border-radius:50%; }
+    .brand__title{ font-weight:var(--fw-bold); letter-spacing:.3px; }
+
+    .topbar__actions{ display:flex; align-items:center; gap:8px; }
+    .icon-btn{ width:40px; height:40px; border-radius:50%; border:1px solid rgba(255,255,255,.2); display:flex; align-items:center; justify-content:center; background:transparent; color:var(--white); }
+
+    /* Hamburger para mobile */
+    .hamburger{ display:none; width:42px; height:42px; border-radius:10px; border:1px solid rgba(255,255,255,.2); background:transparent; color:var(--white); }
+    @media (max-width: 900px){ .hamburger{ display:flex; align-items:center; justify-content:center; } }
+
+    /* ------------------------------------------------------
+      NAV DE AÇÕES (fundo branco com botões)
+    --------------------------------------------------------- */
+    .actionbar{ background:var(--white); border-bottom:1px solid var(--gray-200); }
+    .actionbar__wrap{ display:flex; flex-wrap:wrap; gap:8px; padding:10px 0; }
+    .actionbar .btn{ font-size:var(--fs-sm); }
+
+    /* ------------------------------------------------------
+      SIDEBAR (ícones DC, P, I, IA, M, F)
+    --------------------------------------------------------- */
+    .layout{ display:grid; grid-template-columns:72px 1fr; min-height:calc(100vh - 64px); }
+    .sidebar{ background:var(--blue-900); color:var(--white); padding:var(--space-4) var(--space-2); position:sticky; top:64px; height:calc(100vh - 64px); }
+    .side-item{ width:100%; aspect-ratio:1/1; border-radius:16px; display:flex; align-items:center; justify-content:center; font-weight:var(--fw-bold); background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); margin-bottom:12px; }
+    .side-item:hover{ background:rgba(255,255,255,.15); }
+    .sidebar__label{ writing-mode:vertical-rl; transform:rotate(180deg); font-size:10px; letter-spacing:2px; color:rgba(255,255,255,.6); text-align:center; margin-top:auto; }
+
+    @media (max-width: 900px){
+      .layout{ grid-template-columns:1fr; }
+      .sidebar{ position:fixed; left:0; top:64px; bottom:0; width:68px; transform:translateX(-100%); transition:transform .25s ease; z-index:60; }
+      .sidebar.is-open{ transform:translateX(0); }
+    }
+
+    /* ------------------------------------------------------
+      BANNER / HERO (imagem de mar + pesquisa)
+    --------------------------------------------------------- */
+    .hero{ position:relative; background:var(--blue-900); min-height:360px; display:flex; align-items:center; }
+    .hero::before{ content:""; position:absolute; inset:0; background:var(--hero-image) center/cover no-repeat; opacity:.35; }
+    .hero::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,13,38,0.6), rgba(0,13,38,0.9)); }
+    .hero__content{ position:relative; z-index:2; color:var(--white); }
+    .hero__title{ font-size:48px; line-height:1.1; margin:0 0 var(--space-4); }
+    .searchbar{ display:flex; align-items:center; gap:8px; background:var(--white); border:1px solid var(--gray-300); border-radius:999px; padding:8px 12px; max-width:640px; box-shadow:var(--shadow-md); }
+    .searchbar input{ flex:1; border:none; outline:none; font-size:var(--fs-base); }
+
+    /* Chips / tags rápidas */
+    .chip-row{ display:flex; flex-wrap:wrap; gap:8px; margin-top:var(--space-3); }
+    .chip{ padding:8px 12px; background:rgba(255,255,255,.12); color:var(--white); border:1px solid rgba(255,255,255,.25); border-radius:999px; font-size:var(--fs-sm); }
+    .chip:hover{ background:rgba(255,255,255,.22); }
+
+    /* ------------------------------------------------------
+      CARDS DE LINKS (OA1, OP, OPM)
+    --------------------------------------------------------- */
+    .link-card{ position:relative; overflow:hidden; border-radius:var(--radius-xl); background:linear-gradient(135deg, rgba(0,13,38,.95), rgba(35,95,179,.85)); color:var(--white); padding:24px; min-height:140px; box-shadow:var(--shadow-lg); display:flex; align-items:flex-end; }
+    .link-card__title{ font-size:28px; font-weight:var(--fw-bold); letter-spacing:.3px; }
+    .link-card__icon{ position:absolute; top:-10px; right:-10px; font-size:96px; opacity:.08; user-select:none; }
+
+    /* ------------------------------------------------------
+      LISTA DE NOTÍCIAS
+    --------------------------------------------------------- */
+    .news-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    @media (max-width: 1024px){ .news-grid{ grid-template-columns:repeat(2,1fr);} }
+    @media (max-width: 720px){ .news-grid{ grid-template-columns:1fr;} }
+
+    .news-card{ background:var(--white); border:1px solid var(--gray-200); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-sm); display:flex; flex-direction:column; }
+    .news-card img{ height:160px; object-fit:cover; }
+    .news-card__body{ padding:16px; display:flex; flex-direction:column; gap:8px; }
+    .badge{ display:inline-flex; align-items:center; padding:4px 8px; border-radius:8px; background:var(--blue-100); color:var(--blue-700); font-size:12px; font-weight:var(--fw-medium); width:max-content; }
+    .news-card__title{ font-size:18px; font-weight:var(--fw-bold); color:var(--gray-800); }
+    .news-card__meta{ font-size:12px; color:var(--gray-500); }
+
+    /* ------------------------------------------------------
+      DESTAQUES (hero-card)
+    --------------------------------------------------------- */
+    .highlight{ position:relative; background:linear-gradient(135deg, var(--blue-700), var(--blue-500)); color:var(--white); border-radius:var(--radius-xl); overflow:hidden; padding:24px; display:flex; align-items:center; gap:20px; }
+    .highlight__media{ flex:0 0 280px; min-height:180px; background:var(--gray-300) center/cover no-repeat; border-radius:var(--radius-lg); }
+    .highlight__content{ flex:1; }
+
+    /* ------------------------------------------------------
+      TABELA (para resultados/jogos, concursos, etc.)
+    --------------------------------------------------------- */
+    .table{ width:100%; border-collapse:collapse; background:var(--white); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-sm); }
+    .table th, .table td{ padding:12px 14px; border-bottom:1px solid var(--gray-200); text-align:left; font-size:14px; }
+    .table th{ background:var(--gray-100); font-weight:var(--fw-medium); color:var(--gray-700); }
+
+    /* ------------------------------------------------------
+      FORMULÁRIOS (inputs, selects, checkbox)
+    --------------------------------------------------------- */
+    .field{ display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
+    .label{ font-size:14px; color:var(--gray-700); }
+    .input, .select, .textarea{ width:100%; padding:10px 12px; border-radius:12px; border:1px solid var(--gray-300); font-size:var(--fs-base); outline:none; transition:box-shadow .2s ease, border-color .2s ease; }
+    .input:focus, .select:focus, .textarea:focus{ border-color:var(--blue-400); box-shadow:0 0 0 3px rgba(35,95,179,.2); }
+    .checkbox{ display:flex; align-items:center; gap:8px; }
+
+    /* ------------------------------------------------------
+      MODAL (genérico)
+    --------------------------------------------------------- */
+    .modal-backdrop{ position:fixed; inset:0; background:rgba(0,0,0,.5); display:none; align-items:center; justify-content:center; z-index:80; }
+    .modal-backdrop.is-open{ display:flex; }
+    .modal{ background:var(--white); border-radius:var(--radius-xl); box-shadow:var(--shadow-lg); width:min(560px, 92vw); padding:24px; }
+
+    /* ------------------------------------------------------
+      FOOTER
+    --------------------------------------------------------- */
+    .footer{ background:var(--blue-900); color:var(--white); margin-top:var(--space-8); }
+    .footer__inner{ display:grid; grid-template-columns:2fr 1fr 1fr; gap:24px; padding:32px 0; }
+    .footer a{ color:var(--white); }
+    .footer__bottom{ border-top:1px solid rgba(255,255,255,.15); padding:14px 0; font-size:12px; color:rgba(255,255,255,.7); }
+    @media (max-width: 900px){ .footer__inner{ grid-template-columns:1fr; } }
+
+    /* ------------------------------------------------------
+      DEMO PAGE WRAPPER (apenas para esta biblioteca)
+    --------------------------------------------------------- */
+    .kit-section{ padding:var(--space-6) 0; border-bottom:1px solid var(--gray-200); }
+    .swatch{ width:44px; height:44px; border-radius:10px; border:1px solid var(--gray-200); }
+    .row{ display:flex; gap:16px; flex-wrap:wrap; align-items:center; }
+    .code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; background:var(--gray-100); border:1px solid var(--gray-200); border-radius:12px; padding:12px; overflow:auto; }
+  </style>
+</head>
+<body>
+  <!-- NAV SUPERIOR -->
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <div class="brand">
+        <div class="brand__logo" aria-hidden="true"></div>
+        <div class="brand__title">Marinha Portuguesa · Recrutamento</div>
+      </div>
+      <div class="topbar__actions">
+        <button class="icon-btn" aria-label="Pesquisar" title="Pesquisar">🔎</button>
+        <button class="icon-btn" aria-label="Notificações" title="Notificações">🔔</button>
+        <button class="icon-btn" aria-label="Perfil" title="Perfil">👤</button>
+        <button class="hamburger" id="btnHamburger" aria-label="Abrir menu lateral">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAV DE AÇÕES (botões em fundo branco) -->
+  <nav class="actionbar">
+    <div class="container actionbar__wrap">
+      <a class="btn btn--secondary" href="#">Ordens</a>
+      <a class="btn btn--secondary" href="#">Secretaria Virtual</a>
+      <a class="btn btn--secondary" href="#">NCIRC</a>
+      <a class="btn btn--secondary" href="#">SIAMMFA</a>
+      <a class="btn btn--secondary" href="#">EdocLink</a>
+      <a class="btn btn--secondary" href="#">Lista da Armada</a>
+      <a class="btn btn--secondary" href="#">GesFérias</a>
+      <a class="btn btn--secondary" href="#">Boletim de Vencimentos</a>
+    </div>
+  </nav>
+
+  <!-- LAYOUT COM SIDEBAR + CONTEÚDO -->
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <button class="side-item" title="DC">DC</button>
+      <button class="side-item" title="P">P</button>
+      <button class="side-item" title="I">I</button>
+      <button class="side-item" title="IA">IA</button>
+      <button class="side-item" title="M">M</button>
+      <button class="side-item" title="F">F</button>
+      <div class="sidebar__label">MENU</div>
+    </aside>
+
+    <!-- Conteúdo principal -->
+    <main>
+      <!-- HERO / BANNER com pesquisa -->
+      <section class="hero">
+        <div class="container hero__content">
+          <h1 class="hero__title">Junta-te à Marinha<br/>Constrói a tua carreira</h1>
+          <div class="searchbar" role="search" aria-label="Pesquisar oportunidades">
+            <span aria-hidden="true">🔎</span>
+            <input type="search" placeholder="Procura por profissão, concurso ou palavra‑chave…" />
+            <button class="btn btn--primary">Pesquisar</button>
+          </div>
+          <div class="chip-row" aria-label="Acessos rápidos">
+            <a class="chip" href="#">Concursos Abertos</a>
+            <a class="chip" href="#">Calendário</a>
+            <a class="chip" href="#">Perguntas Frequentes</a>
+            <a class="chip" href="#">Contacto</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- LINKS IMPORTANTES -->
+      <section class="container kit-section">
+        <h2>Links Importantes</h2>
+        <div class="grid grid-3">
+          <a class="link-card" href="#">
+            <div class="link-card__icon">⚓</div>
+            <div class="link-card__title">OA1</div>
+          </a>
+          <a class="link-card" href="#">
+            <div class="link-card__icon">🛰️</div>
+            <div class="link-card__title">OP</div>
+          </a>
+          <a class="link-card" href="#">
+            <div class="link-card__icon">📑</div>
+            <div class="link-card__title">OPM</div>
+          </a>
+        </div>
+      </section>
+
+      <!-- NOTÍCIAS -->
+      <section class="container kit-section">
+        <h2>Notícias</h2>
+        <div class="news-grid">
+          <article class="news-card">
+            <img src="assets/news1.jpg" alt="Navio da Marinha em missão" />
+            <div class="news-card__body">
+              <span class="badge">Operações</span>
+              <h3 class="news-card__title"><a href="#">Marinha conclui exercício de busca e salvamento no Atlântico</a></h3>
+              <div class="news-card__meta">12 Out 2025 · 4 min de leitura</div>
+            </div>
+          </article>
+          <article class="news-card">
+            <img src="assets/news2.jpg" alt="Formandos em instrução" />
+            <div class="news-card__body">
+              <span class="badge">Formação</span>
+              <h3 class="news-card__title"><a href="#">Novas turmas iniciam curso de Praças</a></h3>
+              <div class="news-card__meta">05 Out 2025 · 3 min de leitura</div>
+            </div>
+          </article>
+          <article class="news-card">
+            <img src="assets/news3.jpg" alt="Navio patrulha" />
+            <div class="news-card__body">
+              <span class="badge">Carreiras</span>
+              <h3 class="news-card__title"><a href="#">Candidaturas abertas para Oficiais</a></h3>
+              <div class="news-card__meta">28 Set 2025 · 2 min de leitura</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- DESTAQUES -->
+      <section class="container kit-section">
+        <h2>Destaques</h2>
+        <div class="highlight">
+          <div class="highlight__media" style="background-image:url('assets/destaque.jpg')"></div>
+          <div class="highlight__content">
+            <h3>Simulador de Carreira</h3>
+            <p>Descobre o percurso ideal para ti: requisitos, formação e progressão. Obtem um plano personalizado em menos de 2 minutos.</p>
+            <div class="row">
+              <a class="btn btn--primary" href="#">Começar</a>
+              <a class="btn btn--secondary" href="#">Saber mais</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMPONENTES BASE (Botões & Formulários) -->
+      <section class="container kit-section" id="componentes-base">
+        <h2>Componentes Base</h2>
+        <h3>Botões</h3>
+        <div class="row">
+          <button class="btn btn--primary">Primário</button>
+          <button class="btn btn--secondary">Secundário</button>
+          <button class="btn btn--ghost">Fantasma</button>
+          <button class="btn btn--primary btn--icon" aria-label="Ícone">⚓</button>
+        </div>
+
+        <h3 class="mt-6">Campos de Formulário</h3>
+        <form class="grid grid-3">
+          <div class="field">
+            <label class="label" for="nome">Nome</label>
+            <input class="input" id="nome" type="text" placeholder="O teu nome" />
+          </div>
+          <div class="field">
+            <label class="label" for="email">Email</label>
+            <input class="input" id="email" type="email" placeholder="nome@exemplo.pt" />
+          </div>
+          <div class="field">
+            <label class="label" for="area">Área</label>
+            <select class="select" id="area">
+              <option>Operações Navais</option>
+              <option>Engenharia</option>
+              <option>Saúde</option>
+            </select>
+          </div>
+          <div class="field" style="grid-column:1/-1;">
+            <label class="label" for="msg">Mensagem</label>
+            <textarea class="textarea" id="msg" rows="4" placeholder="Escreve a tua mensagem..."></textarea>
+          </div>
+          <div class="field" style="grid-column:1/-1;">
+            <label class="checkbox"><input type="checkbox" /> Aceito a política de privacidade</label>
+          </div>
+          <div class="row" style="grid-column:1/-1; justify-content:flex-end;">
+            <button type="button" class="btn btn--secondary">Cancelar</button>
+            <button type="submit" class="btn btn--primary">Submeter</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- TABELA EXEMPLO -->
+      <section class="container kit-section">
+        <h2>Tabela — Próximos Concursos</h2>
+        <table class="table" role="table">
+          <thead>
+            <tr>
+              <th>Concurso</th>
+              <th>Área</th>
+              <th>Vagas</th>
+              <th>Início</th>
+              <th>Fim</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Oficiais RN — 2026</td>
+              <td>Operações</td>
+              <td>45</td>
+              <td>10 Jan 2026</td>
+              <td>28 Fev 2026</td>
+            </tr>
+            <tr>
+              <td>Praças Fuzileiros — 2026</td>
+              <td>Fuzileiros</td>
+              <td>120</td>
+              <td>05 Fev 2026</td>
+              <td>20 Mar 2026</td>
+            </tr>
+            <tr>
+              <td>Saúde Naval — 2026</td>
+              <td>Enfermagem</td>
+              <td>25</td>
+              <td>01 Mar 2026</td>
+              <td>30 Abr 2026</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- MODAL DEMO -->
+      <section class="container kit-section">
+        <h2>Modal</h2>
+        <button class="btn btn--primary" id="openModal">Abrir Modal</button>
+        <div class="modal-backdrop" id="modal">
+          <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <h3 id="modalTitle">Confirmação</h3>
+            <p class="muted">Queres submeter a tua candidatura agora?</p>
+            <div class="row" style="justify-content:flex-end; margin-top:16px;">
+              <button class="btn btn--secondary" id="closeModal">Cancelar</button>
+              <button class="btn btn--primary">Confirmar</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>
+        <h3>Marinha Portuguesa</h3>
+        <p class="muted">Servir o mar, Portugal e os Portugueses.</p>
+      </div>
+      <div>
+        <h3>Ligações</h3>
+        <p><a href="#">Transparência</a></p>
+        <p><a href="#">Política de Privacidade</a></p>
+        <p><a href="#">Contactos</a></p>
+      </div>
+      <div>
+        <h3>Redes</h3>
+        <p><a href="#">Facebook</a></p>
+        <p><a href="#">Instagram</a></p>
+        <p><a href="#">YouTube</a></p>
+      </div>
+    </div>
+    <div class="container footer__bottom">© 2025 Marinha Portuguesa — Recrutamento</div>
+  </footer>
+
+  <!-- JS mínimo para demo (toggle do sidebar e modal) -->
+  <script>
+    const sidebar = document.getElementById('sidebar');
+    const btnHamburger = document.getElementById('btnHamburger');
+    btnHamburger?.addEventListener('click', () => {
+      sidebar.classList.toggle('is-open');
+    });
+
+    const modal = document.getElementById('modal');
+    const openModal = document.getElementById('openModal');
+    const closeModal = document.getElementById('closeModal');
+    openModal?.addEventListener('click', ()=> modal.classList.add('is-open'));
+    closeModal?.addEventListener('click', ()=> modal.classList.remove('is-open'));
+    modal?.addEventListener('click', (e)=>{ if(e.target === modal){ modal.classList.remove('is-open'); } });
+  </script>
+
+  <!-- NOTAS
+    • Este ficheiro é uma "biblioteca de componentes" para o frontend.
+    • Para produção, recomendo separar o CSS em /css/tokens.css e /css/components.css e minificar.
+    • Substitui as imagens em assets/ e o logo em --logo-url.
+    • Mantém a mesma hierarquia de classes para reutilização nos teus ficheiros HTML das páginas (Homepage, Profissões, Concursos, Prepara‑te, A tua Carreira, Candidata‑te).
+  -->
+</body>
+</html>

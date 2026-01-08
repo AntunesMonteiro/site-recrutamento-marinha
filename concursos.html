@@ -7,7 +7,10 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="estilos/concursos.css" />
+
+  <!-- Ordem: base primeiro, página depois -->
+  <link rel="stylesheet" href="estilos/base.css" />
+  <link rel="stylesheet" href="concursos.css" />
 </head>
 <body>
   <!-- NAVBAR -->
@@ -27,19 +30,18 @@
     <button class="hamburguer-btn" aria-label="Abrir menu">Menu</button>
   </header>
 
-  <!-- CENTRADO NA PÁGINA -->
+  <!-- CONTEÚDO -->
   <main class="vp-center">
+    <!-- TABS -->
     <div class="segmented" role="tablist" aria-label="Estado dos concursos">
-      <!-- ABERTOS -->
-      <a class="seg-item" href="concursos-abertos.html" role="tab"> 
+      <a class="seg-item" href="#abertos" role="tab" aria-selected="false">
         <svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         <span class="label">ABERTOS</span>
       </a>
 
-      <!-- A DECORRER -->
-      <a class="seg-item" href="#a-decorrer" role="tab" aria-selected="true">
+      <a class="seg-item" href="#a-decorrer" role="tab" aria-selected="false">
         <svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true">
           <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
           <path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -47,7 +49,6 @@
         <span class="label">A DECORRER</span>
       </a>
 
-      <!-- TERMINADOS RECENTEMENTE -->
       <a class="seg-item" href="#terminados" role="tab" aria-selected="false">
         <svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M18 6L6 18M6 6l12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -55,7 +56,6 @@
         <span class="label">TERMINADOS<br/>RECENTEMENTE</span>
       </a>
 
-      <!-- FUTUROS -->
       <a class="seg-item" href="#futuros" role="tab" aria-selected="false">
         <svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M12 3l9 16H3L12 3z" fill="none" stroke="currentColor" stroke-width="2"/>
@@ -64,6 +64,83 @@
         <span class="label">FUTUROS</span>
       </a>
     </div>
+
+    <!-- PAINÉIS (todos escondidos por defeito) -->
+    <section class="tabs-panels" aria-live="polite">
+      <!-- ABERTOS -->
+      <div class="panel" id="abertos" role="tabpanel" hidden>
+        <div class="seg-list">
+          <div class="seg-row">
+            <div class="seg-text">
+              <h3>Escola Naval — Oficiais</h3>
+              <p>Admissão ao Curso de Formação de Oficiais. 12.º ano ou equivalente e provas específicas.</p>
+            </div>
+            <div class="seg-actions">
+              <a class="btn ghost" href="documentos/aviso-escola-naval.pdf" target="_blank" rel="noopener">Aviso</a>
+              <a class="btn primary" href="detalhe-escola-naval.html">Saber mais</a>
+            </div>
+          </div>
+
+          <div class="seg-row">
+            <div class="seg-text">
+              <h3>Faroleiros — Quadros Técnicos</h3>
+              <p>Recrutamento para o farolismo. Preferência por formações técnicas e mobilidade nacional.</p>
+            </div>
+            <div class="seg-actions">
+              <a class="btn ghost" href="documentos/aviso-faroleiros.pdf" target="_blank" rel="noopener">Aviso</a>
+              <a class="btn primary" href="detalhe-faroleiros.html">Saber mais</a>
+            </div>
+          </div>
+
+          <div class="seg-row">
+            <div class="seg-text">
+              <h3>RM2 — Praças Fuzileiros</h3>
+              <p>Regime de contrato. 18–24 anos, mín. 9.º ano. Provas físicas e psicológicas.</p>
+            </div>
+            <div class="seg-actions">
+              <a class="btn ghost" href="documentos/aviso-fuzileiros.pdf" target="_blank" rel="noopener">Aviso</a>
+              <a class="btn primary" href="detalhe-fuzileiros.html">Saber mais</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- A DECORRER -->
+      <div class="panel" id="a-decorrer" role="tabpanel" hidden>
+        <div class="seg-list">
+          <div class="seg-row">
+            <div class="seg-text">
+              <h3>Sem concursos a decorrer.</h3>
+              <p>Volta mais tarde — atualizamos esta secção regularmente.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TERMINADOS -->
+      <div class="panel" id="terminados" role="tabpanel" hidden>
+        <div class="seg-list">
+          <div class="seg-row">
+            <div class="seg-text">
+              <h3>Terminados recentemente</h3>
+              <p>Consulta os avisos publicados para resultados e listas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FUTUROS -->
+      <div class="panel" id="futuros" role="tabpanel" hidden>
+        <div class="seg-list">
+          <div class="seg-row">
+            <div class="seg-text">
+              <h3>Próximas aberturas</h3>
+              <p>Planeadas consoante necessidades. Fica atento.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- MENU MOBILE -->
@@ -75,6 +152,7 @@
     <a href="candidata.html">Candidata-te</a>
   </nav>
 
+  <!-- SCRIPTS -->
   <script>
     // Toggle menu mobile
     const btn = document.querySelector('.hamburguer-btn');
@@ -82,6 +160,35 @@
     btn?.addEventListener('click', () => {
       const open = menu.hasAttribute('hidden');
       if (open) menu.removeAttribute('hidden'); else menu.setAttribute('hidden','');
+    });
+
+    // Tabs (não mostra nada até haver clique)
+    const tabs = document.querySelectorAll('.seg-item[role="tab"]');
+    const panels = document.querySelectorAll('.panel');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = tab.getAttribute('href').replace('#','');
+
+        // estado visual/ARIA dos tabs
+        tabs.forEach(t => t.setAttribute('aria-selected','false'));
+        tab.setAttribute('aria-selected','true');
+
+        // mostra/esconde painéis
+        panels.forEach(p => {
+          if (p.id === target) {
+            p.removeAttribute('hidden');
+            p.classList.add('active');
+          } else {
+            p.setAttribute('hidden','');
+            p.classList.remove('active');
+          }
+        });
+
+        // scroll opcional até ao conteúdo
+        document.querySelector('.tabs-panels')?.scrollIntoView({behavior:'smooth', block:'start'});
+      });
     });
   </script>
 </body>

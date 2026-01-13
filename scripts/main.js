@@ -1,14 +1,21 @@
+// =========================
+// MAIN.JS (corrigido)
+// =========================
+
 document.addEventListener('DOMContentLoaded', () => {
-    const navbarTop = document.querySelector('.navbar-top');
-    const navbarBottom = document.querySelector('.navbar-bottom');
-    const fixedButtons = document.querySelector('aside.fixed-buttons') || document.querySelector('.fixed-buttons');
-    const sections = document.querySelectorAll('.secao');
-  
-    // === OBSERVADOR PARA MOSTRAR/ESCONDER NAVBAR E BOTÕES FIXOS ===
+  // -----------------------------------
+  // NAVBARS + FIXED BUTTONS (Observer)
+  // -----------------------------------
+  const navbarTop = document.querySelector('.navbar-top');
+  const navbarBottom = document.querySelector('.navbar-bottom');
+  const fixedButtons = document.querySelector('aside.fixed-buttons') || document.querySelector('.fixed-buttons');
+  const sections = document.querySelectorAll('.secao');
+
+  if (sections.length) {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         const id = entry.target.id;
-  
+
         if (entry.isIntersecting) {
           if (id === 'sec1') {
             navbarTop?.classList.add('hidden');
@@ -26,103 +33,235 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }, { threshold: 0.6 });
-  
+
     sections.forEach(section => observer.observe(section));
-  
-    // === CARROSSEL DESTAQUES COM 5 CARDS EM EFEITO 3D ===
-    const slides = document.querySelectorAll('.carousel-slide');
-    const prevBtn = document.getElementById('prev');
-    const nextBtn = document.getElementById('next');
-  
-    let order = [...Array(slides.length).keys()]; // [0, 1, 2, 3, 4]
-  
-    function updateCarouselOrder() {
-      slides.forEach(slide => {
-        slide.classList.remove('pos-0', 'pos-1', 'pos-2', 'pos-3', 'pos-4');
-      });
-  
-      order.forEach((slideIndex, pos) => {
-        if (slides[slideIndex]) {
-          slides[slideIndex].classList.add(`pos-${pos}`);
-        }
-      });
-    }
-  
-    if (prevBtn && nextBtn && slides.length >= 5) {
-      prevBtn.addEventListener('click', () => {
-        order.unshift(order.pop()); // move o último para a frente
-        updateCarouselOrder();
-      });
-  
-      nextBtn.addEventListener('click', () => {
-        order.push(order.shift()); // move o primeiro para o fim
-        updateCarouselOrder();
-      });
-  
+  }
+
+  // -----------------------------------
+  // CARROSSEL DESTAQUES (SEC2) - 5 cards
+  // -----------------------------------
+  const slides = document.querySelectorAll('.carousel-slide');
+  const prevBtn = document.getElementById('prev');
+  const nextBtn = document.getElementById('next');
+
+  let order = [...Array(slides.length).keys()]; // [0, 1, 2, 3, 4...]
+
+  function updateCarouselOrder() {
+    slides.forEach(slide => {
+      slide.classList.remove('pos-0', 'pos-1', 'pos-2', 'pos-3', 'pos-4');
+    });
+
+    order.forEach((slideIndex, pos) => {
+      if (slides[slideIndex]) {
+        slides[slideIndex].classList.add(`pos-${pos}`);
+      }
+    });
+  }
+
+  if (prevBtn && nextBtn && slides.length >= 5) {
+    prevBtn.addEventListener('click', () => {
+      order.unshift(order.pop()); // move o último para a frente
       updateCarouselOrder();
-    }
-  
-    // === ACORDEÕES SEC3 ===
-    const acordeoes = document.querySelectorAll('.acordeao');
-  
-    acordeoes.forEach(acordeao => {
-      const summary = acordeao.querySelector('summary');
-      const buttons = acordeao.querySelectorAll('button');
-  
-      buttons.forEach(button => {
-        button.addEventListener('click', () => {
-          const tipo = acordeao.dataset.type;
-          const valor = button.textContent.trim();
-  
-          if (tipo === 'habilitacoes') {
-            summary.textContent = valor;
-          } else if (tipo === 'idade') {
-            summary.textContent = `${valor} anos`;
-          } else {
-            summary.textContent = valor;
-          }
-  
-          // Fecha o acordeão
-          acordeao.removeAttribute('open');
-        });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      order.push(order.shift()); // move o primeiro para o fim
+      updateCarouselOrder();
+    });
+
+    updateCarouselOrder();
+  }
+
+  // -----------------------------------
+  // ACORDEÕES (SEC3)
+  // -----------------------------------
+  const acordeoes = document.querySelectorAll('.acordeao');
+
+  acordeoes.forEach(acordeao => {
+    const summary = acordeao.querySelector('summary');
+    const buttons = acordeao.querySelectorAll('button');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const tipo = acordeao.dataset.type;
+        const valor = button.textContent.trim();
+
+        if (!summary) return;
+
+        if (tipo === 'habilitacoes') {
+          summary.textContent = valor;
+        } else if (tipo === 'idade') {
+          summary.textContent = `${valor} anos`;
+        } else {
+          summary.textContent = valor;
+        }
+
+        // fecha o acordeão
+        acordeao.removeAttribute('open');
       });
     });
-  
-    // === CARROSSEL SEC5 - TESTEMUNHOS ===
-    const testimoniosContainer = document.querySelector('.carousel-testemunhos');
-    const prevTestemunhos = document.getElementById('prev-testemunhos');
-    const nextTestemunhos = document.getElementById('next-testemunhos');
-  
-    if (testimoniosContainer && prevTestemunhos && nextTestemunhos) {
-      const scrollAmount = 400;
-  
-      prevTestemunhos.addEventListener('click', () => {
-        testimoniosContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-      });
-  
-      nextTestemunhos.addEventListener('click', () => {
-        testimoniosContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-      });
-    }
   });
 
-  // === BOTÕES SEGMENTADOS - ESTADO ATIVO ===
-document.addEventListener('DOMContentLoaded', () => {
+  // -----------------------------------
+  // CARROSSEL TESTEMUNHOS (SEC5)
+  // -----------------------------------
+  const testimoniosContainer = document.querySelector('.carousel-testemunhos');
+  const prevTestemunhos = document.getElementById('prev-testemunhos');
+  const nextTestemunhos = document.getElementById('next-testemunhos');
+
+  if (testimoniosContainer && prevTestemunhos && nextTestemunhos) {
+    const scrollAmount = 400;
+
+    prevTestemunhos.addEventListener('click', () => {
+      testimoniosContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+
+    nextTestemunhos.addEventListener('click', () => {
+      testimoniosContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+  }
+
+  // BOTÕES SEGMENTADOS - estado ativo
+  
   const segItems = document.querySelectorAll('.seg-item');
+  if (segItems.length) {
+    segItems.forEach(item => {
+      item.addEventListener('click', () => {
+        segItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+      });
+    });
+  }
 
-  segItems.forEach(item => {
-    item.addEventListener('click', () => {
-      segItems.forEach(i => i.classList.remove('active'));
-      item.classList.add('active');
+  // MENU MOBILE
+  
+  const hamburgerBtn = document.getElementById("hamburgerBtn");
+  const menuMobile = document.getElementById("menuMobile");
+
+  function closeMobileMenu() {
+    if (!menuMobile || !hamburgerBtn) return;
+    menuMobile.hidden = true;
+    hamburgerBtn.setAttribute("aria-expanded", "false");
+  }
+
+  function toggleMobileMenu() {
+    if (!menuMobile || !hamburgerBtn) return;
+
+    const isOpen = !menuMobile.hidden;
+    menuMobile.hidden = isOpen;
+    hamburgerBtn.setAttribute("aria-expanded", String(!isOpen));
+
+    // Abre menu, então fecha o chat
+    if (!isOpen) {
+      closeChat(); 
+    }
+  }
+
+  hamburgerBtn?.addEventListener("click", toggleMobileMenu);
+
+  menuMobile?.querySelectorAll("a").forEach(a => {
+    a.addEventListener("click", () => {
+      closeMobileMenu();
     });
   });
-});
 
-const mensagemInicial = document.getElementById('mensagem-inicial');
-tabs.forEach(tab => {
-  tab.addEventListener('click', (e) => {
-    e.preventDefault();
-    mensagemInicial?.setAttribute('hidden','');
-    ...
+  // CHAT (UI only) + OFFSET automático
+  
+  const btnChat = document.getElementById("btnChat");
+  const panel = document.getElementById("aiChatPanel");
+  const closeBtn = document.getElementById("aiChatClose");
+
+  const form = document.getElementById("aiChatForm");
+  const input = document.getElementById("aiChatInput");
+  const body = document.getElementById("aiChatBody");
+
+  const fixedButtonsWrap = document.getElementById("fixedButtons");
+
+  function isElementVisible(el) {
+    if (!el) return false;
+    const style = window.getComputedStyle(el);
+    if (style.display === "none" || style.visibility === "hidden" || style.opacity === "0") return false;
+    const rect = el.getBoundingClientRect();
+    return rect.width > 0 && rect.height > 0;
+  }
+
+  function updateChatOffset() {
+    if (window.matchMedia("(max-width: 520px)").matches) {
+      document.documentElement.style.setProperty("--chat-right-offset", "0px");
+      return;
+    }
+
+    if (!panel || panel.hidden) return;
+
+    if (fixedButtonsWrap && isElementVisible(fixedButtonsWrap)) {
+      const rect = fixedButtonsWrap.getBoundingClientRect();
+      const gap = 14;
+      document.documentElement.style.setProperty("--chat-right-offset", `${rect.width + gap}px`);
+    } else {
+      document.documentElement.style.setProperty("--chat-right-offset", "0px");
+    }
+  }
+
+  function openChat() {
+    if (!panel) return;
+    panel.hidden = false;
+    updateChatOffset();
+    setTimeout(() => input?.focus(), 50);
+  }
+
+  function closeChat() {
+    if (!panel) return;
+    panel.hidden = true;
+  }
+
+  window.__closeChat = closeChat;
+
+  btnChat?.addEventListener("click", () => {
+    if (!panel) return;
+    panel.hidden ? openChat() : closeChat();
   });
+
+  closeBtn?.addEventListener("click", closeChat);
+
+  // fechar chat com ESC 
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && panel && !panel.hidden) closeChat();
+  });
+
+  function addMsg(text, who = "user") {
+    if (!body) return;
+    const wrap = document.createElement("div");
+    wrap.className = `ai-chat__msg ai-chat__msg--${who}`;
+    wrap.innerHTML = `
+      <div class="ai-chat__bubble">
+        ${String(text).replace(/</g, "&lt;").replace(/>/g, "&gt;")}
+        <div class="ai-chat__meta">Agora</div>
+      </div>
+    `;
+    body.appendChild(wrap);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!input) return;
+
+    const text = input.value.trim();
+    if (!text) return;
+
+    addMsg(text, "user");
+    input.value = "";
+
+    // Simulação (o programador troca por API/WS)
+    setTimeout(() => addMsg("Recebido ✅ (simulação).", "bot"), 450);
+  });
+
+  window.addEventListener("resize", updateChatOffset, { passive: true });
+  window.addEventListener("scroll", updateChatOffset, { passive: true });
+
+  // helper local para o toggleMobileMenu conseguir chamar closeChat antes de estar declarada
+  function closeChat() {
+    if (!panel) return;
+    panel.hidden = true;
+  }
 });

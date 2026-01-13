@@ -8,27 +8,23 @@
   <link rel="stylesheet" href="estilos/style.css" />
 </head>
 
-<button class="hamburguer-btn" onclick="toggleMobileMenu()">☰</button>
-<div id="menuMobile" class="menu-mobile" style="display: none;">
-  <a href="profissoes.html">Profissões</a>
-  <a href="concursos.html">Concursos</a>
-  <a href="prepara.html">Prepara-te</a>
-  <a href="carreira.html">A tua carreira</a>
-  <a href="candidata.html">Candidata-te</a>
-</div>
-
-<script>
-  function toggleMobileMenu() {
-    const menu = document.getElementById("menuMobile");
-    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-  }
-</script>
-
-
 <body>
 
-  <!-- NAVBAR SUPERIOR -->
+  <!-- BOTÃO HAMBÚRGUER + MENU MOBILE (agora dentro do body, no sítio certo) -->
+  <button class="hamburguer-btn" id="hamburgerBtn" aria-label="Abrir menu" aria-controls="menuMobile" aria-expanded="false">
+    ☰
+  </button>
 
+  <div id="menuMobile" class="menu-mobile" hidden>
+    <a href="profissoes.html">Profissões</a>
+    <a href="concursos.html">Concursos</a>
+    <a href="prepara.html">Prepara-te</a>
+    <a href="carreira.html">A tua carreira</a>
+    <a href="candidata.html">Candidata-te</a>
+  </div>
+
+
+  <!-- NAVBAR SUPERIOR -->
   <nav class="navbar-top hidden">
     <a href="index.html">
       <img src="imagens/marinhaHorizontalWhite.png" alt="Marinha" class="logo" />
@@ -41,6 +37,7 @@
       <li><a href="candidata.html">Candidata-te</a></li>
     </ul>
   </nav>
+
 
   <main class="container">
 
@@ -123,9 +120,9 @@
       </article>
     </section>
 
+
     <!-- SECÇÃO 3: Oportunidades -->
     <section id="sec3" class="secao oportunidades">
-      <!-- Texto e filtros -->
       <article class="oportunidades-left">
         <h2>
           Na Marinha podes ser
@@ -133,7 +130,7 @@
           <span class="highlight-gradient">MILITARIZADO</span> ou
           <span class="highlight-gradient">CIVIL</span>
         </h2>
-    
+
         <section class="acordeoes">
           <details class="acordeao" data-type="habilitacoes">
             <summary>Habilitações</summary>
@@ -143,7 +140,7 @@
               <li><button>Ensino Superior</button></li>
             </ul>
           </details>
-    
+
           <details class="acordeao" data-type="idade">
             <summary>Idade</summary>
             <ul class="options">
@@ -161,22 +158,21 @@
               <li><button>+27</button></li>
             </ul>
           </details>
-    
+
           <button class="btn-seta">></button>
         </section>
       </article>
-    
-      <!-- Cards à direita -->
+
       <aside class="oportunidades-right">
         <div class="cards-perfil">
           <article class="card perfil-top-left">
             <img src="imagens/SECTION3/civil.jpg" alt="Civil" class="overlay-img" />
           </article>
-    
+
           <article class="card perfil-bottom-left">
             <img src="imagens/SECTION3/faroleira.jpg" alt="Militarizado" class="overlay-img" />
           </article>
-    
+
           <article class="card perfil-right">
             <img src="imagens/SECTION3/cabo.jpg" alt="Militar" class="overlay-img" />
           </article>
@@ -185,120 +181,140 @@
     </section>
 
 
-        <!-- SECÇÃO 4: Ambientes -->
-        <section id="sec4" class="secao ambientes">
-          <h2>Estamos no MAR, em TERRA, no AR e no CIBERESPAÇO</h2>
+    <!-- SECÇÃO 4: Ambientes -->
+    <section id="sec4" class="secao ambientes">
+      <h2>Estamos no MAR, em TERRA, no AR e no CIBERESPAÇO</h2>
 
-          <section class="cards-ambiente">
-            <figure class="card ambiente-mar">
-              <a href="#">
-                <figcaption>MAR</figcaption>
-              </a>
-            </figure>
+      <section class="cards-ambiente">
+        <figure class="card ambiente-mar"><a href="#"><figcaption>MAR</figcaption></a></figure>
+        <figure class="card ambiente-terra"><a href="#"><figcaption>TERRA</figcaption></a></figure>
+        <figure class="card ambiente-ar"><a href="#"><figcaption>AR</figcaption></a></figure>
+        <figure class="card ambiente-ciber"><a href="#"><figcaption>CIBERESPAÇO</figcaption></a></figure>
+      </section>
+    </section>
 
-            <figure class="card ambiente-terra">
-              <a href="#">
-                <figcaption>TERRA</figcaption>
-              </a>
-            </figure>
 
-            <figure class="card ambiente-ar">
-              <a href="#">
-                <figcaption>AR</figcaption>
-              </a>
-            </figure>
+    <!-- SECÇÃO 5: Testemunhos -->
+    <section id="sec5" class="secao testemunhos">
+      <h2>TESTEMUNHOS</h2>
 
-            <figure class="card ambiente-ciber">
-              <a href="#">
-                <figcaption>CIBERESPAÇO</figcaption>
-              </a>
-            </figure>
-          </section>
-        </section>
+      <section class="carousel-testemunhos">
+        <figure>
+          <h3>Cadete</h3>
+          <p>Decidi ingressar na Marinha porque encontrei uma oportunidade de servir o país e crescer profissionalmente...</p>
+          <figcaption class="video-container">
+            <a href="https://www.youtube.com/watch?v=2klANmha-gc" target="_blank" class="play-button">
+              <img src="imagens/logos/play.png" alt="Play">
+            </a>
+            <img src="imagens/testemunhos/cadete.jpg" alt="Testemunho 1">
+          </figcaption>
+        </figure>
 
-        <!-- SECÇÃO 5: Testemunhos -->
-        <section id="sec5" class="secao testemunhos">
-          <h2>TESTEMUNHOS</h2>
+        <figure>
+          <h3>Técnico de Informática</h3>
+          <p>Sempre gostei de tecnologia e encontrei na Marinha um caminho para evoluir em áreas como cibersegurança e redes...</p>
+          <figcaption class="video-container">
+            <a href="https://www.youtube.com/watch?v=2klANmha-gc" target="_blank" class="play-button">
+              <img src="imagens/logos/play.png" alt="Play">
+            </a>
+            <img src="imagens/testemunhos/informatico.jpg" alt="Testemunho 2">
+          </figcaption>
+        </figure>
 
-          <section class="carousel-testemunhos">
-            <figure>
-              <h3>Cadete</h3>
-              <p>Decidi ingressar na Marinha porque encontrei uma oportunidade de servir o país e crescer
-                profissionalmente...</p>
-              <figcaption class="video-container">
-                <a href="https://www.youtube.com/watch?v=2klANmha-gc" target="_blank" class="play-button">
-                  <img src="imagens/logos/play.png" alt="Play">
-                </a>
-                <img src="imagens/testemunhos/cadete.jpg" alt="Testemunho 1">
-              </figcaption>
-            </figure>
+        <figure>
+          <h3>Oficial de Engenharia</h3>
+          <p>A engenharia naval sempre me fascinou. O ambiente desafiante da Marinha ajuda-me a crescer todos os dias...</p>
+          <figcaption class="video-container">
+            <a href="https://www.youtube.com/watch?v=2klANmha-gc" target="_blank" class="play-button">
+              <img src="imagens/logos/play.png" alt="Play">
+            </a>
+            <img src="imagens/testemunhos/engenheiro.jpg" alt="Testemunho 3">
+          </figcaption>
+        </figure>
+      </section>
 
-            <figure>
-              <h3>Técnico de Informática</h3>
-              <p>Sempre gostei de tecnologia e encontrei na Marinha um caminho para evoluir em áreas como cibersegurança
-                e
-                redes...</p>
-              <figcaption class="video-container">
-                <a href="https://www.youtube.com/watch?v=2klANmha-gc" target="_blank" class="play-button">
-                  <img src="imagens/logos/play.png" alt="Play">
-                </a>
-                <img src="imagens/testemunhos/informatico.jpg" alt="Testemunho 2">
-              </figcaption>
-            </figure>
+      <nav class="controles-testemunhos">
+        <button id="prev-testemunhos">&#8592;</button>
+        <button id="next-testemunhos">&#8594;</button>
+      </nav>
+    </section>
 
-            <figure>
-              <h3>Oficial de Engenharia</h3>
-              <p>A engenharia naval sempre me fascinou. O ambiente desafiante da Marinha ajuda-me a crescer todos os
-                dias...</p>
-              <figcaption class="video-container">
-                <a href="https://www.youtube.com/watch?v=2klANmha-gc" target="_blank" class="play-button">
-                  <img src="imagens/logos/play.png" alt="Play">
-                </a>
-                <img src="imagens/testemunhos/engenheiro.jpg" alt="Testemunho 3">
-              </figcaption>
-            </figure>
-          </section>
 
-          <nav class="controles-testemunhos">
-            <button id="prev-testemunhos">&#8592;</button>
-            <button id="next-testemunhos">&#8594;</button>
+    <!-- SECÇÃO 6 -->
+    <section id="sec6" class="secao final">
+      <header class="sec6-header"></header>
+      <h1 class="titulo-sombra1">JUNTA-TE A NÓS</h1>
+      <h1 class="titulo">JUNTA-TE A NÓS</h1>
+      <button class="btn-atreve">ATREVE-TE</button>
+
+      <footer class="sec6-footer">
+        <div class="footer-top">
+          <img src="imagens/marinhaHorizontalWhite.png" alt="Logo Footer">
+          <nav class="footer-social">
+            <a href="#"><img src="imagens/logos/whatsapp.png" alt="WhatsApp" /></a>
+            <a href="#"><img src="imagens/logos/instagram.png" alt="Instagram" /></a>
+            <a href="#"><img src="imagens/logos/facebook.png" alt="Facebook" /></a>
+            <a href="#"><img src="imagens/logos/twitter.png" alt="Twitter" /></a>
+            <a href="#"><img src="imagens/logos/linkedin.png" alt="LinkedIn" /></a>
           </nav>
-        </section>
-
-        <!-- SECTION 6 -->
-
-        <section id="sec6" class="secao final">
-          <header class="sec6-header">
-          </header>
-          <h1 class="titulo-sombra1">JUNTA-TE A NÓS</h1>
-          <h1 class="titulo">JUNTA-TE A NÓS</h1>
-          <button class="btn-atreve">ATREVE-TE</button>
-          <footer class="sec6-footer">
-            <div class="footer-top">
-              <img src="imagens/marinhaHorizontalWhite.png" alt="Logo Footer">
-              <nav class="footer-social">
-                <a href="#"><img src="imagens/logos/whatsapp.png" alt="WhatsApp" /></a>
-                <a href="#"><img src="imagens/logos/instagram.png" alt="Instagram" /></a>
-                <a href="#"><img src="imagens/logos/facebook.png" alt="Facebook" /></a>
-                <a href="#"><img src="imagens/logos/twitter.png" alt="Twitter" /></a>
-                <a href="#"><img src="imagens/logos/linkedin.png" alt="LinkedIn" /></a>
-              </nav>
-            </div>
-            <p class="footer-links">
-              2024, RECRUTAMENTO | Acessibilidade | Glossário | Cookies | Avisos Legais | Links Úteis | Mapa do Site |
-              Contactos
-            </p>
-          </footer>
-        </section>
-
+        </div>
+        <p class="footer-links">
+          2024, RECRUTAMENTO | Acessibilidade | Glossário | Cookies | Avisos Legais | Links Úteis | Mapa do Site | Contactos
+        </p>
+      </footer>
+    </section>
 
   </main>
 
+
   <!-- BOTÕES FIXOS -->
-  <aside class="fixed-buttons">
-    <button>CHAT</button>
-    <button>JUNTA-TE A NÓS</button>
+  <aside class="fixed-buttons" id="fixedButtons">
+    <button id="btnChat" type="button">CHAT</button>
+    <button type="button">JUNTA-TE A NÓS</button>
   </aside>
+
+
+  <!-- CHAT (UI only) -->
+  <section class="ai-chat__panel" id="aiChatPanel" aria-label="Janela de chat" hidden>
+    <header class="ai-chat__header">
+      <div class="ai-chat__title">
+        <div class="ai-chat__avatar" aria-hidden="true">⚓</div>
+        <div>
+          <div class="ai-chat__name">Popeye</div>
+          <div class="ai-chat__status">
+            <span class="ai-chat__dot"></span>
+            <span>Online</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="ai-chat__iconbtn" id="aiChatClose" aria-label="Fechar" type="button">✕</button>
+    </header>
+
+    <div class="ai-chat__body" id="aiChatBody">
+      <div class="ai-chat__system">
+        Olá! Sou o assistente virtual. Posso ajudar com dúvidas sobre concursos, requisitos e candidatura.
+      </div>
+
+      <div class="ai-chat__msg ai-chat__msg--bot">
+        <div class="ai-chat__bubble">
+          Em que posso ajudar hoje?
+          <div class="ai-chat__meta">Agora</div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="ai-chat__footer">
+      <div class="ai-chat__disclaimer">
+        *Layout demonstrativo. Não partilhe dados sensíveis.*
+      </div>
+
+      <form class="ai-chat__form" id="aiChatForm">
+        <input class="ai-chat__input" id="aiChatInput" type="text" placeholder="Escreve a tua pergunta…" autocomplete="off" />
+        <button class="ai-chat__send" type="submit">Enviar</button>
+      </form>
+    </footer>
+  </section>
 
 
   <script src="scripts/main.js"></script>

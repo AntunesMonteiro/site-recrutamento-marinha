@@ -265,3 +265,51 @@ document.addEventListener('DOMContentLoaded', () => {
     panel.hidden = true;
   }
 });
+
+// =========================
+// MODAL "JUNTA-TE A NÓS"
+// =========================
+const joinModal = document.getElementById("joinModal");
+const joinClose = document.getElementById("joinModalClose");
+const joinForm = document.getElementById("joinForm");
+
+const btnJuntaHero = document.getElementById("btnJuntaHero");
+const btnJuntaFixed = document.getElementById("btnJuntaFixed");
+
+function openJoinModal() {
+  if (!joinModal) return;
+  joinModal.hidden = false;
+  joinModal.setAttribute("aria-hidden", "false");
+  // foca o primeiro input (UX)
+  setTimeout(() => joinForm?.querySelector("input, select")?.focus(), 50);
+}
+
+function closeJoinModal() {
+  if (!joinModal) return;
+  joinModal.hidden = true;
+  joinModal.setAttribute("aria-hidden", "true");
+}
+
+btnJuntaHero?.addEventListener("click", openJoinModal);
+btnJuntaFixed?.addEventListener("click", openJoinModal);
+
+joinClose?.addEventListener("click", closeJoinModal);
+
+// fechar ao clicar no backdrop
+joinModal?.addEventListener("click", (e) => {
+  const target = e.target;
+  if (target && target.matches("[data-close='true']")) closeJoinModal();
+});
+
+// fechar com ESC
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && joinModal && !joinModal.hidden) closeJoinModal();
+});
+
+// submit demonstrativo (o programador liga ao backend/API)
+joinForm?.addEventListener("submit", (e) => {
+  e.preventDefault();
+  alert("Registo (simulação) enviado ✅");
+  closeJoinModal();
+  joinForm.reset();
+});

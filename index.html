@@ -52,7 +52,7 @@
 
       <img src="imagens/pngs/mergulhador.png" alt="Mergulhador" class="img-mergulhador" />
 
-      <button class="btn-principal">JUNTA-TE A NÓS</button>
+      <button class="btn-principal" id="btnJuntaHero" type="button">JUNTA-TE A NÓS</button>
 
       <nav class="navbar-bottom">
         <a href="profissoes.html">Profissões</a>
@@ -270,7 +270,7 @@
   <!-- BOTÕES FIXOS -->
   <aside class="fixed-buttons" id="fixedButtons">
     <button id="btnChat" type="button">CHAT</button>
-    <button type="button">JUNTA-TE A NÓS</button>
+    <button id="btnJuntaFixed" type="button">JUNTA-TE A NÓS</button>
   </aside>
 
 
@@ -280,7 +280,7 @@
       <div class="ai-chat__title">
         <div class="ai-chat__avatar" aria-hidden="true">⚓</div>
         <div>
-          <div class="ai-chat__name">Popeye</div>
+          <div class="ai-chat__name">Marujo</div>
           <div class="ai-chat__status">
             <span class="ai-chat__dot"></span>
             <span>Online</span>
@@ -306,7 +306,7 @@
 
     <footer class="ai-chat__footer">
       <div class="ai-chat__disclaimer">
-        *Layout demonstrativo. Não partilhe dados sensíveis.*
+        *Layout demonstrativo. Não partilhe dados sensíveis.
       </div>
 
       <form class="ai-chat__form" id="aiChatForm">
@@ -316,6 +316,107 @@
     </footer>
   </section>
 
+  <!-- FORM: JUNTA-TE A NÓS -->
+<section class="join-modal" id="joinModal" hidden aria-hidden="true">
+  <div class="join-modal__backdrop" data-close="true"></div>
+
+  <div class="join-modal__panel" role="dialog" aria-modal="true" aria-labelledby="joinTitle">
+    <header class="join-modal__header">
+      <div>
+        <div class="join-modal__kicker">Recrutamento Marinha</div>
+        <h2 id="joinTitle" class="join-modal__title">Junta-te a nós</h2>
+        <p class="join-modal__subtitle">Regista-te para receber informações sobre concursos e candidaturas.</p>
+      </div>
+
+      <button class="join-modal__close" id="joinModalClose" type="button" aria-label="Fechar">✕</button>
+    </header>
+
+    <form class="join-form" id="joinForm">
+      <div class="join-form__grid">
+        <label class="join-field">
+          <span>Nome completo *</span>
+          <input type="text" name="nome" required placeholder="Ex.: João Silva" />
+        </label>
+
+        <label class="join-field">
+          <span>Email *</span>
+          <input type="email" name="email" required placeholder="exemplo@email.com" />
+        </label>
+
+        <label class="join-field">
+          <span>Telemóvel</span>
+          <input type="tel" name="telemovel" placeholder="9xx xxx xxx" />
+        </label>
+
+        <label class="join-field">
+          <span>Data de nascimento</span>
+          <input type="date" name="dataNascimento" />
+        </label>
+
+        <fieldset class="join-fieldset">
+          <legend>Sexo</legend>
+          <div class="join-radio">
+            <label><input type="radio" name="sexo" value="M" /> Masculino</label>
+            <label><input type="radio" name="sexo" value="F" /> Feminino</label>
+          </div>
+        </fieldset>
+
+        <label class="join-field join-field--full">
+          <span>Habilitações literárias *</span>
+          <select name="habilitacoes" required>
+            <option value="" selected disabled>Seleciona…</option>
+            <option>9º ano (3º ciclo)</option>
+            <option>12º ano (secundário)</option>
+            <option>Curso profissional/tecnológico</option>
+            <option>Licenciatura</option>
+            <option>Mestrado</option>
+            <option>Doutoramento</option>
+            <option>Outros</option>
+          </select>
+        </label>
+
+        <label class="join-field">
+          <span>Password *</span>
+          <input type="password" name="password" required placeholder="••••••••" minlength="6" />
+          <small class="join-hint">Mín. 6 caracteres (layout demonstrativo).</small>
+        </label>
+
+        <label class="join-field">
+          <span>Confirmar password *</span>
+          <input type="password" name="password2" required placeholder="••••••••" minlength="6" />
+        </label>
+
+        <fieldset class="join-fieldset join-fieldset--full">
+          <legend>Quero receber informações acerca das seguintes áreas</legend>
+          <div class="join-checks">
+            <label><input type="checkbox" name="areas" value="Fuzileiros" /> Fuzileiros</label>
+            <label><input type="checkbox" name="areas" value="Mergulhadores" /> Mergulhadores</label>
+            <label><input type="checkbox" name="areas" value="Musicos" /> Músicos</label>
+            <label><input type="checkbox" name="areas" value="TSN_TN" /> Técnicos Superiores Navais / Técnicos Navais</label>
+            <label><input type="checkbox" name="areas" value="Pracas_Outras" /> Praças – Outras Classes</label>
+            <label><input type="checkbox" name="areas" value="Medicos" /> Médicos Navais</label>
+          </div>
+        </fieldset>
+
+        <label class="join-consent join-field--full">
+          <input type="checkbox" name="consentimento" required />
+          <span>
+            Li e aceito os termos da
+            <a href="https://candidaturas.marinha.pt/" target="_blank" rel="noreferrer">Declaração de Consentimento</a>
+            *
+          </span>
+        </label>
+      </div>
+
+      <div class="join-actions">
+        <p class="join-disclaimer">
+          *Layout demonstrativo (frontend). Não introduzir dados sensíveis.*
+        </p>
+        <button class="join-submit" type="submit">Registar</button>
+      </div>
+    </form>
+  </div>
+</section>
 
   <script src="scripts/main.js"></script>
 </body>

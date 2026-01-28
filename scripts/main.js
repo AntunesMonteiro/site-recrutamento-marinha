@@ -1,7 +1,3 @@
-// =========================
-// MAIN.JS (corrigido)
-// =========================
-
 document.addEventListener('DOMContentLoaded', () => {
   // -----------------------------------
   // NAVBARS + FIXED BUTTONS (Observer)
@@ -121,8 +117,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // -----------------------------------
   // BOTÕES SEGMENTADOS - estado ativo
-  
+  // -----------------------------------
   const segItems = document.querySelectorAll('.seg-item');
   if (segItems.length) {
     segItems.forEach(item => {
@@ -133,8 +130,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // -----------------------------------
   // MENU MOBILE
-  
+  // -----------------------------------
   const hamburgerBtn = document.getElementById("hamburgerBtn");
   const menuMobile = document.getElementById("menuMobile");
 
@@ -144,6 +142,10 @@ document.addEventListener('DOMContentLoaded', () => {
     hamburgerBtn.setAttribute("aria-expanded", "false");
   }
 
+  // vamos declarar closeChat antes de usar no toggle
+  // (função real do chat é definida mais abaixo, mas esta referência funciona)
+  let closeChat = () => {};
+
   function toggleMobileMenu() {
     if (!menuMobile || !hamburgerBtn) return;
 
@@ -151,9 +153,9 @@ document.addEventListener('DOMContentLoaded', () => {
     menuMobile.hidden = isOpen;
     hamburgerBtn.setAttribute("aria-expanded", String(!isOpen));
 
-    // Abre menu, então fecha o chat
+    // Abre menu -> fecha o chat
     if (!isOpen) {
-      closeChat(); 
+      closeChat();
     }
   }
 
@@ -165,8 +167,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // CHAT (UI only) + OFFSET automático
-  
+  // -----------------------------------
+  // CHAT (ligado ao backend) + OFFSET automático
+  // -----------------------------------
+  const API_URL = "http://localhost:3001/api/chat";
+
   const btnChat = document.getElementById("btnChat");
   const panel = document.getElementById("aiChatPanel");
   const closeBtn = document.getElementById("aiChatClose");
@@ -186,6 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function updateChatOffset() {
+    // mobile: encosta ao canto
     if (window.matchMedia("(max-width: 520px)").matches) {
       document.documentElement.style.setProperty("--chat-right-offset", "0px");
       return;
@@ -205,15 +211,18 @@ document.addEventListener('DOMContentLoaded', () => {
   function openChat() {
     if (!panel) return;
     panel.hidden = false;
+    panel.setAttribute("aria-hidden", "false");
     updateChatOffset();
     setTimeout(() => input?.focus(), 50);
   }
 
-  function closeChat() {
+  closeChat = function () {
     if (!panel) return;
     panel.hidden = true;
-  }
+    panel.setAttribute("aria-hidden", "true");
+  };
 
+  // expor se precisares noutros sítios
   window.__closeChat = closeChat;
 
   btnChat?.addEventListener("click", () => {
@@ -223,26 +232,67 @@ document.addEventListener('DOMContentLoaded', () => {
 
   closeBtn?.addEventListener("click", closeChat);
 
-  // fechar chat com ESC 
+  // fechar chat com ESC
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && panel && !panel.hidden) closeChat();
   });
 
-  function addMsg(text, who = "user") {
-    if (!body) return;
+  const nowLabel = () => {
+    const d = new Date();
+    return d.toLocaleTimeString("pt-PT", { hour: "2-digit", minute: "2-digit" });
+  };
+
+  function addMsg(text, who = "user", metaText = null) {
+    if (!body) return null;
+
     const wrap = document.createElement("div");
     wrap.className = `ai-chat__msg ai-chat__msg--${who}`;
-    wrap.innerHTML = `
-      <div class="ai-chat__bubble">
-        ${String(text).replace(/</g, "&lt;").replace(/>/g, "&gt;")}
-        <div class="ai-chat__meta">Agora</div>
-      </div>
-    `;
+
+    const bubble = document.createElement("div");
+    bubble.className = "ai-chat__bubble";
+
+    const content = document.createElement("div");
+    content.className = "ai-chat__text";
+    content.textContent = String(text);
+
+    const meta = document.createElement("div");
+    meta.className = "ai-chat__meta";
+    meta.textContent = metaText || nowLabel();
+
+    bubble.appendChild(content);
+    bubble.appendChild(meta);
+    wrap.appendChild(bubble);
+
     body.appendChild(wrap);
     body.scrollTop = body.scrollHeight;
+
+    return wrap;
   }
 
-  form?.addEventListener("submit", (e) => {
+  function setFormLoading(isLoading) {
+    if (!input || !form) return;
+    const sendBtn = form.querySelector('button[type="submit"]');
+    input.disabled = isLoading;
+    if (sendBtn) sendBtn.disabled = isLoading;
+  }
+
+  async function sendToBackend(message) {
+    const r = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message }),
+    });
+
+    if (!r.ok) {
+      const t = await r.text().catch(() => "");
+      throw new Error(`HTTP ${r.status} ${r.statusText} ${t}`.slice(0, 500));
+    }
+
+    const data = await r.json();
+    return (data?.answer || "Sem resposta.").trim();
+  }
+
+  form?.addEventListener("submit", async (e) => {
     e.preventDefault();
     if (!input) return;
 
@@ -252,19 +302,43 @@ document.addEventListener('DOMContentLoaded', () => {
     addMsg(text, "user");
     input.value = "";
 
-    // Simulação (o programador troca por API/WS)
-    setTimeout(() => addMsg("Recebido ✅ (simulação).", "bot"), 450);
+    // bot typing placeholder
+    const typingNode = addMsg("A escrever…", "bot", nowLabel());
+    setFormLoading(true);
+
+    try {
+      const answer = await sendToBackend(text);
+
+      // substituir texto "A escrever…" pela resposta
+      if (typingNode) {
+        const txt = typingNode.querySelector(".ai-chat__text");
+        if (txt) txt.textContent = answer;
+      } else {
+        addMsg(answer, "bot");
+      }
+    } catch (err) {
+      const msg =
+        "⚠️ Não consegui obter resposta do servidor. " +
+        "Confirma se o backend está a correr em http://localhost:3001.";
+
+      if (typingNode) {
+        const txt = typingNode.querySelector(".ai-chat__text");
+        if (txt) txt.textContent = msg;
+      } else {
+        addMsg(msg, "bot");
+      }
+
+      console.error("Chat error:", err);
+    } finally {
+      setFormLoading(false);
+      input.focus();
+    }
   });
 
   window.addEventListener("resize", updateChatOffset, { passive: true });
   window.addEventListener("scroll", updateChatOffset, { passive: true });
-
-  // helper local para o toggleMobileMenu conseguir chamar closeChat antes de estar declarada
-  function closeChat() {
-    if (!panel) return;
-    panel.hidden = true;
-  }
 });
+
 
 // =========================
 // MODAL "JUNTA-TE A NÓS"
